@@ -1,0 +1,138 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: sans-serif;
+}
+.cotizacion{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 85%;
+}
+
+.cotizacion .header{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	padding-top: 2.5rem;
+  justify-content: space-between;
+}
+
+.cotizacion .header .logo{
+	width: 30%;
+}
+
+.cotizacion .header .logo img{
+	width: 155px;
+	height: 75px;
+}
+
+.cotizacion .header .title h2{
+	font-size: 2.7rem;
+	font-weight: 500;
+}
+
+
+.cotizacion .asociado{
+	margin-top: 1.5rem;
+}
+
+.cotizacion .asociado p{
+	text-transform: uppercase;
+}
+
+.cotizacion .asociado p b{
+	text-transform: capitalize;
+}
+
+.cotizacion .fecha{
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.cotizacion .fecha p{
+	font-size: 1.1rem;
+}
+
+.cotizacion .info{
+	width: 100%;
+}
+
+.cotizacion .info table{
+	width: 100%;
+	
+}
+
+.cotizacion .info table tr td{
+	padding: 0.1rem 0;
+	font-size: 1.1rem;
+}
+
+.cotizacion .mercancia{
+	margin-top: 2rem;
+	width: 100%;
+}
+
+.cotizacion .mercancia h2{
+	font-size: 2.5rem;
+	font-weight: 500;
+}
+
+.cotizacion .total{
+	width: 100%;
+}
+
+.cotizacion  .total h2{
+	text-transform: capitalize;
+	font-size: 2.3rem;
+	text-align: center;
+	font-weight: 500;
+}
+
+.cotizacion .total #total{
+	font-size: 1.2rem;
+}
+
+.cotizacion .total .box-total{
+	width: 100%;
+	box-sizing: border-box;
+	background: #D6D6D6;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.cotizacion .total .box-total p{
+	font-size: 1.2rem;
+}
+
+.cotizacion .total .box-total strong{
+	margin-right: 1.6rem;
+}
+
+.cotizacion .vigencia{
+	font-size: 1.2rem;
+	margin-top: 2rem;
+}
+
+.boton-imp{
+	margin-top: 2rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.boton-imp button{
+	border: none;
+	color: #fff;
+	font-size: 1.2rem;
+	background: #424242;
+	padding: 10px 25px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 0px 15px;
+}
