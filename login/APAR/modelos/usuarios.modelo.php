@@ -264,7 +264,18 @@ class ModeloUsuarios{
 
 	static public function mdlEditarUsuario($tabla, $datos){
 		
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Nombre = :Nombre, Email = :Email, Foto=:Foto, Password = :Password,
+// Password = :Password,Foto=:Foto,
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  Nombre = :Nombre, Password = :Password, Foto=:Foto, Email = :Email,  
+											  Perfil=:Perfil,  Empresa =:Empresa, RFC=:RFC, Calle=:Calle, Numero_Interior=:Numero_Interior,
+											  Numero_Exterior=:Numero_Exterior, Colonia=:Colonia, Municipio=:Municipio, Estado=:Estado,
+											  CodigoPostal=:CodigoPostal, Pais=:Pais, Email_Adicional=:Email_Adicional, Giro=:Giro, Telefono=:Telefono,
+											  Celular=:Celular, Contacto=:Contacto, Nextel=:Nextel, CuentaBancaria=:CuentaBancaria, CuentaBancaria_Adicional=:CuentaBancaria_Adicional,
+											  Comision=:Comision, Abreviatura=:Abreviatura, Cuota_VT=:Cuota_VT, Cuota_Rot=:Cuota_Rot, Cuota_TR=:Cuota_TR, 
+											  Cuota_Contenedor=:Cuota_Contenedor, Prima_Minima = :Prima_Minima, Derecho_Certificado=:Derecho_Certificado, Localidad=:Localidad, ComisionAsociado=:ComisionAsociado, IdAseguradora=:IdAseguradora
+											  WHERE Id = :Id");
+
+
+		/* $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Nombre = :Nombre, Email = :Email, Foto=:Foto, Password = :Password,
 																 Empresa =:Empresa, RFC=:RFC, Calle=:Calle, Numero_Interior=:Numero_Interior, 
 																 Numero_Exterior=:Numero_Exterior, Colonia=:Colonia, Municipio=:Municipio, Estado=:Estado, 
 																 CodigoPostal=:CodigoPostal, Pais=:Pais, 
@@ -272,11 +283,14 @@ class ModeloUsuarios{
 																 Contacto=:Contacto, Nextel=:Nextel, CuentaBancaria=:CuentaBancaria, CuentaBancaria_Adicional=:CuentaBancaria_Adicional,
 																 Comision=:Comision, Abreviatura=:Abreviatura, Cuota_VT=:Cuota_VT, Cuota_Rot=:Cuota_Rot, Cuota_TR=:Cuota_TR, 
 																 Cuota_Contenedor=:Cuota_Contenedor, Prima_Minima = :Prima_Minima, Derecho_Certificado=:Derecho_Certificado, Localidad=:Localidad, ComisionAsociado=:ComisionAsociado, IdAseguradora=:IdAseguradora WHERE Id = :Id");
-		$stmt->bindParam(":Nombre", $datos["nombre"]);
+		 */
+		
+		$stmt->bindParam(":Perfil", $datos["Perfil"]);
 		$stmt->bindParam(":Email", $datos["email"]);
-		$stmt->bindParam(":Empresa", $datos["empresa"]);
+		$stmt->bindParam(":Nombre", $datos["Nombre"]);
 		$stmt->bindParam(":Password", $datos["password"]);
 		$stmt->bindParam(":Foto", $datos["foto"]);
+		$stmt->bindParam(":Empresa", $datos["empresa"]);
 		$stmt->bindParam(":RFC", $datos["rfc"]);
 		$stmt->bindParam(":Calle", $datos["calle"]);
 		$stmt->bindParam(":Numero_Interior", $datos["numerointerior"]);
@@ -304,7 +318,7 @@ class ModeloUsuarios{
 		$stmt->bindParam(":Prima_Minima", $datos["primaminima"]);
 		$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
 		$stmt->bindParam(":Localidad", $datos["localidad"]);
-		$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+		$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]); 
 		$stmt -> bindParam(":Id", $datos["id"]);
 
 		if($stmt -> execute()){

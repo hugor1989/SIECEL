@@ -395,6 +395,8 @@ class ControladorUsuarios{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
 
+			
+
 				/*=============================================
 				VALIDAR IMAGEN
 				=============================================*/
@@ -516,13 +518,15 @@ class ControladorUsuarios{
 						
 				//		</script>";
 
-				$datos = array("nombre" => $_POST["editarNombre"],
+				$datos = array("Perfil" => $_POST["editarPerfil"],
 								"email" => $_POST["editarEmail"],
+								"Nombre" => $_POST["editarNombre"],
+								"password" => $encriptar,
+								"foto"=>$ruta,
 								"empresa" => $_POST["editarEmpresa"],
-								"idaseguradora" => $_POST["editarAseguradora"],
+								 "idaseguradora" => $_POST["editarAseguradora"],
 								"rfc" => $_POST["editarRFC"],
 								"calle" => $_POST["editarCalle"],
-								"password" => $encriptar,
 								"numerointerior" => $_POST["editarNumeroInterior"],
 								"numeroexterior" => $_POST["editarNumeroExterior"],
 								"colonia" => $_POST["editarColonia"],
