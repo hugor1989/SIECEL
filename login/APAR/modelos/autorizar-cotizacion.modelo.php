@@ -13,11 +13,11 @@ class ModeloAutorizarCotizacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT CT.ID, CT.Folio, CT.Fecha, CT.Cliente, CT.Asociado, CT.Estatus, 
+			$stmt = Conexion::conectar()->prepare("SELECT CT.ID, CT.Folio, CT.Fecha, CT.Cliente, CT.Asociado, CT.Estatus, CT.ComentariosRevision, 
                                                           US.Nombre as AsociadoNombre, CL.Nombre as ClienteDescripcion
                                                     FROM cotizacion CT
                                                     INNER JOIN usuario US ON (US.Id=CT.Asociado)
-                                                    INNER JOIN persona CL ON (CL.Id=CT.Cliente) WHERE CT.Estatus='Pendiente' ");
+                                                    INNER JOIN persona CL ON (CL.Id=CT.Cliente) WHERE CT.Estatus IN ('Pendiente','Revision') ");
 
             $stmt -> execute();
 
@@ -25,11 +25,11 @@ class ModeloAutorizarCotizacion{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT CT.ID, CT.Folio, CT.Fecha, CT.Cliente, CT.Asociado, CT.Estatus, 
+			$stmt = Conexion::conectar()->prepare("SELECT CT.ID, CT.Folio, CT.Fecha, CT.Cliente, CT.Asociado, CT.Estatus, CT.ComentariosRevision,
                                                             US.Nombre as AsociadoNombre, CL.Nombre as ClienteDescripcion
                                                     FROM cotizacion CT
                                                     INNER JOIN usuario US ON (US.Id=CT.Asociado)
-                                                    INNER JOIN persona CL ON (CL.Id=CT.Cliente) WHERE CT.Estatus='Pendiente'");
+                                                    INNER JOIN persona CL ON (CL.Id=CT.Cliente) WHERE CT.Estatus IN ('Pendiente','Revision')");
 
 			$stmt -> execute();
 
@@ -53,7 +53,7 @@ class ModeloAutorizarCotizacion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM cotizacion where $item = :$item AND Estatus='Pendiente' ");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM cotizacion where $item = :$item AND Estatus IN ('Pendiente','Revision')  ");
 
 			$stmt -> bindParam(":".$item, $valor);
 

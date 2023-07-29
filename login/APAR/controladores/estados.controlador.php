@@ -16,6 +16,30 @@ class ControladorEstados{
 		return $respuesta;
 	}
 	/*=============================================
+	MOSTRAR REGIMEN FISCAL
+	=============================================*/
+
+	static public function ctrMostrarRegimenFiscal($item, $valor){
+
+		$tabla = "RegimenFiscal";
+
+		$respuesta = ModeloEstados::mdlMostrarRegimenFiscal($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+		/*=============================================
+	MOSTRAR USO CFDI
+	=============================================*/
+
+	static public function ctrMostrarUSOCFDI($item, $valor){
+
+		$tabla = "UsoCFDI";
+
+		$respuesta = ModeloEstados::mdlMostrarUSOCFDI($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+	/*=============================================
 	MOSTRAR Municipio
 	=============================================*/
 

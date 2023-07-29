@@ -81,7 +81,7 @@ $(".ajax_view").on("click", ".btnEditarCotizacion", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-		//	console.log(respuesta["Id"]);
+		  console.log(respuesta);
             $("#DT_FechaHora").val(respuesta["Fecha"]);
 			$("#ETB_Folio").val(respuesta["Folio"]);
             $('#EnuevoAsociado').val(respuesta["Asociado"]); // Select the option with a value of '1'
@@ -226,8 +226,9 @@ function ObtenerDatosAsociado(idAsociado){
 	});
   }
 
-$('#Adatos_certificado').submit(function(e){
-    e.preventDefault();
+ $('#Adatos_certificado').submit(function(e){ 
+    
+    e.preventDefault(); 
 
 
 $("#btnautorizar").on('click',function(){
@@ -243,7 +244,7 @@ $("#btnautorizar").on('click',function(){
         if(result.value){
             
             var _Folio = $("#ETB_Folio").val();
-            var _Fecha = $("#EDT_Actual").val();
+            var _Fecha = $("#DT_FechaHora").val();
             var folio;
 
             var _Idcotizacion = $("#Idcotizacion").val(); 
@@ -412,6 +413,7 @@ $("#btnautorizar").on('click',function(){
                 CoberturaContenedor : _CoberturaContenedor
                 
             }
+           // console.log(ajax);
             $.ajax({
                 url: 'global/sp_registro.php',
                 type: "POST",
@@ -528,6 +530,7 @@ $("#btncancelar").on('click',function(){
 });
 
 });
+
 function ObtenerDatosCliennte(_idCliente){
 	//alert($(this).val());
 	
@@ -565,7 +568,7 @@ function ObtenerDatosCliennte(_idCliente){
 			numero = "N°"+ respuesta["Numero_Exterior"];
 
 		}
-			Direccion = respuesta["Calle"] + " " + numero + ", COL. " + respuesta["Colonia"] + ", " + respuesta["MunicipioDescripcion"].toUpperCase()  + "," + respuesta["EstadoDescripcion"].toUpperCase() + ", " + respuesta["Pais"] + " C.P " + respuesta["CodigoPostal"]; 
+			Direccion = respuesta["Calle"] + " " + numero + ", COL. " + respuesta["Colonia"] + ", " + respuesta["MunicipioDescripcion"]  + "," + respuesta["EstadoDescripcion"] + ", " + respuesta["Pais"] + " C.P " + respuesta["CodigoPostal"]; 
 
 
 			//$("#Cuota_CL_ROT").val(respuesta["Cuota_ROT"]);

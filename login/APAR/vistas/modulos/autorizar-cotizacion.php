@@ -49,6 +49,7 @@
                 <thead>
                     <tr>
                         <th>Folio</th>
+                        <th>Comentarios</th>
                         <th>Acción</th>
                         <th>Asociado</th>
                         <th>Cliente</th>
@@ -66,16 +67,17 @@
                         foreach ($pais as $key => $value){
 
                           $date = new DateTime($value["Fecha"]);
-                         $fecha = $date->format('d/m/Y');
+                          $fecha = $date->format('d/m/Y');
                         
                           echo ' <tr>
                           
                           <td>'.$value["Folio"].'</td>
-                                  <td><button type="button" class="btn btn-block btn-outline-primary btn-sm btnEditarCotizacion" idCotizacion="'.$value["ID"].'" data-toggle="modal" data-target="#extraLargeModal"><i class="fas fa-eye"> Revisar</i></button></td>
-                                  <td>'.$value["AsociadoNombre"].'</td>
-                                  <td>'.$value["ClienteDescripcion"].'</td>
-                                  <td>'.$fecha.'</td>
-                                  <td>'.$value["Estatus"].'</td>';
+                          <td>'.$value["ComentariosRevision"].'</td>
+                          <td><button type="button" class="btn btn-block btn-outline-primary btn-sm btnEditarCotizacion" idCotizacion="'.$value["ID"].'" data-toggle="modal" data-target="#extraLargeModal"><i class="fas fa-eye"> Revisar</i></button></td>
+                          <td>'.$value["AsociadoNombre"].'</td>
+                          <td>'.$value["ClienteDescripcion"].'</td>
+                          <td>'.$fecha.'</td>
+                          <td>'.$value["Estatus"].'</td>';
 
                                   echo '</tr>';
                               
@@ -100,7 +102,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Autorizacion de Cotizacion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                 <div class="row">
@@ -187,9 +191,31 @@
                                     ?>
                                 </select>
                             </div>
-                              <input type="text" name="Erfc" id="Erfc" disabled></input>
+                            <div id="Dv_MostrarDatos" style="display:block" class="text-right mb-3">
+                                    <div class="form-row first_element_to_target">
+
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RFC</span>
+                                                </div>
+                                                <input type="text"  style="font-weight: bold;" name="Erfc" id="Erfc" onkeyup="mayus(this);" class="form-control" aria-describedby="ProveedorNombre" disabled />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">EMAL</span>
+                                                </div>
+                                                <input type="text" style="font-weight: bold;" name="Eemail" id="Eemail" onkeyup="mayus(this);" class="form-control" aria-describedby="ClienteNombre" disabled />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Direccion</span>
+                                                </div>
+                                                <input type="text"  style="font-weight: bold;" name="Edireccion" id="Edireccion" onkeyup="mayus(this);" class="form-control" aria-describedby="ClienteNombre" disabled />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                              <!-- <input type="text" name="Erfc" id="Erfc" disabled></input>
                               <input type="text" name="Eemail" id="Eemail" disabled></input>
-                              <input type="text" name="Edireccion" id="Edireccion" disabled></input>
+                              <input type="text" name="Edireccion" id="Edireccion" disabled></input> -->
                           </div>
                       </div>
                         

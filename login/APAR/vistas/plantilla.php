@@ -57,6 +57,32 @@ session_start();
 
 <style type="text/css">
 
+body{padding:5px}
+.form-group.floating>label {
+    bottom: 34px;
+    left: 8px;
+    position: relative;
+    background-color: white;
+    padding: 0px 5px 0px 5px;
+    font-size: 1.1em;
+    transition: 0.1s;
+    pointer-events: none;
+    font-weight: 600 !important;
+    transform-origin: bottom left;
+}
+
+.form-control.floating:focus~label{
+    transform: translate(1px,-85%) scale(0.80);
+    opacity: .8;
+    color: #005ebf;
+}
+
+.form-control.floating:valid~label{
+    transform-origin: bottom left;
+    transform: translate(1px,-85%) scale(0.80);
+    opacity: .8;
+}   
+
 html {
     height: 100%
 }
@@ -104,7 +130,7 @@ html {
     color: #9E9E9E
 }
 
-#msform input,
+
 #msform textarea {
     padding: 0px 8px 4px 8px;
     border: none;
@@ -120,7 +146,7 @@ html {
     letter-spacing: 1px
 }
 
-#msform input:focus,
+
 #msform textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
@@ -306,6 +332,8 @@ display: none;
 #datos_certificado fieldset:not(:first-of-type) {
 display: none;
 }
+
+
 </style>
 <!-- Optional SmartWizard themes -->
 <!--<link href="vistas/bowe_components/smartwizard/css/smart_wizard_theme_arrows.min.css" rel="stylesheet">

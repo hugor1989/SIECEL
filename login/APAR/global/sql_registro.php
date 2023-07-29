@@ -1,174 +1,17 @@
 <?php
  session_start();
+
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\SMTP;
+ use PHPMailer\PHPMailer\Exception;
+
+ require '../vistas/lib/vendor/autoload.php';
+
 class sql_registro extends dbconn {
 	public function __construct()
 	{
 		$this->initDBO();
 	}
-
-	/* public function new_registro($Fecha,$Folio,$Asosiado,$Cliente,$Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
-                                 $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
-                                 $MunicipioOrigenCobertura, $PaisDestinoEmbarque, $EstadoDestinoEmbarque, $MunicipioDestinoEmbarque,
-                                 $Medio_Transporte, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista,
-                                 $Marca, $Modelo, $NumeroPlacas, $NumeroMotor, $NumeroSerie, $Color, $NombreChofer,
-                                 $Continuacion_Viaje, $Riesgos_cubiertos, $Deducibles, $DescripcionMercancia, $Mercancia,
-                                 $TipoEmpaque, $Valor_Embarque, $Moneda, $Numero_remolque, $Descripcion_seguridad,
-                                 $Doble_remolque,$Ampara_contenedor,$Tipocontenedorprimero,$Tipocontenedorsegundo,$Sumasolicitadaprimero,
-                                 $Sumasolicitadasegundo, $Tipodebien, $CuotaMercanciaApar, $PrimaNetaMercanciaApar, $PrimaNetaContenedorApar,
-                                 $PrimaNetaTotalApar, $DerechoCertificadoApar, $IvaApar, $PrimaTotalApar,
-                                 $CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
-                                 $DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro) //$LineaTransportista
-	{
-		$db = $this->dblocal;
-		try
-		{
-			//Se tratan las fechas
-            $originalDate = $Fecha;
-            $newDate = date("Y-m-d", strtotime($originalDate));
-            
-            $originalFechaCobertura = $Fecha_InicioCobertura;
-            $fechacobertura = date("Y-m-d", strtotime($originalFechaCobertura));
-
-			//Se obtiene el ultimo folio del usuario
-			$UltimoFolio;
-			$FolioCertificado;
-			$PrefijoAseguradora = "CHUBB21";
-
-			$stmt = $db->prepare("SELECT MAX(Folio) as Folio FROM certificado WHERE Asociado = :Asociado ");
-			$stmt->bindParam("Asociado",$Asosiado);
-			$stmt->execute();
-			$last = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		    $UltimoFolio = $last['Folio'];
-			
-			 if($UltimoFolio != null && $UltimoFolio!= ''){
-
-				$UltimoFolio++;
-
-			}else{
-
-				$UltimoFolio = "1";
-				$FolioFinal =  $PrefijoAseguradora.$Folio.str_pad($UltimoFolio, 6, "0", STR_PAD_LEFT);	  
-			} 
-
-			if($FolioFinal != null && $FolioFinal != ''){
-
-				$FolioCertificado = $FolioFinal;
-			}else{
-
-				$FolioCertificado = $UltimoFolio;
-			}
- 
-			$stmt = $db->prepare("insert into certificado (Fecha, Folio, Asociado, Cliente, Numero_guia, 
-                                  Identificador_Contenedor1, Identificador_Contenedor2, Fecha_InicioCobertura, Hora_InicioCobertura,
-                                  PaisOrigenEmbarque, OrigenCobertura, EstadoOrigenCobertura, MunicipioOrigenCobertura,
-                                  PaisDestinoEmbarque, EstadoDestinoEmbarque, MunicipioDestinoEmbarque,
-                                  Medio_Transporte, Embarque, TipoLineaTransportista, TipoVehiculo, LineaTransportista,
-                                  Marca, Modelo, NumeroPlacas, NumeroMotor, NumeroSerie, Color, NombreChofer,
-                                  Continuacion_Viaje, Riesgos_cubiertos, Deducibles, DescripcionMercancia, Mercancia,
-                                  TipoEmpaque, Valor_Embarque, Moneda, Numero_remolque, Descripcion_seguridad,
-                                  Doble_remolque, Ampara_contenedor, Tipocontenedorprimero, Tipocontenedorsegundo, Sumasolicitadaprimero,
-                                  Sumasolicitadasegundo, Tipodebien, CuotaMercanciaApar, PrimaNetaMercanciaApar, PrimaNetaContenedorApar,
-                                  PrimaNetaTotalApar, DerechoCertificadoApar, IvaApar, PrimaTotalApar,
-                                  CuotaMercanciaUsuario, PrimaNetaMercanciaUsuario, PrimaNetaContenedorUsuario, PrimaNetaTotalUsuario,
-                                  DerechoCertificadoUsuario, IvaUsuario, PrimaTotalUsuario, Valor_Serguro) 
-                        values (:Fecha, :Folio, :Asociado, :Cliente, :Numero_guia, :Identificador_Contenedor1, 
-                                :Identificador_Contenedor2, :Fecha_InicioCobertura, :Hora_InicioCobertura, :PaisOrigenEmbarque, 
-                                :OrigenCobertura, :EstadoOrigenCobertura, :MunicipioOrigenCobertura, :PaisDestinoEmbarque, 
-                                :EstadoDestinoEmbarque, :MunicipioDestinoEmbarque, :Medio_Transporte, :Embarque, :TipoLineaTransportista, 
-                                :TipoVehiculo, :LineaTransportista, :Marca, :Modelo, :NumeroPlacas, :NumeroMotor, :NumeroSerie, :Color, :NombreChofer,
-                                :Continuacion_Viaje, :Riesgos_cubiertos, :Deducibles, :DescripcionMercancia, :Mercancia,
-                                :TipoEmpaque, :Valor_Embarque, :Moneda, :Numero_remolque, :Descripcion_seguridad,
-                                :Doble_remolque, :Ampara_contenedor, :Tipocontenedorprimero, :Tipocontenedorsegundo, :Sumasolicitadaprimero,
-                                :Sumasolicitadasegundo, :Tipodebien, :CuotaMercanciaApar, :PrimaNetaMercanciaApar, :PrimaNetaContenedorApar,
-                                :PrimaNetaTotalApar, :DerechoCertificadoApar, :IvaApar, :PrimaTotalApar,
-                                :CuotaMercanciaUsuario, :PrimaNetaMercanciaUsuario, :PrimaNetaContenedorUsuario, :PrimaNetaTotalUsuario,
-                                :DerechoCertificadoUsuario, :IvaUsuario, :PrimaTotalUsuario, :Valor_Serguro)");
-
-			$stmt->bindParam("Fecha",$newDate);
-            $stmt->bindParam("Folio",$FolioCertificado);
-            $stmt->bindParam("Asociado",$Asosiado);
-            $stmt->bindParam("Cliente",$Cliente);
-            $stmt->bindParam("Numero_guia",$Numero_guia);
-            $stmt->bindParam("Identificador_Contenedor1",$Identificador_Contenedor1);
-            $stmt->bindParam("Identificador_Contenedor2",$Identificador_Contenedor2);
-            $stmt->bindParam("Fecha_InicioCobertura",$fechacobertura);
-            $stmt->bindParam("Hora_InicioCobertura",$Hora_InicioCobertura);
-            $stmt->bindParam("PaisOrigenEmbarque",$PaisOrigenEmbarque);
-            $stmt->bindParam("OrigenCobertura",$OrigenCobertura);
-            $stmt->bindParam("EstadoOrigenCobertura",$EstadoOrigenCobertura);
-            $stmt->bindParam("MunicipioOrigenCobertura",$MunicipioOrigenCobertura);
-            $stmt->bindParam("PaisDestinoEmbarque",$PaisDestinoEmbarque);
-            $stmt->bindParam("EstadoDestinoEmbarque",$EstadoDestinoEmbarque);
-            $stmt->bindParam("MunicipioDestinoEmbarque",$MunicipioDestinoEmbarque);
-            $stmt->bindParam("Medio_Transporte",$Medio_Transporte);
-            $stmt->bindParam("Embarque",$Embarque);
-            $stmt->bindParam("TipoLineaTransportista",$TipoLineaTransportista);
-            $stmt->bindParam("TipoVehiculo",$TipoVehiculo);
-            $stmt->bindParam("LineaTransportista",$LineaTransportista);
-            $stmt->bindParam("Marca",$Marca);
-            $stmt->bindParam("Modelo",$Modelo);
-            $stmt->bindParam("NumeroPlacas",$NumeroPlacas);
-            $stmt->bindParam("NumeroMotor",$NumeroMotor);
-            $stmt->bindParam("NumeroSerie",$NumeroSerie);
-            $stmt->bindParam("Color",$Color);
-            $stmt->bindParam("NombreChofer",$NombreChofer);
-            $stmt->bindParam("Continuacion_Viaje",$Continuacion_Viaje);
-            $stmt->bindParam("Riesgos_cubiertos",$Riesgos_cubiertos);
-            $stmt->bindParam("Deducibles",$Deducibles);
-            $stmt->bindParam("DescripcionMercancia",$DescripcionMercancia);
-            $stmt->bindParam("Mercancia",$Mercancia);
-            $stmt->bindParam("TipoEmpaque",$TipoEmpaque);
-            $stmt->bindParam("Valor_Embarque",$Valor_Embarque);
-            $stmt->bindParam("Moneda",$Moneda);
-            $stmt->bindParam("Numero_remolque",$Numero_remolque);
-            //$stmt->bindParam("Medida_seguridad",$Medida_seguridad);
-            $stmt->bindParam("Descripcion_seguridad",$Descripcion_seguridad);
-            $stmt->bindParam("Doble_remolque",$Doble_remolque);
-            $stmt->bindParam("Ampara_contenedor",$Ampara_contenedor);
-            $stmt->bindParam("Tipocontenedorprimero",$Tipocontenedorprimero);
-            $stmt->bindParam("Tipocontenedorsegundo",$Tipocontenedorsegundo);
-            $stmt->bindParam("Sumasolicitadaprimero",$Sumasolicitadaprimero);
-            $stmt->bindParam("Sumasolicitadasegundo",$Sumasolicitadasegundo);
-            $stmt->bindParam("Tipodebien",$Tipodebien);
-            $stmt->bindParam("CuotaMercanciaApar",$CuotaMercanciaApar);
-            $stmt->bindParam("PrimaNetaMercanciaApar",$PrimaNetaMercanciaApar);
-            $stmt->bindParam("PrimaNetaContenedorApar",$PrimaNetaContenedorApar);
-            $stmt->bindParam("PrimaNetaTotalApar",$PrimaNetaTotalApar);
-            $stmt->bindParam("DerechoCertificadoApar",$DerechoCertificadoApar);
-            $stmt->bindParam("IvaApar",$IvaApar);
-            $stmt->bindParam("PrimaTotalApar",$PrimaTotalApar);
-            $stmt->bindParam("CuotaMercanciaUsuario",$CuotaMercanciaUsuario);
-            $stmt->bindParam("PrimaNetaMercanciaUsuario",$PrimaNetaMercanciaUsuario);
-            $stmt->bindParam("PrimaNetaContenedorUsuario",$PrimaNetaContenedorUsuario);
-            $stmt->bindParam("PrimaNetaTotalUsuario",$PrimaNetaTotalUsuario);
-            $stmt->bindParam("DerechoCertificadoUsuario",$DerechoCertificadoUsuario);
-            $stmt->bindParam("IvaUsuario",$IvaUsuario);
-            $stmt->bindParam("PrimaTotalUsuario",$PrimaTotalUsuario);
-			$stmt->bindParam("Valor_Serguro",$TipoSeguro);
-			
-
-
-			$stmt->execute();
-			$lastInsertId = $db->lastInsertId();
-			
-				 
-			$stat[0] = true;
-			$stat[1] = "Registro Exitoso";
-			$stat[2] = $lastInsertId;
-			$stat[3] = $FolioCertificado;
-			return $stat;
-		}
-		catch(PDOException $ex)
-		{
-			$lastInsertId = 0;
-			$stat[0] = false;
-			$stat[1] = $ex->getMessage();
-			$stat[2] = 0;
-			$stat[3] = "";
-			return $stat;
-		}
-	} */
 
 	public function new_registro($Fecha,$Folio,$Asosiado,$Cliente,$Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
                                  $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
@@ -183,13 +26,13 @@ class sql_registro extends dbconn {
                                  $CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
                                  $DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro,
 								 $Griro, $TipoTraslado, $valormercancia1, $valormercancia2,$valormercanciamaximo1,
-                                   $valormercanciamaximo2,$TransporteAntiguedad,$DescripcionCondicionesTER,$ObservacionGnral,
-                                   $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor) //$LineaTransportista
+                                 $valormercanciamaximo2,$TransporteAntiguedad,$ObservacionGnral,
+                                 $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor,$ComentariosRevision,$Status) //$LineaTransportista
 	{
 		$db = $this->dblocal;
 		try
 		{
-			$Estatus="Pendiente";
+			$Estatus=$Status;
 			//Se tratan las fechas
             $originalDate = $Fecha;
             $newDate = date("Y-m-d", strtotime($originalDate));
@@ -241,7 +84,7 @@ class sql_registro extends dbconn {
                                   CuotaMercanciaUsuario, PrimaNetaMercanciaUsuario, PrimaNetaContenedorUsuario, PrimaNetaTotalUsuario,
                                   DerechoCertificadoUsuario, IvaUsuario, PrimaTotalUsuario, Valor_Serguro,
 								  Griro,TipoTraslado,valormercanciauno,valormercanciados,valormercanciamaximouno,valormercanciamaximodos,
-								  TransporteAntiguedad,DescripcionCondicionesTER,ObservacionGnral,CuotaContenedor,CoberturaMercancia,CoberturaContenedor) 
+								  TransporteAntiguedad,ObservacionGnral,CuotaContenedor,CoberturaMercancia,CoberturaContenedor,ComentariosRevision) 
                         values (:Fecha, :Folio, :Asociado, :Cliente, :Numero_guia, :Identificador_Contenedor1, 
                                 :Identificador_Contenedor2, :Fecha_InicioCobertura, :Hora_InicioCobertura, :PaisOrigenEmbarque, 
                                 :OrigenCobertura, :EstadoOrigenCobertura, :MunicipioOrigenCobertura, :PaisDestinoEmbarque, 
@@ -255,7 +98,7 @@ class sql_registro extends dbconn {
                                 :CuotaMercanciaUsuario, :PrimaNetaMercanciaUsuario, :PrimaNetaContenedorUsuario, :PrimaNetaTotalUsuario,
                                 :DerechoCertificadoUsuario, :IvaUsuario, :PrimaTotalUsuario, :Valor_Serguro,
 								:Griro, :TipoTraslado, :valormercanciauno, :valormercanciados, :valormercanciamaximouno, :valormercanciamaximodos,
-								:TransporteAntiguedad, :DescripcionCondicionesTER, :ObservacionGnral, :CuotaContenedor, :CoberturaMercancia, :CoberturaContenedor)");
+								:TransporteAntiguedad, :ObservacionGnral, :CuotaContenedor, :CoberturaMercancia, :CoberturaContenedor, :ComentariosRevision)");
 
 
 
@@ -334,17 +177,79 @@ class sql_registro extends dbconn {
 			$stmt->bindParam("valormercanciamaximouno",$valormercanciamaximo1);
 			$stmt->bindParam("valormercanciamaximodos",$valormercanciamaximo2);
 			$stmt->bindParam("TransporteAntiguedad",$TransporteAntiguedad);
-			$stmt->bindParam("DescripcionCondicionesTER",$DescripcionCondicionesTER);
 			$stmt->bindParam("ObservacionGnral",$ObservacionGnral);
 			$stmt->bindParam("CuotaContenedor",$CuotaContenedor);
 			$stmt->bindParam("CoberturaMercancia",$CoberturaMercancia);
 			$stmt->bindParam("CoberturaContenedor",$CoberturaContenedor);
-			
-
-
+			$stmt->bindParam("ComentariosRevision",$ComentariosRevision);
 			$stmt->execute();
 			$lastInsertId = $db->lastInsertId();
 
+			//Se obtiene la libreria
+			
+			if($Estatus == "Revision"){
+
+				try {
+					$mail = new PHPMailer(true);
+					$mail->CharSet = 'UTF-8';
+					$mail->isSMTP();
+					$mail->Host = 'mail.siecel-ppr.com';
+					$mail->SMTPAuth = true;
+					$mail->Username = 'notificaciones@siecel-ppr.com';
+					$mail->Password = '3c%}rEKnL0Qz';
+					$mail->SMTPSecure = 'ssl';
+					$mail->Port = 465;
+			
+					$mail->setFrom('notificaciones@siecel-ppr.com');
+			
+			
+			
+					//$to = $cadena_formateada;
+					$nome = 'APAR';
+					$assunto = "Solicitud de revision ".$FolioCertificado;
+					$mensagem = 'Se ha generado la siguiente cotizacion '. $FolioCertificado. ' para su revision y autorizacion ';				//An HTML or plain text message body"hola mensahe de prueba";
+			
+					//$reply= $data[email];
+				
+			
+					$mail->AddAddress('aler1989p@gmail.com', $nome);
+					//$mail->AddAddress('saule.castro@apar.com.mx', $nome);		//Adds a "To" address
+					$mail->ConfirmReadingTo = "notificaciones@siecel-ppr.com";
+					// $mail->addReplyTo($reply);
+					$mail->WordWrap = 50;
+					$mail->IsHTML(true);
+					//$mail->addStringAttachment($file, $nombrearchiv);
+					//$mail->AddAttachment('../../pdf/aseguradoraspdf/condiciones_chubb.pdf', 'condiciones_chubb.pdf');
+					//$mail->addStringAttachment($filenuevo, $Nombre_ReciboCobro);   
+					$mail->Subject = $assunto;
+	
+					$tm = '<html>
+					<body>
+					<h1>Detalles de la cotizacion</h1>
+					<p>
+					Mensaje: '.$mensagem. ' </br>
+					
+					Comentarios: '.$ComentariosRevision.' </p>
+					</body>
+					</html>';
+	
+					$mail->MsgHTML($tm);
+					//$mail->Body = $tm;//'<br/>' . $mensagem . ' Comentarios'. $ComentariosRevision . '<br/>';
+					$mail->AltBody = "$mensagem";
+			
+			
+			
+					$mail->send();
+					unset($data);
+			   
+				}catch (Exception $e) {
+			  
+				}	
+
+			}
+
+			
+		
 			/* //Se inicializa la clase el para el envio del mensaje de whatsapp
 			require_once('../vistas/apiwh/ultramsg.class.php');
 			$ultramsg_token="hswfzc5cziwglcqx"; // Ultramsg.com token
@@ -400,20 +305,20 @@ class sql_registro extends dbconn {
 		}
 	}
 	public function new_certificado($Idcotizacion,$Fecha,$Folio,$Asosiado,$Cliente,$Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
-                                 $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
-                                 $MunicipioOrigenCobertura, $PaisDestinoEmbarque, $EstadoDestinoEmbarque, $MunicipioDestinoEmbarque,
-                                 $Medio_Transporte, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista,
-                                 $Marca, $Modelo, $NumeroPlacas, $NumeroMotor, $NumeroSerie, $Color, $NombreChofer,
-                                 $Continuacion_Viaje, $Riesgos_cubiertos, $Deducibles, $DescripcionMercancia, $Mercancia,
-                                 $TipoEmpaque, $Valor_Embarque, $Moneda, $Numero_remolque, $Descripcion_seguridad,
-                                 $Doble_remolque,$Ampara_contenedor,$Tipocontenedorprimero,$Tipocontenedorsegundo,$Sumasolicitadaprimero,
-                                 $Sumasolicitadasegundo, $Tipodebien, $CuotaMercanciaApar, $PrimaNetaMercanciaApar, $PrimaNetaContenedorApar,
-                                 $PrimaNetaTotalApar, $DerechoCertificadoApar, $IvaApar, $PrimaTotalApar,
-                                 $CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
-                                 $DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro,
-								 $Griro, $TipoTraslado, $valormercancia1, $valormercancia2,$valormercanciamaximo1,
-                                   $valormercanciamaximo2,$TransporteAntiguedad,$DescripcionCondicionesTER,$ObservacionGnral,
-                                   $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor) //$LineaTransportista
+									$Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
+									$MunicipioOrigenCobertura, $PaisDestinoEmbarque, $EstadoDestinoEmbarque, $MunicipioDestinoEmbarque,
+									$Medio_Transporte, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista,
+									$Marca, $Modelo, $NumeroPlacas, $NumeroMotor, $NumeroSerie, $Color, $NombreChofer,
+									$Continuacion_Viaje, $Riesgos_cubiertos, $Deducibles, $DescripcionMercancia, $Mercancia,
+									$TipoEmpaque, $Valor_Embarque, $Moneda, $Numero_remolque, $Descripcion_seguridad,
+									$Doble_remolque,$Ampara_contenedor,$Tipocontenedorprimero,$Tipocontenedorsegundo,$Sumasolicitadaprimero,
+									$Sumasolicitadasegundo, $Tipodebien, $CuotaMercanciaApar, $PrimaNetaMercanciaApar, $PrimaNetaContenedorApar,
+									$PrimaNetaTotalApar, $DerechoCertificadoApar, $IvaApar, $PrimaTotalApar,
+									$CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
+									$DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro,
+									$Griro, $TipoTraslado, $valormercancia1, $valormercancia2,$valormercanciamaximo1,
+									$valormercanciamaximo2,$TransporteAntiguedad,$ObservacionGnral,
+									$CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor,$GeneraAutomatico) //$LineaTransportista
 	{
 		$db = $this->dblocal;
 		try
@@ -457,7 +362,7 @@ class sql_registro extends dbconn {
 			}
 		
  
-			$stmt = $db->prepare("insert into certificado (Fecha, Folio, Asociado, Cliente, Numero_guia, 
+			$stmt = $db->prepare("INSERT INTO certificado (Fecha, Folio, Asociado, Cliente, Numero_guia, 
                                   Identificador_Contenedor1, Identificador_Contenedor2, Fecha_InicioCobertura, Hora_InicioCobertura,
                                   PaisOrigenEmbarque, OrigenCobertura, EstadoOrigenCobertura, MunicipioOrigenCobertura,
                                   PaisDestinoEmbarque, EstadoDestinoEmbarque, MunicipioDestinoEmbarque,
@@ -471,7 +376,7 @@ class sql_registro extends dbconn {
                                   CuotaMercanciaUsuario, PrimaNetaMercanciaUsuario, PrimaNetaContenedorUsuario, PrimaNetaTotalUsuario,
                                   DerechoCertificadoUsuario, IvaUsuario, PrimaTotalUsuario, Valor_Serguro,
 								  Griro,TipoTraslado,valormercanciauno,valormercanciados,valormercanciamaximouno,valormercanciamaximodos,
-								  TransporteAntiguedad,DescripcionCondicionesTER,ObservacionGnral,CuotaContenedor,CoberturaMercancia,CoberturaContenedor, IdCotizacion) 
+								  TransporteAntiguedad,ObservacionGnral,CuotaContenedor,CoberturaMercancia,CoberturaContenedor, IdCotizacion) 
                         values (:Fecha, :Folio, :Asociado, :Cliente, :Numero_guia, :Identificador_Contenedor1, 
                                 :Identificador_Contenedor2, :Fecha_InicioCobertura, :Hora_InicioCobertura, :PaisOrigenEmbarque, 
                                 :OrigenCobertura, :EstadoOrigenCobertura, :MunicipioOrigenCobertura, :PaisDestinoEmbarque, 
@@ -485,7 +390,7 @@ class sql_registro extends dbconn {
                                 :CuotaMercanciaUsuario, :PrimaNetaMercanciaUsuario, :PrimaNetaContenedorUsuario, :PrimaNetaTotalUsuario,
                                 :DerechoCertificadoUsuario, :IvaUsuario, :PrimaTotalUsuario, :Valor_Serguro,
 								:Griro, :TipoTraslado, :valormercanciauno, :valormercanciados, :valormercanciamaximouno, :valormercanciamaximodos,
-								:TransporteAntiguedad, :DescripcionCondicionesTER, :ObservacionGnral, :CuotaContenedor, :CoberturaMercancia, :CoberturaContenedor, :IdCotizacion)");
+								:TransporteAntiguedad, :ObservacionGnral, :CuotaContenedor, :CoberturaMercancia, :CoberturaContenedor, :IdCotizacion)");
 
 			$stmt->bindParam("Fecha",$newDate);
             $stmt->bindParam("Folio",$FolioCertificado);
@@ -555,7 +460,7 @@ class sql_registro extends dbconn {
 			$stmt->bindParam("valormercanciamaximouno",$valormercanciamaximo1);
 			$stmt->bindParam("valormercanciamaximodos",$valormercanciamaximo2);
 			$stmt->bindParam("TransporteAntiguedad",$TransporteAntiguedad);
-			$stmt->bindParam("DescripcionCondicionesTER",$DescripcionCondicionesTER);
+			//$stmt->bindParam("DescripcionCondicionesTER",$DescripcionCondicionesTER);
 			$stmt->bindParam("ObservacionGnral",$ObservacionGnral);
 			$stmt->bindParam("CuotaContenedor",$CuotaContenedor);
 			$stmt->bindParam("CoberturaMercancia",$CoberturaMercancia);

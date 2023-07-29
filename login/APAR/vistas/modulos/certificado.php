@@ -35,9 +35,19 @@
                               <label>Fecha y Hora</label>
                               <?php 
                                 date_default_timezone_set('America/Mexico_City');
-                                $DateAndTime = date('d-m-Y', time());
+                                $DateAndTime = date('d-m-Y' , time());
                                 $hora = date('h:i:s a', time());
                                 
+                                /////////Aqui va el codigo de prueba
+                                $mifecha = new DateTime(); 
+                               // $mifecha->modify('+60 minute'); 
+                                $mifecha->format('d-m-Y H:i'); 
+
+                              /*   $mifecha = new DateTime(); 
+                                $mifecha->modify('+60 minute'); 
+                                echo $mifecha->format('d-m-Y H:i:s'); 
+                                 */
+
                                 ///Se usa para co
                                 $time = $hora; 
                                 $chunks = explode(':', $time);
@@ -70,6 +80,15 @@
                             <?php ?>
                             <input type="hidden" class="form-control" name="nuevoIdAsociado" id="nuevoIdAsociado" disabled>
                             <!-- ENTRADA PARA EL Asociado -->
+                            <input type="hidden" class="form-control" name="TB_IdAseguradora" id="TB_IdAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_DescripcionAseguradora" id="TB_DescripcionAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_RFCAseguradora" id="TB_RFCAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_ActivoAseguradora" id="TB_ActivoAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_TelefonoAseguradora" id="TB_TelefonoAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_CondicionesGeneralesAseguradora" id="TB_CondicionesGeneralesAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_NumeroPolizaAseguradora" id="TB_NumeroPolizaAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_LogoAseguradora" id="TB_LogoAseguradora" disabled>
+                            <input type="hidden" class="form-control" name="TB_DireccionAseguradora" id="TB_DireccionAseguradora" disabled>
                             <?php 
                                 $perfil = $_SESSION['perfil'];
                                 $nombre = $_SESSION['nombre'];
@@ -119,12 +138,10 @@
                                         <input type="hidden" name="TB_ObjPrimaminima" id="TB_ObjPrimaminima" disabled></input>
                                         <input type="hidden" name="TB_ObjDerechoCertificado" id="TB_ObjDerechoCertificado" disabled></input>
                                         <input type="hidden" name="TB_EmailAsociado" id="TB_EmailAsociado"  disabled></input>
+                                        <input type="hidden" name="TB_Aseguradora" id="TB_Aseguradora"  disabled></input>
                                         <input type="hidden" name="TB_ImagenAsociado" id="TB_ImagenAsociado"  disabled></input>';
                                 }else{
 
-                                /*   print_r($item);
-                                  print_r($valor); */
-                                  
                                   $usuarios = ControladorUsuarios::ctrMostrarUsuariosItem($item, $valor);
 
                                  /*  print_r($usuarios); */
@@ -139,6 +156,7 @@
                                       echo ' <input type="hidden" class="form-control sm" name="TB_ObjPrimaminima" id="TB_ObjPrimaminima" value='.$value["Prima_minima"].' disabled></input>';
                                       echo ' <input type="hidden" class="form-control sm" name="TB_ObjDerechoCertificado" id="TB_ObjDerechoCertificado" value='.$value["Derecho_Certificado"].' disabled></input>';
                                       echo ' <input type="hidden" name="TB_EmailAsociado" id="TB_EmailAsociado" value='.$value["Email"].' disabled></input>';
+                                      echo ' <input type="hidden" name="TB_Aseguradora" id="TB_Aseguradora" value='.$value["IdAseguradora"].' disabled></input>';
                                       echo ' <input type="hidden" name="TB_ImagenAsociado" id="TB_ImagenAsociado" value='.$value["Foto"].' disabled></input>';
                                     }
                                 }
@@ -165,13 +183,14 @@
                                           <option value="">Selecionar Cliente</option>
                                         ';
 
-                                        if($perfil == 1 || $perfil == 2){
-
-                                          $cliente = ControladorPersona::ctrMostrarClientesListado();
-                                        }else{
+                                        if($perfil != 1 || $perfil != 2){
+                                            $cliente = ControladorPersona::ctrMostrarAsociado($itemCliente, $valorCliente);
+                                         // $cliente = ControladorPersona::ctrMostrarClientesListado();
+                                        }
+                                        /* else{
 
                                           $cliente = ControladorPersona::ctrMostrarAsociado($itemCliente, $valorCliente);
-                                        }
+                                        } */
                                         
 
                                         foreach ($cliente as $key => $value){
@@ -180,9 +199,29 @@
                               echo '    </select>';
                             
                               ?>
-                               <input type="text" name="rfc" id="rfc" disabled></input>
-                              <input type="text" name="email" id="email" disabled></input>
-                              <input type="text" name="direccion" id="direccion" disabled></input>
+                               <div id="Dv_MostrarDatos" style="display:none" class="text-right mb-3">
+                                    <div class="form-row first_element_to_target">
+
+                                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">RFC</span>
+                                                </div>
+                                                <input type="text"  style="font-weight: bold;" name="rfc" id="rfc" onkeyup="mayus(this);" class="form-control" aria-describedby="ProveedorNombre" disabled />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">EMAL</span>
+                                                </div>
+                                                <input type="text" style="font-weight: bold;" name="email" id="email" onkeyup="mayus(this);" class="form-control" aria-describedby="ClienteNombre" disabled />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Direccion</span>
+                                                </div>
+                                                <input type="text"  style="font-weight: bold;" name="direccion" id="direccion" onkeyup="mayus(this);" class="form-control" aria-describedby="ClienteNombre" disabled />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                              
                             </div>
                           </div>
                       </div>
@@ -227,7 +266,14 @@
                               <input type="hidden" name="TB_ValorD" id="TB_ValorD"/>
                               <input type="hidden" name="TB_ValorE" id="TB_ValorE"/>
                               <input type="hidden" name="TB_ValorF" id="TB_ValorF"/>
-                              <input type="hidden" name="TB_DescripcionProtocolo" id="TB_DescripcionProtocolo"/>
+                              <input type="hidden" name="TB_MercanciaAutomatico" id="TB_MercanciaAutomatico"/>
+                              <input type="hidden" name="TB_DeducibleROT" id="TB_DeducibleROT"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_ROBO" id="TB_DEDUCIBLE_ROBO"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_OTROS_R" id="TB_DEDUCIBLE_OTROS_R"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_SVT" id="TB_DEDUCIBLE_SVT"/>
+                              <input type="hidden" name="TB_EMBARQUE_CARRETERA_LIBRE" id="TB_EMBARQUE_CARRETERA_LIBRE"/>
+                              <input type="hidden" name="TB_MARITIMO_AEREO_COMBINADO" id="TB_MARITIMO_AEREO_COMBINADO"/>
+                              <input type="hidden" name="TB_TB_DescripcionProtocolo" id="TB_DescripcionProtocolo"/>
                             </div>  
                           </div>
                           <div class="col-md-4">
@@ -287,16 +333,24 @@
                               </div>
                         </div>
                         <div class="col-md-6">   
-                        <label>EL TRASLADO SE EFECTUA RECORRIENDO:</label> 
+                            <label>EL TRASLADO SE EFECTUA RECORRIENDO:</label> 
                               <select class="form-control input-lg" name="nuevoTLER" id="nuevoTLER">
                                   <option value="">Selecionar Opcion</option>
-                                  <option value="POR AUTOPISTA DONDE EXISTA">POR AUTOPISTA DONDE EXISTA CUOTA</option>
+                                  <option value="POR AUTOPISTA DONDE EXISTA">POR AUTOPISTA DE CUOTA DONDE EXISTA </option>
                                   <option value="POR CARRETERA LIBRE">POR CARRETERA LIBRE</option>
                                   <option value="SOLO EN ÁREA METROPOLITANA DE GUADALAJARA">SOLO EN ÁREA METROPOLITANA DE GUADALAJARA</option>
                                   <option value="SOLO EN ÁREA METROPOLITANA DE MONTERREY">SOLO EN ÁREA METROPOLITANA DE MONTERREY</option>
                                   <option value="SOLO EN ÁREA METROPOLITANA DE LA CD. DE MEXICO">SOLO EN ÁREA METROPOLITANA DE LA CD. DE MEXICO</option>
                                   <option value="OTRA">OTRA</option>
                               </select>
+                              <div id="seven_element_to_target" style="display:none">
+                                  <div class="input-group">
+                                      <div class="input-group-prepend">
+                                          <span class="input-group-text is-requiredNuevo" id="SpanPlacasTracto">Describir</span>
+                                      </div>
+                                      <input type="text" asp-for="Describir" onkeyup="mayus(this);" class="form-control" aria-describedby="Describir" placeholder="Describir" />
+                                  </div>
+                              </div>
                         </div>
                     </div>
                     <div clas="row">
@@ -326,7 +380,7 @@
                               <label> Tipo de Bien </label>
                                   <div class="input-group mb-3">
                                   <select class="form-control input-lg" name="nuevoBienesDesperdicios" id="nuevoBienesDesperdicios">
-                                      <option value="">Selecionar Opcion</option>
+                                      <option value="" selected>Selecionar Opcion</option>
                                       <option value="Nuevos">Nuevos</option>
                                       <option value="Usados">Bienes Usuados o Reconstruidos</option>
                                   </select>
@@ -487,21 +541,25 @@
                         <div class="col-md-4">
                         <label> Hora de Inicio de Cobertura (Formato 24 Hrs.)</label>
                               <!--<input type="text" id="time" placeholder="Time" class="form-control sm">-->
+
+                              <?php
+                               $mifecha->modify('+60 minute'); 
+                               $nuevahora = $mifecha->format('H:i'); 
+                              ?>
+                             
                               <input type="text" class="form-control clockpicker" id="time"
-                                     value="<?php echo preg_replace('/\s[A-Z]+/s', '', implode(':', $chunks2)); ?>"
+                                     value="<?php echo $nuevahora; ?>"
                                         data-placement="right" data-align="top" data-autoclose="true" onblur="blurFunction()">
                         </div>
                         <div class="col-md-4">
                         <label> COBERTURA A PARTIR DEL (DD-MM-AA):</label>
                             <?php 
-                                $month = date('m');
-                                $day = date('d');
-                                $year = date('Y');
-
-                                $today = $year . '-' . $month . '-' . $day;
+                               
+                                 $mifecha->modify('+60 minute'); 
+                                 $nuevafecha = $mifecha->format('Y-m-d'); 
                             
                               ?>
-                              <input type="date" value="<?php echo $today; ?>"
+                              <input type="date" value="<?php echo $nuevafecha; ?>"
                                     class="form-control" id="dt" name="dt" onblur="blurFunction()">
                         </div>
                       </div>
@@ -806,9 +864,12 @@
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                                <!--<div class="col-auto p-5 text center" >
-                                  <h4 class="text-center"><strong>CUOTAS</strong></h4>
-                                </div>-->
+                          <?php 
+
+                          $perfil = $_SESSION['perfil'];
+
+                            if($perfil == 1 || $perfil == 2){ ?>
+
                             <table cellspacing="2" style="width: 100%; border: solid 0px; background: #ffffff; text-align: center; font-size: 12pt;padding:1mm;">
                                 <tr>
                                     <th style="width: 80%; text-align: right;">CUOTA MERCANCIA  :  </th>
@@ -883,6 +944,19 @@
                                       </th>
                                 </tr>
                             </table>
+
+                           <?php }else{ ?>
+
+                              <input type="hidden" id="TB_CMCIA" name="TB_CMCIA" ></input>
+                              <input type="hidden" id="TB_PNTA" name="TB_PNTA" ></input>
+                              <input type="hidden" id="TB_PMCTND" name="TB_PMCTND" ></input>
+                              <input type="hidden" id="TB_PMAGT" name="TB_PMAGT" ></input>
+                              <input type="hidden" id="TB_DCRT" name="TB_DCRT" ></input>
+                              <input type="hidden" id="TB_IVA" name="TB_IVA" ></input>
+                              <input type="hidden" id="TB_IVATOTAL" name="TB_IVATOTAL" ></input>
+
+                           <?php } ?>
+                           
                             
                           </div>
 
@@ -968,11 +1042,11 @@
                             </table>
                           </div>
                         </div>
-                        <div class="row">
+                       <!--  <div class="row">
                           <label>Condiciones</label>
-                        <textarea class="form-control" rows="3" id="TB_DescripcionCondicionesTER" name="TB_DescripcionCondicionesTER" placeholder="Describir">Es condición indispensable para la presente cobertura que se deberá cumplir con las siguientes medidas de prevención y está de acuerdo en que queda sin protección por parte de la Aseguradora en el momento en que el asegurado o a quien quiera que éste contrate falte a cualquiera de ellas: • Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y los lugares específicamente designados por la Secretaría de Comunicaciones y Transportes para aparcar en las carreteras.
-                        </textarea>
-                      </div>
+                          <textarea class="form-control" rows="3" id="TB_DescripcionCondicionesTER" name="TB_DescripcionCondicionesTER" placeholder="Describir">Es condición indispensable para la presente cobertura que se deberá cumplir con las siguientes medidas de prevención y está de acuerdo en que queda sin protección por parte de la Aseguradora en el momento en que el asegurado o a quien quiera que éste contrate falte a cualquiera de ellas: • Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y los lugares específicamente designados por la Secretaría de Comunicaciones y Transportes para aparcar en las carreteras.
+                          </textarea>
+                        </div> -->
                     
                     <div class="row">
                     <label>Obervaciones</label>
@@ -1011,19 +1085,13 @@
                        <!-- <button type="button" id="Btn_ImprimiCotizacion" class="btn btn-outline-primary" onclick="impresionCotizacionPDF();">
                           <i class="fa fa-print"></i> Imprimir Cotizacion
                           </button>-->
-                          <button type="submit" class="btn btn-primary"  name="submit">Generar Cotizacion</button>  
+                          <button type="submit" class="btn btn-primary" id="submit" name="submit">Generar Cotizacion</button>  
+
+                          <!-- <button type="submit" class="btn btn-primary"  name="submit">Solicitar Revision</button>  -->
+
+                          <a class="btn btn-outline-primary" name="btn_solicitarrevision" id="btn_solicitarrevision">Solicitar Revision</a>
                       </fieldset>
-                      <!--<fieldset>-->
-                        <!-- Fin de row de descripcion de  gps -->
-                   
                     
-                   
-                      
-                     
-                    <!--<input type="button" name="previous" class="previous-formcertificado btn btn-default" value="Previous" />-->
-                    <!--<button type="button" class="btn btn-primary" onclick="impresionCertificadoPDF();" name="submit">Generar Certificado</button>-->
-                                      
-                <!--  </fieldset>-->
                   </form>  
                 </div>
               <!-- /.card-body -->

@@ -188,6 +188,39 @@ class ModeloPersona{
 		$stmt = null;
 
 	}
+	static public function mdlMostrarAsociadoUsuario($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT PR.*, US.nombre AS AsociadoDecripcion
+													FROM persona PR
+													INNER JOIN usuario US ON (US.Id=PR.Asociado)
+												   WHERE PR.$item = :$item AND PR.Tipo= 2 ");
+
+			$stmt -> bindParam(":".$item, $valor);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT PR.*, US.nombre AS AsociadoDecripcion
+													FROM persona PR
+													INNER JOIN usuario US ON (US.Id=PR.Asociado)
+												   WHERE PR.Tipo= 2 ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 	static public function mdlMostrarAsociadoItemCompleto($tabla, $item, $valor){
 
 		if($item != null){
@@ -285,8 +318,11 @@ class ModeloPersona{
 
 	static public function mdlIngresarAsociado($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Clave,Nombre,RFC,Calle,Numero_Interior,Numero_Exterior,Colonia,Municipio,Estado,CodigoPostal,Pais,Email,Tipo, Asociado, Localidad, MercanciaAutorizada) 
-												VALUES (:Clave,:Nombre,:RFC,:Calle,:Numero_Interior,:Numero_Exterior,:Colonia,:Municipio,:Estado,:CodigoPostal,:Pais,:Email,:Tipo, :Asociado, :Localidad, :MercanciaAutorizada)");
+		
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Clave,Nombre,RFC,Calle,Numero_Interior,Numero_Exterior,Colonia,Municipio,Estado,CodigoPostal,Pais,Email,Tipo, Asociado, Localidad, MercanciaAutorizada,
+																  RegimenFiscal, Contacto, Puesto, Email_Adicional, Telefono, UsoCFDI) 
+												VALUES (:Clave,:Nombre,:RFC,:Calle,:Numero_Interior,:Numero_Exterior,:Colonia,:Municipio,:Estado,:CodigoPostal,:Pais,:Email,:Tipo, :Asociado, :Localidad, :MercanciaAutorizada,
+														:RegimenFiscal, :Contacto, :Puesto, :Email_Adicional, :Telefono, :UsoCFDI)");
 
 		$clave = "1";
 		$mercanciautorizada = "0,";
@@ -307,6 +343,13 @@ class ModeloPersona{
 		$stmt->bindParam(":Asociado", $datos["asociado"]);
 		$stmt->bindParam(":Localidad", $datos["localidad"]);
 		$stmt->bindParam(":MercanciaAutorizada", $mercanciautorizada);
+		$stmt->bindParam(":RegimenFiscal", $datos["RegimenFiscal"]);
+		$stmt->bindParam(":Contacto", $datos["NombreConracto"]);
+		$stmt->bindParam(":Puesto", $datos["PuestoConracto"]);
+		$stmt->bindParam(":Email_Adicional", $datos["EmailConracto"]);
+		$stmt->bindParam(":Telefono", $datos["nuevoContactoTelefono"]);
+		$stmt->bindParam(":UsoCFDI", $datos["nuevoUsoCFDI"]);
+		
 
 		if($stmt->execute()){
 

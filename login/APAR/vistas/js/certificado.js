@@ -402,15 +402,21 @@ function blurFunction() {
 	  let hora_actual = $("#hora_Actual").val();
 
 	  // Fecha de COBERTURA
-  
 	  let dt_cobertura = $("#dt").val();
 	//  let hora_cobertura = $("#time").val();
 	let hora_cobertura = document.querySelector('.clockpicker').value;
+
+	 console.log(dt_actual);
+	//console.log(hora_actual);
+	console.log(dt_cobertura);
+	/*console.log(hora_cobertura); */
 	  //  VALIDACION DE LA FECHA
   
 	  // AHORA FORMATEAMOS LA FECHA PARA QUE AMBAS TENGAN EL MISMO ORDEN O FORMATO
+	  let dt_cobertura_reverse2 = dt_actual.split("-").reverse().join("-");
 	  let dt_cobertura_reverse = dt_cobertura.split("-").reverse().join("-");
-  
+		console.log(dt_cobertura_reverse);
+		console.log(dt_cobertura_reverse2);
 	  // VALIDAMOS QUE NO HAYA CAMPOS VACIOS
 	  if(dt_cobertura === "" || hora_cobertura === ""){
   
@@ -428,12 +434,14 @@ function blurFunction() {
   
 	  } else{
 		  // validamos que la fecha de cobertura no sea menor que la actual
+		//  console.log(dt_cobertura_reverse);
+		 // console.log(dt_actual);
 		  if(dt_cobertura_reverse < dt_actual){
   
 			  // MOSTRAMOS MENSALE DE ALERTA
   
 			  Swal.fire({
-				title: 'La hora de cobertura debe ser 1 hora mayor a la hora actual.',
+				title: 'La fecha de cobertura debe ser  mayor a la actual.',
 				width: 600,
 				padding: '3em',
 				background: '#fff',
@@ -460,14 +468,26 @@ function blurFunction() {
 			  // convertimos las horas formateadas a segundos
 			  let hora_actual_segundos = hora_a_segundos(hora_actual_formateada);
 			  let hora_cobertura_segundos = hora_a_segundos(hora_cobertura_formateada);
+
+
+			  /* let dt_cobertura_reverseactual = "2023-05-6";
+			  let dt_cobertura_reverse = "2023-05-7"; */
+			  // Your code here!
+			  var fechaInicio = new Date(dt_cobertura_reverse2).getTime();
+			  var fechaFin    = new Date(dt_cobertura).getTime();
+
+			  var diff = fechaFin - fechaInicio;
+
   
 			  // VALIDAMOS QUE LA HORA COBERTURA SEA 1 HORA MAYOR QUE LA ACTUAL
 			  // a la hora de cobertura le restamos la hora actual
-  
+			  //console.log(hora_cobertura_segundos);
+			  //console.log(hora_actual_segundos);
 			  let diferencias_hora = hora_cobertura_segundos - hora_actual_segundos
   
 			  // SI EL RESULTADO ES MENOR DE 3600 MOSTRAMOS MENSAJE DE ALERTA
-			  if(diferencias_hora < 3600){
+			//  console.log(diferencias_hora);
+			  if(diff == 0 && diferencias_hora < 3600){
 				Swal.fire({
 					title: 'La hora de cobertura debe ser 1 hora mayor a la hora actual.',
 					width: 600,
@@ -492,7 +512,7 @@ function blurFunction() {
 		  
 		  }
 	  }
-  }
+}
 
 function F_SumarValorMercancia2() {
 
@@ -871,26 +891,23 @@ function F_ValidarValorEmbarque() {
 	var ComisionPorcentajeUsuario = $("#TB_ObjComision").val(); //Comision del Usario que servira para saber el porcentaje
 	var valor = ValorMaximoApar * ComisionPorcentajeUsuario/100; //Se Obtiene el valor real que tiene el agente asignado calculado el valor apar * comision %
 
-	
+
 	if(ValorEmbarque >= 0  && ValorEmbarque <=1000000){
 
 		//console.log($("#TB_ValorA").val());
 		ObtenerProtocolo($("#TB_ValorA").val());
 
-	}else if (ValorEmbarque >= 1000001  && ValorEmbarque <=1000500){
+	}else if (ValorEmbarque >= 1000001  && ValorEmbarque <=2000000){
 		ObtenerProtocolo($("#TB_ValorB").val());
 		//console.log("entro");
-	}else if (ValorEmbarque >= 1000501  && ValorEmbarque <=3000000){
+	}else if (ValorEmbarque >= 2000001  && ValorEmbarque <=3000000){
 		ObtenerProtocolo($("#TB_ValorC").val());
 		//console.log("entro");
 	}else if (ValorEmbarque >= 3000001  && ValorEmbarque <=5100000){
 		ObtenerProtocolo($("#TB_ValorD").val());
 		//console.log("entro");
-	}else if (ValorEmbarque >= 5100001  && ValorEmbarque <=10000000){
+	}else if (ValorEmbarque >= 5100001 ){
 		ObtenerProtocolo($("#TB_ValorE").val());
-		//console.log("entro");
-	}else if (ValorEmbarque >= 10000001){
-		ObtenerProtocolo($("#TB_ValorF").val());
 		//console.log("entro");
 	}else{
 
@@ -969,6 +986,14 @@ $('#nuevoCliente').change(function() {
 			$("#Cuota_CL_TR").val(respuesta["Cuota_TR"]);
 			$("#Cuota_CL_VT").val(respuesta["Cuota_TRVT"]);
 
+
+			var Dv_MostrarDatos = document.getElementById("Dv_MostrarDatos");
+            if (Dv_MostrarDatos.style.display === "none") {
+                Dv_MostrarDatos.style.display = "block";
+            } else if (Dv_MostrarDatos.style.display === "block") {
+                //Dv_MostrarDatos.style.display = "none";
+            }
+
 			$("#rfc").val(respuesta["RFC"]);
 			$("#email").val(respuesta["Email"]);
 			$("#direccion").val(Direccion);
@@ -998,7 +1023,7 @@ $('#nuevoBienesDesperdicios').change(function() {
   }); 
 
 //Change que sirve para obtener el giro de la mercancia seleccionada
-  $('#nuevoMercancia').change(function() {
+$('#nuevoMercancia').change(function() {
 	ObtenerMercancia($(this).val());
 	ObtenerGiro(($(this).find(':selected').data('city')) );
 
@@ -1010,28 +1035,17 @@ $('#nuevoBienesDesperdicios').change(function() {
   }); 
 
 //Evento Change de Selecionar alsocialdo para obtener la abreviatura
-  $('#nuevoAsociado').change(function() {
+$('#nuevoAsociado').change(function() {
 
-	//alert();
-	
-//	alert($(this).val());
-	
 	ObtenerPrefijoAsociado($(this).val());
+	ObtenerClientes($(this).val());
+	ObtenerAseguradora();
 
 	var perfil = $("#PerilUsuarioLogin").val();
-
-	//alert(perfil);
-	if(perfil != 1){
-
-		ObtenerClientes($(this).val());
-
-	}
-	
-	   
-  });
+});
 
   //Funcion para Obtener el Prefijo del Asociado
-  function ObtenerPrefijoAsociado(idasociado){
+function ObtenerPrefijoAsociado(idasociado){
 	var idUsuario = idasociado;
 	
 	//alert(idUsuario);
@@ -1051,6 +1065,8 @@ $('#nuevoBienesDesperdicios').change(function() {
 		success: function(respuesta){
 
 			var len = respuesta.length;
+			var IdAseguradora = 0;
+
             for(var i=0; i<len; i++){
 
 				
@@ -1064,37 +1080,44 @@ $('#nuevoBienesDesperdicios').change(function() {
 				$("#TB_ObjDerechoCertificado").val(respuesta[i].Derecho_Certificado);
 				$("#TB_EmailAsociado").val(respuesta[i].Email);
 				$("#TB_ImagenAsociado").val(respuesta[i].Foto);
+				$("#TB_Aseguradora").val(respuesta[i].IdAseguradora);
+
+
+				IdAseguradora = respuesta[i].IdAseguradora;
 			}
-			
 
-		/* 	var t = respuesta;
+				var idAseguradora = IdAseguradora;
 
-			console.log(t);
-
-			for (var key in t) {
-				if (t.hasOwnProperty(key)) {
-
+				$.ajax({
+					url: "ajax/aseguradora.ajax.php",
+					method: "POST",
+					data: {
+						"idAseguradora":idAseguradora
+					},
+					success: function(respuestanueva){
+						
+						const txt = respuestanueva;
+						const obj = JSON.parse(txt);
+						
+						$("#TB_IdAseguradora").val(obj.Id);
+						$("#TB_DescripcionAseguradora").val(obj.Descripcion);
+						$("#TB_RFCAseguradora").val(obj.RFC);
+						$("#TB_ActivoAseguradora").val(obj.Activo);
+						$("#TB_TelefonoAseguradora").val(obj.Telefono);
+						$("#TB_CondicionesGeneralesAseguradora").val(obj.CondicionesGenerales);
+						$("#TB_NumeroPolizaAseguradora").val(obj.NumeroPoliza);
+						$("#TB_LogoAseguradora").val(obj.Logo);
+						$("#TB_DireccionAseguradora").val(obj.Direccion);
 					
-					//console.log(t[key]);
-					console.log(t[key]);
-					if (t[key] == "Abreviatura") {
-
-						console.log("entro");
-
-					}
 
 				}
-			} */
-
-			
-			
+			});
 		}
-
 	});
-  }
+}
   
   //Funcion para Obtener los clientes ligados al asociado
-  function ObtenerClientes(idasociado){
+function ObtenerClientes(idasociado){
 	var id_asociado = idasociado;
 	$.ajax({
 		url: "ajax/ObtenerClientes.ajax.php",
@@ -1109,6 +1132,37 @@ $('#nuevoBienesDesperdicios').change(function() {
 
 			//Codigo para obtener el select del city del cliente
 			//alert($("#nuevoCliente").find(':selected').data('city'));
+		}
+	});
+}
+  //Funcion para Obtener los clientes ligados al asociado
+function ObtenerAseguradora(){
+	var idAseguradora = $("#TB_Aseguradora").val();
+
+	$.ajax({
+		url: "ajax/aseguradora.ajax.php",
+		method: "POST",
+		data: {
+			"idAseguradora":idAseguradora
+		},
+		success: function(respuesta){
+			
+			var len = respuesta.length;
+            for(var i=0; i<len; i++){
+
+				
+				$("#TB_IdAseguradora").val(respuesta[i].Id);
+				/* $("#TB_ObjComision").val(respuesta[i].Comision);
+				$("#TB_ObjCuotaBasica").val(respuesta[i].Cuota_VT);
+				$("#TB_ObjCuotaRot").val(respuesta[i].Cuota_Rot);
+				$("#TB_ObjCuotaTR").val(respuesta[i].Cuota_TR);
+				$("#TB_ObjCuotaContenedor").val(respuesta[i].Cuota_Contenedor);
+				$("#TB_ObjPrimaminima").val(respuesta[i].Prima_minima);
+				$("#TB_ObjDerechoCertificado").val(respuesta[i].Derecho_Certificado);
+				$("#TB_EmailAsociado").val(respuesta[i].Email);
+				$("#TB_ImagenAsociado").val(respuesta[i].Foto);
+				$("#TB_Aseguradora").val(respuesta[i].IdAseguradora); */
+			}
 		}
 	});
 }
@@ -1163,7 +1217,7 @@ function ObtenerMercancia(idmercancia){
 			//capo de deducibles lo que le corresponde
 
 			//Este If es para validar si el giro es Perecedero
-			if(respuesta["Giro"] == 16){
+		/* 	if(respuesta["Giro"] == 16){
 
 				//Se poner el texto del deducible
 				document.getElementById("TB_Deducible").value = "10% Sobre el Valor de la perdida con un minimo de $ 15,000. MXN";
@@ -1175,7 +1229,7 @@ function ObtenerMercancia(idmercancia){
 			}else{
 
 				document.getElementById("TB_Deducible").value = "";
-			}
+			} */
 			//Se valida al momento de obtener la informacion de la mercancia la peligrosidad
 			// si esta excluido mandar un mensaje de La Mercancia Seleccionada no se puede asegura
 			// Si se select el 3 mandar un email de requiere autorizacion del administrador
@@ -1201,7 +1255,7 @@ function ObtenerMercancia(idmercancia){
 					//console.info(s);
 					 if(s == true){
 
-						document.getElementById("TB_ValorEmbarque").disabled = false;
+						//document.getElementById("TB_ValorEmbarque").disabled = false;
 
 						$("#TB_Peligrosidad").val(respuesta["Peligrosidad"]);
 						$("#TB_ValorAseguradora").val(respuesta["Valor_Aseguradora"]);
@@ -1217,9 +1271,37 @@ function ObtenerMercancia(idmercancia){
 						$("#TB_ValorC").val(respuesta["Valor_C"]);
 						$("#TB_ValorD").val(respuesta["Valor_D"]);
 						$("#TB_ValorE").val(respuesta["Valor_E"]);
-						$("#TB_ValorF").val(respuesta["Valor_F"]);
+						$("#TB_MercanciaAutomatico").val(respuesta["Automatico"]);
+						$("#TB_DeducibleROT").val(respuesta["DEDUCIBLE_ROT"]);
+						$("#TB_DEDUCIBLE_ROBO").val(respuesta["DEDUCIBLE_ROBO"]);
+						$("#TB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+						$("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
+						$("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+						$("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
 					}else{
-						document.getElementById("TB_ValorEmbarque").disabled = true;
+						//document.getElementById("TB_ValorEmbarque").disabled = true;
+
+						$("#TB_Peligrosidad").val(respuesta["Peligrosidad"]);
+						$("#TB_ValorAseguradora").val(respuesta["Valor_Aseguradora"]);
+						$("#TB_ValorApar").val(respuesta["Valor_Apar"]);
+						$("#TB_ROT").val(respuesta["ROT"]);
+						$("#TB_Robo").val(respuesta["TR"]);
+						$("#TB_Otros").val(respuesta["Otros"]);
+						$("#TB_VT").val(respuesta["Variacion_Termica"]);
+						$("#TB_EspecialesA").val(respuesta["Especiales_A"]);
+						$("#TB_EspecialesB").val(respuesta["Especiales_B"]);
+						$("#TB_ValorA").val(respuesta["Valor_A"]);
+						$("#TB_ValorB").val(respuesta["Valor_B"]);
+						$("#TB_ValorC").val(respuesta["Valor_C"]);
+						$("#TB_ValorD").val(respuesta["Valor_D"]);
+						$("#TB_ValorE").val(respuesta["Valor_E"]);
+						$("#TB_MercanciaAutomatico").val(respuesta["Automatico"]);
+						$("#TB_DeducibleROT").val(respuesta["DEDUCIBLE_ROT"]);
+						$("#TB_DEDUCIBLE_ROBO").val(respuesta["DEDUCIBLE_ROBO"]);
+						$("#TB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+						$("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
+						$("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+						$("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
 
 						Swal.fire({
 							title: 'La mercancia seleccionada requiere autorizacion.',
@@ -1233,16 +1315,33 @@ function ObtenerMercancia(idmercancia){
 							`
 						  });
 
-						/* Swal.fire({
-							icon: '',
-							title: '',
-							text: 'La Mercancia Seleccionada requiere autorizacion.'
-						});	 */
-
+						  document.querySelector('#submit').disabled = true;
 					}
 				}else{
 
 					document.getElementById("TB_ValorEmbarque").disabled = true;
+
+					$("#TB_Peligrosidad").val(respuesta["Peligrosidad"]);
+						$("#TB_ValorAseguradora").val(respuesta["Valor_Aseguradora"]);
+						$("#TB_ValorApar").val(respuesta["Valor_Apar"]);
+						$("#TB_ROT").val(respuesta["ROT"]);
+						$("#TB_Robo").val(respuesta["TR"]);
+						$("#TB_Otros").val(respuesta["Otros"]);
+						$("#TB_VT").val(respuesta["Variacion_Termica"]);
+						$("#TB_EspecialesA").val(respuesta["Especiales_A"]);
+						$("#TB_EspecialesB").val(respuesta["Especiales_B"]);
+						$("#TB_ValorA").val(respuesta["Valor_A"]);
+						$("#TB_ValorB").val(respuesta["Valor_B"]);
+						$("#TB_ValorC").val(respuesta["Valor_C"]);
+						$("#TB_ValorD").val(respuesta["Valor_D"]);
+						$("#TB_ValorE").val(respuesta["Valor_E"]);
+						$("#TB_MercanciaAutomatico").val(respuesta["Automatico"]);
+						$("#TB_DeducibleROT").val(respuesta["DEDUCIBLE_ROT"]);
+						$("#TB_DEDUCIBLE_ROBO").val(respuesta["DEDUCIBLE_ROBO"]);
+						$("#TB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+						$("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
+						$("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+						$("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
 
 					Swal.fire({
 						title: 'La mercancia seleccionada requiere autorizacion.',
@@ -1255,11 +1354,6 @@ function ObtenerMercancia(idmercancia){
 						  no-repeat
 						`
 					  });
-					/* Swal.fire({
-						icon: '',
-						title: '',
-						text: 'La Mercancia Seleccionada requiere autorizacion.'
-					});	 */
 				}	
 			}else if (respuesta["Peligrosidad"] == 4){
 
@@ -1276,6 +1370,9 @@ function ObtenerMercancia(idmercancia){
 				  });
 				
 				document.getElementById("TB_ValorEmbarque").disabled = true;
+				document.getElementById("submit").disabled = true;
+				document.getElementById("btn_solicitarrevision").disabled = true;
+				document.getElementById("btn_solicitarrevision").style.display = "none"
 			}else{
 
 				document.getElementById("TB_ValorEmbarque").disabled = false;
@@ -1294,7 +1391,13 @@ function ObtenerMercancia(idmercancia){
 				$("#TB_ValorC").val(respuesta["Valor_C"]); // de 1'500,001 a 3'000,00
 				$("#TB_ValorD").val(respuesta["Valor_D"]); // de 3'000,001 a 5'100,00
 				$("#TB_ValorE").val(respuesta["Valor_E"]); // de 5'100,001 a 10'000,00
-				$("#TB_ValorF").val(respuesta["Valor_F"]); // de 10'000,001 >
+				$("#TB_MercanciaAutomatico").val(respuesta["Automatico"]);
+				$("#TB_DeducibleROT").val(respuesta["DEDUCIBLE_ROT"]);
+				$("#TB_DEDUCIBLE_ROBO").val(respuesta["DEDUCIBLE_ROBO"]);
+				$("#TB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+				$("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
+				$("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+				$("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
 			}
 			
 		}
@@ -1422,13 +1525,22 @@ $('#nuevoCVJ').change(function() {
 //Funcion change de seleccion de tipo de cobertura que sirve para obtener el tipo de porcentaje
 $('#nuevoCBM').change(function() {
 
-    document.getElementById("TB_CMCIA").value = "";
-	document.getElementById("TB_PNTA").value = "";
-	document.getElementById("TB_PMCTND").value = "";
-	document.getElementById("TB_PMAGT").value = "";
-	document.getElementById("TB_DCRT").value = "";
-	document.getElementById("TB_IVA").value = "";
-	document.getElementById("TB_IVA").value = "";
+	var elementNameExists = document.getElementsByName("TB_CMCIA");
+	const input = document.querySelector('TB_CMCIA')
+	/* console.log(input);
+
+	console.log(elementNameExists); */
+	if(elementNameExists == true){
+
+		document.getElementById("TB_CMCIA").value = "";
+		document.getElementById("TB_PNTA").value = "";
+		document.getElementById("TB_PMCTND").value = "";
+		document.getElementById("TB_PMAGT").value = "";
+		document.getElementById("TB_DCRT").value = "";
+		document.getElementById("TB_IVA").value = "";
+		document.getElementById("TB_IVA").value = "";
+	}
+ 
 
 	//Se limpian los campos de la cuota del usuario
 	document.getElementById("PNETA").value = "";
@@ -1446,7 +1558,10 @@ $('#nuevoCBM').change(function() {
 
 	var ValorEmbarqueTotal = $("#TB_ValorEmbarque").val(); //Valor que ingresa el usuario
 	 // Se obtiene el dato de si se ampara el contenedor
+
+	 
 	var AmparaContenedor=document.getElementById("nuevoContenedor").value;
+	
 
 	var SoloContenedor = $("#customSwitch1").is(":checked");
 
@@ -1455,6 +1570,14 @@ $('#nuevoCBM').change(function() {
 	var GranIVA = 0;
 	var GranTotal = 0;
 
+	if($("#TB_ActivoAseguradora").val() == 1 && $("#TB_MercanciaAutomatico").val() == 1){
+
+		$("#submit").html('Emitir Certificado');
+		
+	}
+
+	//Aqui se mete la de que si solo se esta amaparando el contenero sin nada de mercancia
+	//si no se esta amparando solo contendor se pasar a lo demas
 	if ($(this).val() == "ROT Y ROBO" && SoloContenedor == true) {
 
 
@@ -1518,15 +1641,15 @@ $('#nuevoCBM').change(function() {
 				  se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
 				  al siguiente nuevel
 				*/
-				if ($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null) {
+				/* if ($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null) {
 	
 					CuotaROTGeneral = $("#Cuota_CL_ROT").val();
 				}
-				
+				 */
 				/*
 				  En caso de que 
 				*/
-				else if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null) {
+				if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null) {
 	
 					CuotaROTGeneral = $("#TB_ObjCuotaRot").val();
 				} else {
@@ -1591,9 +1714,49 @@ $('#nuevoCBM').change(function() {
 		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
 		// de la mercancia que no corresponda a a esos giros
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
-			document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida.";
+
+			//alert($("#MTPT").val());
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida.";
+		}
+
+		//Terrestre
+		if($("#MTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#MTPT").val() == "MMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#MTPT").val() == "AEREO"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#MTPT").val() == "COMAM"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
 		}
 	
+		//REVISAR ESTO SI VA A SEGUIR IGUAL
 		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total.";
 	
 		if($("#nuevoTipoContenedor1").val() != "No" &&  $("#TB_SumaSolicitada1").val() == "" && $("#nuevoTipoContenedor2").val() != "No" &&  $("#TB_SumaSolicitada2").val() == ""){
@@ -1646,22 +1809,22 @@ $('#nuevoCBM').change(function() {
 				  se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
 				  al siguiente nuevel
 				*/
-				if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
+				/* if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
 	
 					CuotaROTGeneral = $("#Cuota_CL_ROT").val();
-				}
+				} */
 				/*
 				  En casp de que el cliente no tenga cuoa se busca a nivel mercancia
 				*/
-				else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
+				/* else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
 					
 					CuotaROTGeneral = $("#TB_ROT").val();
 	
-				}
+				} */
 				/*
 				  En caso de que 
 				*/
-				else if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
+				if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
 	
 					CuotaROTGeneral = $("#TB_ObjCuotaRot").val();
 				}else{
@@ -1722,6 +1885,8 @@ $('#nuevoCBM').change(function() {
 				document.getElementById("TB_IVATOTAL").value = GranTotal.toFixed(2);
 	
 			}else if (AmparaContenedor == "Si"){
+
+				//alert($("#Cuota_CL_ROT").val());
 				//Se declaran las variables
 				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
 				//se poner el de iva que se usara para el calculo del iva
@@ -1743,22 +1908,24 @@ $('#nuevoCBM').change(function() {
 				  se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
 				  al siguiente nuevel
 				*/
-				if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
+
+				//alert($("#Cuota_CL_ROT").val());
+				/* if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
 	
 					CuotaROTGeneral = $("#Cuota_CL_ROT").val();
-				}
+				} */
 				/*
 				  En casp de que el cliente no tenga cuoa se busca a nivel mercancia
 				*/
-				else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
+				/* else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
 					
-					CuotaROTGeneral = $("#TB_ROT").val();
+					
 	
-				}
+				} */
 				/*
 				  En caso de que 
 				*/
-				else if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
+				 if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
 	
 					CuotaROTGeneral = $("#TB_ObjCuotaRot").val();
 				}else{
@@ -1824,9 +1991,47 @@ $('#nuevoCBM').change(function() {
 		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
 		// de la mercancia que no corresponda a a esos giros
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
-			document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida."
+
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida."
 		}
 
+		//Terrestre
+		if($("#MTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#MTPT").val() == "MMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#MTPT").val() == "AEREO"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#MTPT").val() == "COMAM"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
+		/////
 		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total.";
 
 		if($("#nuevoTipoContenedor1").val() != "No" &&  $("#TB_SumaSolicitada1").val() == "" && $("#nuevoTipoContenedor2").val() != "No" &&  $("#TB_SumaSolicitada2").val() == ""){
@@ -1988,9 +2193,46 @@ $('#nuevoCBM').change(function() {
 		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
 		// de la mercancia que no corresponda a a esos giros
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
-			document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
 		}
 		
+		//Terrestre
+		if($("#MTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#MTPT").val() == "MMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#MTPT").val() == "AEREO"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#MTPT").val() == "COMAM"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
 		//Se asigna el riesgo cubierto segun el tipo de cobertura seleccionado
 		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total - Robo parcial  -  Mojadura  -  Manchas  -  Oxidación  - Contaminación  -  Rotura  -  Derrame  -  Bodega a Bodega  - Maniobras de Carga y Descarga  -  Huelgas y Alborotos Populares.";
 	
@@ -2033,6 +2275,7 @@ $('#nuevoCBM').change(function() {
 			$("#TB_SumaSolicitada1").removeClass("is-invalid");
 			$("#TB_SumaSolicitada2").removeClass("is-invalid");
 	
+			
 			if(AmparaContenedor == "No"){
 		
 				//Se declaran las variables
@@ -2060,13 +2303,13 @@ $('#nuevoCBM').change(function() {
 				/*
 					En caso de que 
 				*/
-				//else if ($("#TB_ObjCuotaTR").val() != "" && $("#TB_ObjCuotaTR").val() != null){
+				 if ($("#TB_ObjCuotaTR").val() != "" && $("#TB_ObjCuotaTR").val() != null){
 	
 					CuotaTRGeneral = $("#TB_ObjCuotaTR").val();
-				//}else{
+					}else{
 	
-					//CuotaTRGeneral = 0;
-				//} 
+					CuotaTRGeneral = 0;
+				} 
 				//se poner el de iva que se usara para el calculo del iva
 				tasa = 16;
 				//Se obtiene el valor de contenedor 1 y contendedor 2
@@ -2111,10 +2354,12 @@ $('#nuevoCBM').change(function() {
 				document.getElementById("TB_IVATOTAL").value = GranTotal.toFixed(2);
 	
 			}else if (AmparaContenedor == "Si"){
+				//alert("si ampara contenedor");
 				//Se declaran las variables
 				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
 				//se poner el de iva que se usara para el calculo del iva
 				tasa = 16;
+				var CuotaTRGeneral = 0;
 				//Se obtiene el valor de contenedor 1 y contendedor 2
 				if(document.getElementById("TB_SumaSolicitada1").value == ''){
 					valor1 = 0
@@ -2132,13 +2377,27 @@ $('#nuevoCBM').change(function() {
 				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
 				//Se obtiene  el porcenaje de la cuota de contenedor  
 				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+
+				if ($("#TB_ObjCuotaTR").val() != "" && $("#TB_ObjCuotaTR").val() != null){
+	
+					CuotaTRGeneral = $("#TB_ObjCuotaTR").val();
+					}else{
+	
+					CuotaTRGeneral = 0;
+				}
+
+				//alert(CuotaContenedor);
 				//Se realizar la suma del valor contenedor 1 y 2
 				suma=parseFloat(valor1)+parseFloat(valor2);
 	
+				//alert(suma);
 				
 	
 				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
 				primanetaagente = ValorEmbarqueTotal * CuotaTRGeneral/100 + (CuotaContenedor/100 * suma);
+				//alert(primanetaagente);
+				//alert(PrimaMinima);
+				//alert(CuotaTRGeneral);
 				//Se obtiene el total de la suma de prima agente + derechi de certicado
 				if(primanetaagente<PrimaMinima){
 					//prima neta agente
@@ -2188,8 +2447,50 @@ $('#nuevoCBM').change(function() {
 	
 		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
 		// de la mercancia que no corresponda a a esos giros
-		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
+		/* if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
 			document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+		} */
+
+		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
+
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val() + " SVT: " + $("#TB_DEDUCIBLE_SVT").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+		}
+		
+		//Terrestre
+		if($("#MTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#MTPT").val() == "MMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#MTPT").val() == "AEREO"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#MTPT").val() == "COMAM"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#MTPT").val() == "COMAT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#MTPT").val() == "COMMT"){
+
+			document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
 		}
 	
 		if($("#nuevoTipoContenedor1").val() != "No" &&  $("#TB_SumaSolicitada1").val() == "" && $("#nuevoTipoContenedor2").val() != "No" &&  $("#TB_SumaSolicitada2").val() == ""){
@@ -2243,22 +2544,22 @@ $('#nuevoCBM').change(function() {
 						se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
 						al siguiente nuevel
 					*/
-					if($("#Cuota_CL_VT").val() != "" && $("#Cuota_CL_VT").val() != null){
+					/* if($("#Cuota_CL_VT").val() != "" && $("#Cuota_CL_VT").val() != null){
 		
 						CuotaVTGeneral = $("#Cuota_CL_VT").val();
-					}
+					} */
 					/*
 						En casp de que el cliente no tenga cuoa se busca a nivel mercancia
 					*/
-					else if ($("#TB_VT").val() != "" && $("#TB_VT").val() != null){
+					/* else if ($("#TB_VT").val() != "" && $("#TB_VT").val() != null){
 						
 						CuotaVTGeneral = $("#TB_VT").val();
 		
-					}
+					} */
 					/*
 						En caso de que 
 					*/
-					else if ($("#TB_ObjCuotaBasica").val() != "" && $("#TB_ObjCuotaBasica").val() != null){
+					 if ($("#TB_ObjCuotaBasica").val() != "" && $("#TB_ObjCuotaBasica").val() != null){
 		
 						CuotaVTGeneral = $("#TB_ObjCuotaBasica").val();
 					}else{
@@ -2332,6 +2633,15 @@ $('#nuevoCBM').change(function() {
 				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
 				//Se obtiene  el porcenaje de la cuota de contenedor  
 				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+
+				if ($("#TB_ObjCuotaBasica").val() != "" && $("#TB_ObjCuotaBasica").val() != null){
+		
+					CuotaVTGeneral = $("#TB_ObjCuotaBasica").val();
+				}else{
+	
+					CuotaVTGeneral = 0;
+				}
+
 				//Se realizar la suma del valor contenedor 1 y 2
 				suma=parseFloat(valor1)+parseFloat(valor2);
 	
@@ -2529,56 +2839,12 @@ $( "#PNETA" ).blur(function() {
 
 	
 	// tu codigo ajax va dentro de esta function...
-  });
-/* $(document).ready(function () {
-    setInterval(function () {
-        $("#DV_FechaHora").load();
-    }, 1000);
-}); */
-var form_count = 1, previous_form, next_form, total_forms;
-	total_forms = $("fieldset").length;
-	
-	$(".next-formcertificado").click(function(){
-		
-	/* 	if($("#nuevoNombre").val() == '' ){
-			Swal.fire("Error ", "Favor de Ingresar el Nombre", "error");
-			return;
-		}else if($("#txtPassword").val() == ''){
-		Swal.fire("Error ", "Favor de Ingresar Password", "error");
-			return;
-		}else if($("#nuevoEmail").val() == ''){
-			Swal.fire("Error ", "Favor de Ingresar Email", "error");
-				return;
-		}else if(document.getElementById("nuevoPerfil").value == ''){
-			Swal.fire("Error ", "Favor de Seleccionar el Perfil de Usuario", "error");
-			return;
-		}else{ */
-			previous_form = $(this).parent();
-			next_form = $(this).parent().next();
-			next_form.show();
-			previous_form.hide();
-			setProgressBarValue(++form_count);
-		//}
-	});
 
-	$(".previous-formcertificado").click(function(){
-		previous_form = $(this).parent();
-		next_form = $(this).parent().prev();
-		next_form.show();
-		previous_form.hide();
-		setProgressBarValue(--form_count);
-	});
-	setProgressBarValue(form_count);
-	function setProgressBarValue(value){
-		var percent = parseFloat(100 / total_forms) * value;
-		percent = percent.toFixed();
-		$(".progress-bar")
-		.css("width",percent+"%")
-		.html(percent+"%");
-	}
+});
+
 
 	//Evento que sirve para la generacion del pdf de la cotizacion
-	function impresionCotizacionPDF(){
+/* 	function impresionCotizacionPDF(){
 
 		//alert($("#TB_Deducible").val());
 
@@ -2607,9 +2873,9 @@ var form_count = 1, previous_form, next_form, total_forms;
 		
 		//Se Manda a llamar la funcion de venta para mandar los parametro y generar el pdf
 		VentanaCentrada('vistas/pdf/documentos/cotizacion_pdf.php?cliente='+cliente+'&mercancia='+mercancia+'&mediotransporte='+mediotransporte+'&tipodebien='+tipodebien+'&cv='+cv+'&cobertura='+cobertura+'&valorembarque='+Valorembarque+'&rfc='+rfc+'&origenembarque='+origenembarque+'&desde='+desde+'&hasta='+hasta+'&importetotal='+importetotal+'&deducibles='+deducibles+'&FechaHora='+FechaHora+'&deduciblescontendor='+deduciblescontendor+'&coberturamercancia='+coberturamercancia+'&coberturacontenedor='+coberturacontenedor+'&ProtocoloDescripcion='+ProtocoloDescripcion, 'cotizacion','','1024','768','true');
-	} 
+	}  */
 	//Evento que sirve para la generacion del pdf de la cotizacion
-	function impresionCertificadoPDF(folio, id){
+	/* function impresionCertificadoPDF(folio, id){
 
 		//alert($("#TB_OrigenCobertura option:selected" ).text());
 
@@ -2672,10 +2938,10 @@ var form_count = 1, previous_form, next_form, total_forms;
 		
 		//Funcion que manda a llamar la ventana para generar el pdf
 	 	 VentanaCentrada('vistas/pdf/documentos/certificado_pdf.php?asociado='+asosiado+'&cliente='+cliente+'&mercancia='+mercancia+'&mediotransporte='+mediotransporte+'&dobleremolque='+dobleremolque+'&amparacontenedor='+amparacontenedor+'&tipocontenedor1='+tipocontenedor1+'&tipocontenedor2='+tipocontenedor2+'&tipodebien='+tipodebien+'&cv='+cv+'&cobertura='+cobertura+'&primaneta='+primaneta+'&iva='+iva+'&total='+total+'&valorembarque='+Valorembarque+'&rfc='+rfc+'&email='+email+'&direccion='+direccion+'&idcontenedor1='+idcontenedor1+'&idcontenedor2='+idcontenedor2+'&fechacobertura='+fechacobertura+'&horacobertura='+horacobertura+'&OrigenCobertura='+OrigenCobertura+'&paiscobertura='+paiscobertura+'&DestinoCobertura='+DestinoCobertura+'&nuevoTipoEmbarque='+nuevoTipoEmbarque+'&nuevoLNTRP='+nuevoLNTRP+'&nuevoTipoVehiculo='+nuevoTipoVehiculo+'&nuevoNbLNTRP='+nuevoNbLNTRP+'&marca='+marca+'&motor='+motor+'&nombrechofer='+nombrechofer+'&ProtocoloDescripcion='+ProtocoloDescripcion+'&numeroplacas='+numeroplacas+'&modelo='+modelo+'&serie='+serie+'&color='+color+'&ObservacionGnral='+ObservacionGnral+'&NumeroGuia='+NumeroGuia+'&_Id='+_Id+'&_Folio='+_Folio+'&EmailAsociado='+EmailAsociado+'&ImagenAsociado='+ImagenAsociado+'&FechaHora='+FechaHora+'&valormercancia2='+valormercancia2+'&valormercancia1='+valormercancia1+'&TipoEmpaque='+TipoEmpaque+'&Sumasolicitadaprimero='+Sumasolicitadaprimero+'&Sumasolicitadasegundo='+Sumasolicitadasegundo+'&deduciblescontenedor='+deduciblescontenedor+'&deducibles='+deducibles+'&coberturamercancia='+coberturamercancia+'&coberturacontenedor='+coberturacontenedor+'&TipoSeguro='+TipoSeguro, 'certificado','','1024','768','true');
-	}
+	} */
 	
 	//Funcion para mandar a imprimir el recibo de cobro
-	function impresionReciboCobro(){
+	/* function impresionReciboCobro(){
 
 
 		//console.log($( "#nuevoAsociado option:selected" ).text());
@@ -2693,9 +2959,9 @@ var form_count = 1, previous_form, next_form, total_forms;
 		//Se Manda a llamar la funcion de venta para mandar los parametro y generar el pdf
 		VentanaCentrada('vistas/pdf/documentos/recibocobro_pdf.php?cliente='+cliente+'&mercancia='+mercancia+'&primaneta='+primaneta+'&iva='+iva+'&total='+total+'&valorembarque='+Valorembarque, 'recibocobro','','1024','768','true');
 	}
- 
+  */
 	   //Funciona que se manda a llamar cuando se mandar a generar el pdf para 
-	   function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
+	  /*  function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
 		if(window.screen)if(isCenter)if(isCenter=="true"){
 		  var myLeft = (screen.width-myWidth)/2;
 		  var myTop = (screen.height-myHeight)/2;
@@ -2703,7 +2969,7 @@ var form_count = 1, previous_form, next_form, total_forms;
 		  features+=',left='+myLeft+',top='+myTop;
 		}
 		window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
-	  }
+	  } */
 
 	  //Funcion que sirve para obtener el Protocolo segun el monto del valor total del embarque
 	  function ObtenerProtocolo(protocolo){
@@ -2798,11 +3064,11 @@ var form_count = 1, previous_form, next_form, total_forms;
 
 
 	///Funcion que mandar Grabar la informacion del certificado a la base de datos y que una vez geuardado correctamene muestra el pdf
-	$('#datos_certificado').submit(function(e){
+$('#datos_certificado').submit(function(e){
 		e.preventDefault();
 		
 	var de = $("#TB_Giro").val();
-		console.log(de);
+		//console.log(de);
 		var aso = "hola"
 		if(aso.length == ''){
 			Swal.fire({
@@ -2881,17 +3147,270 @@ var form_count = 1, previous_form, next_form, total_forms;
 				showLoaderOnConfirm: true
 			}).then((result) =>{
 				if(result.value){
-					
-					var _Folio = $("#TB_Folio").val();
-					var _Fecha = $("#DT_Actual").val();
+					//var _Asosiado;
 					var folio;
+					
+					//Aqui obtiene el objeto d ela informacion para mandarla por ajax
+					let obj = test("new_registro", 0, "", "Pendiente");
+					$.ajax({
+						url: 'global/sp_registro.php',
+						type: "POST",
+						data: obj,
+						success: function(data, textStatus, jqXHR)
+						{
+							$resp = JSON.parse(data);
+							var id = $resp['lastInsertId'] ;
+							folio = $resp['folio'] ;
+							if($resp['status'] == true){
 
-					var _Asosiado;
-					if($("#nuevoIdAsociado").val() != null && $("#nuevoIdAsociado").val() != '' ){
-						_Asosiado = $("#nuevoIdAsociado").val(); //$( "# option:selected" ).text();
-					}else{
-						_Asosiado = $("#nuevoAsociado").val(); //$( "# option:selected" ).text();
+
+								//Aqui, una vez guardando la cotizacion, si fue correcto, valido que 0=Inactivo, 1=Activo
+								//los parametros para ver si mando a generar el certificado de manera automatica
+
+								//Aqui se hace la primer comparacion y solo esta si es correcta se manda a realizar el certificado
+								//de manera automatica
+								if($("#TB_ActivoAseguradora").val() == 1 && $("#TB_MercanciaAutomatico").val() == 1){
+
+									//Aqui se general objeto para mandarla a ajax para generar el certificado
+									let obj_certificado = test("new_certificado",id, "", "");
+
+									$.ajax({
+										url: 'global/sp_registro.php',
+										type: "POST",
+										data: obj_certificado,
+										success: function(data, textStatus, jqXHR)
+										{
+											$resp = JSON.parse(data);
+											if($resp['status'] == true){
+												var id = $resp['lastInsertId'];
+												var foliocertificado = $resp['folio'];
+												var foliocotizacion = $resp['foliocotizacion'];
+												Swal.fire({
+													title: "Certificado Generada Correctamente",
+													html: ' <p>Folio Certificado: <strong>' + foliocertificado + '</strong>.</p> ',
+													type: "info",
+													width: 600,
+													padding: '3em',
+													background: '#fff',
+													backdrop: `
+													rgba(0,0,123,0.4)
+													left top
+													no-repeat`,
+													showCancelButton: false,
+													confirmButtonClass: "btn-primary",
+													confirmButtonText: "Aceptar",
+													closeOnConfirm: false,
+													showLoaderOnConfirm: true
+												
+															}).then((result) => {
+																if(result.value){
+																   // impresionReciboCobro();
+																   impresionCertificadoPDFCotizacion(foliocertificado,id,folio);
+																		//impresionReciboCobro();
+																location.reload();
+																}
+															})
+													
+											}else{
+													Swal.fire("Error save customer : "+$resp['message'])
+											}
+										},
+										error: function (request, textStatus, errorThrown) {
+											Swal.fire("Error ", request.responseJSON, "error");
+										}
+									});
+
+								}else if ($("#TB_ActivoAseguradora").val() == 0 && $("#TB_MercanciaAutomatico").val() == 1 || $("#TB_ActivoAseguradora").val() == 1 && $("#TB_MercanciaAutomatico").val() == 0){
+
+									Swal.fire({
+										title: "Cotizacion Generada Correctamente",
+										html: ' <p>Folio Cotizacion: <strong>' + folio + '</strong>.</p> ',
+										type: "info",
+										width: 600,
+										padding: '3em',
+										background: '#fff',
+										backdrop: `
+										rgba(0,0,123,0.4)
+										left top
+										no-repeat`,
+										showCancelButton: false,
+										confirmButtonClass: "btn-primary",
+										confirmButtonText: "Aceptar",
+										closeOnConfirm: false,
+										showLoaderOnConfirm: true
+										}).then((result) => {
+											if(result.value){
+												location.reload();
+											}
+										})
+								}		
+							}else{
+									Swal.fire("Error al guardar la cotizacion : "+$resp['message'])
+							}
+						},
+						error: function (request, textStatus, errorThrown) {
+							Swal.fire("Error ", request.responseJSON, "error");
+						}
+					});
+				}
+			})
+		}
+});
+
+$("#btn_solicitarrevision").on("click", async () => {
+
+	const { value: text } =  await Swal.fire({
+		input: 'textarea',
+		inputLabel: 'Favor de describir los puntos a revisar, para autorizar la cotizacion',
+		inputPlaceholder: 'Escribe tu mensaje aquí...',
+		inputAttributes: {
+		  'aria-label': 'Escribe tu mensaje aquí'
+		},
+		showCancelButton: true
+	  })
+	  
+	  if (text != " " && text != null) {
+		var folio;
+					
+					//Aqui obtiene el objeto d ela informacion para mandarla por ajax
+					//Se le manda como variable, el nombre del metodo, idCotizacion y comentarios
+					let obj = test("new_registro",  0, text, "Revision");
+					$.ajax({
+						url: 'global/sp_registro.php',
+						type: "POST",
+						data: obj,
+						success: function(data, textStatus, jqXHR)
+						{
+							$resp = JSON.parse(data);
+							var id = $resp['lastInsertId'] ;
+							folio = $resp['folio'] ;
+							if($resp['status'] == true){
+
+								Swal.fire({
+										title: "Cotizacion Generada Correctamente",
+										html: ' <p>Folio Cotizacion: <strong>' + folio + '</strong>.</p> ',
+										type: "info",
+										width: 600,
+										padding: '3em',
+										background: '#fff',
+										backdrop: `
+										rgba(0,0,123,0.4)
+										left top
+										no-repeat`,
+										showCancelButton: false,
+										confirmButtonClass: "btn-primary",
+										confirmButtonText: "Aceptar",
+										closeOnConfirm: false,
+										showLoaderOnConfirm: true
+										}).then((result) => {
+											if(result.value){
+												location.reload();
+											}
+										})	
+							}else{
+									Swal.fire("Error al guardar la cotizacion : "+$resp['message'])
+							}
+						},
+						error: function (request, textStatus, errorThrown) {
+							Swal.fire("Error ", request.responseJSON, "error");
+						}
+					});
+	  }else{
+
+		Swal.fire({
+			type:'warning',
+			title:'Favor de ingresar los detalles a revisar',
+		});
+		return false;
+	  }
+});
+
+$('#MTPT').change(function() {
+
+	if($(this).val() == "TE"){
+			$('#EMAYOR').prop('disabled', false);
+
+		}else{
+			$('#EMAYOR').prop('disabled', 'disabled');
+		}
+	//////////////////////////////////////////////////////// $("#MTPT").val() == "TE"
+	if($("#MTPT").val() == "TE" ){
+
+		
+	}//Maritimo
+	else if ($("#MTPT").val() == "MMT"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}//AEREO
+	else if ($("#MTPT").val() == "AEREO"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}//COMBINACION AEREO - MARITIMO
+	else if ($("#MTPT").val() == "COMAM"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}//COMBINACION AEREO - MARITIMO - TERRESTRE
+	else if ($("#MTPT").val() == "COMAMT"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}//COMBINACION AEREO - TERRESTRE
+	else if ($("#MTPT").val() == "COMAT"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}//COMBINACION MARITIMO - TERRESTRE
+	else if ($("#MTPT").val() == "COMMT"){
+
+		document.getElementById("TB_Deducible").value  =  $("#TB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+	}
+
+})
+$('#EMAYOR').change(function() {
+
+		//alert("transporte");
+		if($(this).val() == "SI"){
+			var select = document.getElementById("nuevoCBM");
+			var length = select.options.length;
+			for (i = length-1; i >= 0; i--) {
+					select.options[i] = null;
+				}
+
+
+ 			if ($("#EMAYOR").val() == "SI"){
+				var array = ["Seleccionar","ROT Y ROBO"];
+					for(var i in array)
+					{ 
+						document.getElementById("nuevoCBM").innerHTML += "<option value='"+array[i]+"'>"+array[i]+"</option>"; 
 					}
+				}
+			$('#EMAYOR').prop('disabled', false);
+
+		}else{
+
+			LlenarTipoCobertura();
+		}
+
+})
+
+
+
+function test(metodo, idcotizacion, comentariosrevision, status) {
+	var _Folio = $("#TB_Folio").val();
+	var _Fecha = $("#DT_Actual").val();
+	var folio;
+	let ajax = null;
+
+	var _Asosiado;
+	if($("#nuevoIdAsociado").val() != null && $("#nuevoIdAsociado").val() != '' ){
+	     _Asosiado = $("#nuevoIdAsociado").val(); //$( "# option:selected" ).text();
+	}else{
+		_Asosiado = $("#nuevoAsociado").val(); //$( "# option:selected" ).text();
+	}
 					var _cliente = $("#nuevoCliente").val();
 					var _Mercancia = $("#nuevoMercancia").val();
 					var _Griro = $("#TB_Giro").val();//giro falta campo en la bd y grabar
@@ -2953,7 +3472,7 @@ var form_count = 1, previous_form, next_form, total_forms;
 					var _DerechoCertificadoUsuario = $("#TB_DCRTT").val();
 					var _IvaUsuario = $("#IVA").val();
 					var _PrimaTotalUsuario = $("#TOTAL").val();
-					var _DescripcionCondicionesTER = $("#TB_DescripcionCondicionesTER").val(); //Agregar a la bd
+					//var _DescripcionCondicionesTER = $("#TB_DescripcionCondicionesTER").val(); //Agregar a la bd
 					var _ObservacionGnral = $("#TB_ObservacionGnral").val(); //Agregar a la bd
 					var _Deducibles = $("#TB_Deducible").val();
 					var _CuotaContenedor = $("#TB_CuotaContenedor").val(); // Agregar a la bd
@@ -2973,167 +3492,174 @@ var form_count = 1, previous_form, next_form, total_forms;
 
 						
 						//<!-- Variables de los controles para mandar en la funcion de insertar -->
-					let ajax = {
-						method: "new_registro",
-						Asosiado: _Asosiado,
-						Fecha: _Fecha,
-						Folio: _Folio,
-						Cliente: _cliente,
-						Numero_guia: _NumeroGuia,
-						Identificador_Contenedor1: _idcontenedor1,
-						Identificador_Contenedor2: _idcontenedor2,
-						Fecha_InicioCobertura: _fechacobertura,
-						Hora_InicioCobertura: _horacobertura,
-						PaisOrigenEmbarque: _PaisOrigenEmbarque, 
-						OrigenCobertura : _OrigenCobertura,
-						EstadoOrigenCobertura: _EstadoOrigenCobertura, 
-						MunicipioOrigenCobertura : _MunicipioOrigenCobertura,
-						PaisDestinoEmbarque: _PaisDestinoEmbarque,
-						EstadoDestinoEmbarque: _EstadoDestinoEmbarque,
-						MunicipioDestinoEmbarque:_MunicipioDestinoEmbarque,
-						Medio_Transporte : _Medio_Transporte,
-						Embarque : _Embarque,
-						TipoLineaTransportista : _TipoLineaTransportista,
-						TipoVehiculo : _TipoVehiculo,
-						LineaTransportista : _LineaTransportista,
-						TipoSeguro : _TipoSeguro,
-						Marca : _Marca , 
-						Modelo : _Modelo, 
-						NumeroPlacas : _NumeroPlacas, 
-						NumeroMotor : _NumeroMotor, 
-						NumeroSerie : _NumeroSerie, 
-						Color : _Color, 
-						NombreChofer : _NombreChofer,
-						Continuacion_Viaje : _Continuacion_Viaje,
-						Riesgos_cubiertos : _Riesgos_cubiertos,
-						Deducibles : _Deducibles,
-						DescripcionMercancia : _DescripcionMercancia,
-						Mercancia : _Mercancia,
-						TipoEmpaque : _TipoEmpaque,
-						Valor_Embarque : _Valor_Embarque,
-						Moneda : _Moneda,
-						Numero_remolque : _Numero_remolque,
-						Descripcion_seguridad : _Descripcion_seguridad,
-						Doble_remolque: _Doble_remolque,
-						Ampara_contenedor : _Ampara_contenedor,
-						Tipocontenedorprimero: _Tipocontenedorprimero, 
-						Tipocontenedorsegundo: _Tipocontenedorsegundo,
-						Sumasolicitadaprimero: _Sumasolicitadaprimero,
-						Sumasolicitadasegundo :_Sumasolicitadasegundo, 
-						Tipodebien: _Tipodebien,
-						CuotaMercanciaApar : _CuotaMercanciaApar,
-						PrimaNetaMercanciaApar : _PrimaNetaMercanciaApar,
-						PrimaNetaContenedorApar : _PrimaNetaContenedorApar,
-						PrimaNetaTotalApar : _PrimaNetaTotalApar,
-						DerechoCertificadoApar : _DerechoCertificadoApar,
-						IvaApar : _IvaApar,
-						PrimaTotalApar : _PrimaTotalApar,
-						CuotaMercanciaUsuario : _CuotaMercanciaUsuario,
-						PrimaNetaMercanciaUsuario : _PrimaNetaMercanciaUsuario,
-						PrimaNetaContenedorUsuario : _PrimaNetaContenedorUsuario,
-						PrimaNetaTotalUsuario : _PrimaNetaTotalUsuario,
-						DerechoCertificadoUsuario : _DerechoCertificadoUsuario,
-						IvaUsuario : _IvaUsuario,
-						PrimaTotalUsuario : _PrimaTotalUsuario,
-						Griro :_Griro,
-						TipoTraslado : _TipoTraslado,
-						valormercancia1 : _valormercancia1,
-						valormercancia2 : _valormercancia2,
-						valormercanciamaximo1 : _valormercanciamaximo1,
-						valormercanciamaximo2 : _valormercanciamaximo2,
-						TransporteAntiguedad : _TransporteAntiguedad,
-						DescripcionCondicionesTER : _DescripcionCondicionesTER,
-						ObservacionGnral : _ObservacionGnral,
-						CuotaContenedor : _CuotaContenedor,
-						CoberturaMercancia : _CoberturaMercancia,
-						CoberturaContenedor : _CoberturaContenedor
-						
-					}
-					$.ajax({
-						url: 'global/sp_registro.php',
-						type: "POST",
-						data: ajax,
-						success: function(data, textStatus, jqXHR)
-						{
-							$resp = JSON.parse(data);
-							if($resp['status'] == true){
-								var id = $resp['lastInsertId'] ;
-								folio = $resp['folio'] ;
-								Swal.fire({
-									title: "Cotizacion Generada Correctamente",
-									html: ' <p>Folio Cotizacion: <strong>' + folio + '</strong>.</p> ',
-									type: "info",
-									width: 600,
-									padding: '3em',
-									background: '#fff',
-									backdrop: `
-									rgba(0,0,123,0.4)
-									left top
-									no-repeat`,
-									showCancelButton: false,
-									confirmButtonClass: "btn-primary",
-									confirmButtonText: "Aceptar",
-									closeOnConfirm: false,
-									showLoaderOnConfirm: true
-								
-											}).then((result) => {
-												if(result.value){
-												location.reload();
-												}
-											})
-									
-							}else{
-									Swal.fire("Error save customer : "+$resp['message'])
-							}
-						},
-						error: function (request, textStatus, errorThrown) {
-							Swal.fire("Error ", request.responseJSON, "error");
+
+					if(metodo == "new_registro"){
+
+						ajax= {
+							method: metodo,
+							Asosiado: _Asosiado,
+							Fecha: _Fecha,
+							Folio: _Folio,
+							Cliente: _cliente,
+							Numero_guia: _NumeroGuia,
+							Identificador_Contenedor1: _idcontenedor1,
+							Identificador_Contenedor2: _idcontenedor2,
+							Fecha_InicioCobertura: _fechacobertura,
+							Hora_InicioCobertura: _horacobertura,
+							PaisOrigenEmbarque: _PaisOrigenEmbarque, 
+							OrigenCobertura : _OrigenCobertura,
+							EstadoOrigenCobertura: _EstadoOrigenCobertura, 
+							MunicipioOrigenCobertura : _MunicipioOrigenCobertura,
+							PaisDestinoEmbarque: _PaisDestinoEmbarque,
+							EstadoDestinoEmbarque: _EstadoDestinoEmbarque,
+							MunicipioDestinoEmbarque:_MunicipioDestinoEmbarque,
+							Medio_Transporte : _Medio_Transporte,
+							Embarque : _Embarque,
+							TipoLineaTransportista : _TipoLineaTransportista,
+							TipoVehiculo : _TipoVehiculo,
+							LineaTransportista : _LineaTransportista,
+							TipoSeguro : _TipoSeguro,
+							Marca : _Marca , 
+							Modelo : _Modelo, 
+							NumeroPlacas : _NumeroPlacas, 
+							NumeroMotor : _NumeroMotor, 
+							NumeroSerie : _NumeroSerie, 
+							Color : _Color, 
+							NombreChofer : _NombreChofer,
+							Continuacion_Viaje : _Continuacion_Viaje,
+							Riesgos_cubiertos : _Riesgos_cubiertos,
+							Deducibles : _Deducibles,
+							DescripcionMercancia : _DescripcionMercancia,
+							Mercancia : _Mercancia,
+							TipoEmpaque : _TipoEmpaque,
+							Valor_Embarque : _Valor_Embarque,
+							Moneda : _Moneda,
+							Numero_remolque : _Numero_remolque,
+							Descripcion_seguridad : _Descripcion_seguridad,
+							Doble_remolque: _Doble_remolque,
+							Ampara_contenedor : _Ampara_contenedor,
+							Tipocontenedorprimero: _Tipocontenedorprimero, 
+							Tipocontenedorsegundo: _Tipocontenedorsegundo,
+							Sumasolicitadaprimero: _Sumasolicitadaprimero,
+							Sumasolicitadasegundo :_Sumasolicitadasegundo, 
+							Tipodebien: _Tipodebien,
+							CuotaMercanciaApar : _CuotaMercanciaApar,
+							PrimaNetaMercanciaApar : _PrimaNetaMercanciaApar,
+							PrimaNetaContenedorApar : _PrimaNetaContenedorApar,
+							PrimaNetaTotalApar : _PrimaNetaTotalApar,
+							DerechoCertificadoApar : _DerechoCertificadoApar,
+							IvaApar : _IvaApar,
+							PrimaTotalApar : _PrimaTotalApar,
+							CuotaMercanciaUsuario : _CuotaMercanciaUsuario,
+							PrimaNetaMercanciaUsuario : _PrimaNetaMercanciaUsuario,
+							PrimaNetaContenedorUsuario : _PrimaNetaContenedorUsuario,
+							PrimaNetaTotalUsuario : _PrimaNetaTotalUsuario,
+							DerechoCertificadoUsuario : _DerechoCertificadoUsuario,
+							IvaUsuario : _IvaUsuario,
+							PrimaTotalUsuario : _PrimaTotalUsuario,
+							Griro :_Griro,
+							TipoTraslado : _TipoTraslado,
+							valormercancia1 : _valormercancia1,
+							valormercancia2 : _valormercancia2,
+							valormercanciamaximo1 : _valormercanciamaximo1,
+							valormercanciamaximo2 : _valormercanciamaximo2,
+							TransporteAntiguedad : _TransporteAntiguedad,
+							ObservacionGnral : _ObservacionGnral,
+							CuotaContenedor : _CuotaContenedor,
+							CoberturaMercancia : _CoberturaMercancia,
+							CoberturaContenedor : _CoberturaContenedor,
+							ComentariosRevision: comentariosrevision,
+							Status : status
+							
 						}
-					});
-				}
-			})
-		}
-	});
-
-	$('#MTPT').change(function() {
-
-		if($(this).val() == "TE"){
-			$('#EMAYOR').prop('disabled', false);
-
-		}else{
-			$('#EMAYOR').prop('disabled', 'disabled');
-		}
-
-	})
-	$('#EMAYOR').change(function() {
-
-		//alert("transporte");
-		if($(this).val() == "SI"){
-			var select = document.getElementById("nuevoCBM");
-			var length = select.options.length;
-			for (i = length-1; i >= 0; i--) {
-					select.options[i] = null;
-				}
-
-
- 			if ($("#EMAYOR").val() == "SI"){
-				var array = ["Seleccionar","ROT Y ROBO"];
-					for(var i in array)
-					{ 
-						document.getElementById("nuevoCBM").innerHTML += "<option value='"+array[i]+"'>"+array[i]+"</option>"; 
 					}
-				}
-			$('#EMAYOR').prop('disabled', false);
+					else{
 
-		}else{
+						ajax= {
+							method: metodo,
+							Asosiado: _Asosiado,
+							Idcotizacion: idcotizacion,
+							Fecha: _Fecha,
+							Folio: _Folio,
+							Cliente: _cliente,
+							Numero_guia: _NumeroGuia,
+							Identificador_Contenedor1: _idcontenedor1,
+							Identificador_Contenedor2: _idcontenedor2,
+							Fecha_InicioCobertura: _fechacobertura,
+							Hora_InicioCobertura: _horacobertura,
+							PaisOrigenEmbarque: _PaisOrigenEmbarque, 
+							OrigenCobertura : _OrigenCobertura,
+							EstadoOrigenCobertura: _EstadoOrigenCobertura, 
+							MunicipioOrigenCobertura : _MunicipioOrigenCobertura,
+							PaisDestinoEmbarque: _PaisDestinoEmbarque,
+							EstadoDestinoEmbarque: _EstadoDestinoEmbarque,
+							MunicipioDestinoEmbarque:_MunicipioDestinoEmbarque,
+							Medio_Transporte : _Medio_Transporte,
+							Embarque : _Embarque,
+							TipoLineaTransportista : _TipoLineaTransportista,
+							TipoVehiculo : _TipoVehiculo,
+							LineaTransportista : _LineaTransportista,
+							TipoSeguro : _TipoSeguro,
+							Marca : _Marca , 
+							Modelo : _Modelo, 
+							NumeroPlacas : _NumeroPlacas, 
+							NumeroMotor : _NumeroMotor, 
+							NumeroSerie : _NumeroSerie, 
+							Color : _Color, 
+							NombreChofer : _NombreChofer,
+							Continuacion_Viaje : _Continuacion_Viaje,
+							Riesgos_cubiertos : _Riesgos_cubiertos,
+							Deducibles : _Deducibles,
+							DescripcionMercancia : _DescripcionMercancia,
+							Mercancia : _Mercancia,
+							TipoEmpaque : _TipoEmpaque,
+							Valor_Embarque : _Valor_Embarque,
+							Moneda : _Moneda,
+							Numero_remolque : _Numero_remolque,
+							Descripcion_seguridad : _Descripcion_seguridad,
+							Doble_remolque: _Doble_remolque,
+							Ampara_contenedor : _Ampara_contenedor,
+							Tipocontenedorprimero: _Tipocontenedorprimero, 
+							Tipocontenedorsegundo: _Tipocontenedorsegundo,
+							Sumasolicitadaprimero: _Sumasolicitadaprimero,
+							Sumasolicitadasegundo :_Sumasolicitadasegundo, 
+							Tipodebien: _Tipodebien,
+							CuotaMercanciaApar : _CuotaMercanciaApar,
+							PrimaNetaMercanciaApar : _PrimaNetaMercanciaApar,
+							PrimaNetaContenedorApar : _PrimaNetaContenedorApar,
+							PrimaNetaTotalApar : _PrimaNetaTotalApar,
+							DerechoCertificadoApar : _DerechoCertificadoApar,
+							IvaApar : _IvaApar,
+							PrimaTotalApar : _PrimaTotalApar,
+							CuotaMercanciaUsuario : _CuotaMercanciaUsuario,
+							PrimaNetaMercanciaUsuario : _PrimaNetaMercanciaUsuario,
+							PrimaNetaContenedorUsuario : _PrimaNetaContenedorUsuario,
+							PrimaNetaTotalUsuario : _PrimaNetaTotalUsuario,
+							DerechoCertificadoUsuario : _DerechoCertificadoUsuario,
+							IvaUsuario : _IvaUsuario,
+							PrimaTotalUsuario : _PrimaTotalUsuario,
+							Griro :_Griro,
+							TipoTraslado : _TipoTraslado,
+							valormercancia1 : _valormercancia1,
+							valormercancia2 : _valormercancia2,
+							valormercanciamaximo1 : _valormercanciamaximo1,
+							valormercanciamaximo2 : _valormercanciamaximo2,
+							TransporteAntiguedad : _TransporteAntiguedad,
+							ObservacionGnral : _ObservacionGnral,
+							CuotaContenedor : _CuotaContenedor,
+							CoberturaMercancia : _CoberturaMercancia,
+							CoberturaContenedor : _CoberturaContenedor
+							
+						}
+					}
+					
+	return ajax;
+  }
+  
+  
 
-			LlenarTipoCobertura();
-		}
-
-	})
-
-	//Evento Change del Control de Pais Origen Cobertura
-	$('#TB_PaisOrigen').change(function() {
+//Evento Change del Control de Pais Origen Cobertura
+$('#TB_PaisOrigen').change(function() {
 
 		/* 
 		Se valida que cuando se seleccione un Pais y este este en su 
@@ -3165,9 +3691,9 @@ var form_count = 1, previous_form, next_form, total_forms;
 
 			HabilitarDatosEmbarque();
 		}
-	});
+});
 	//Evento Change del Control de Pais Origen Cobertura
-	$('#TB_OrigenCobertura').change(function() {
+$('#TB_OrigenCobertura').change(function() {
 
 		/* 
 		Se valida que cuando se seleccione un Pais y este este en su 
@@ -3199,11 +3725,11 @@ var form_count = 1, previous_form, next_form, total_forms;
 
 			HabilitarDatosEmbarque();
 		}
-	});
+});
 
 
 	//Evento Change del Control de Pais Origen Cobertura
-	$('#TB_PaisDestinoCobertura').change(function() {
+$('#TB_PaisDestinoCobertura').change(function() {
 
 		/* 
 		Se valida que cuando se seleccione un Pais y este este en su 
@@ -3236,7 +3762,7 @@ var form_count = 1, previous_form, next_form, total_forms;
 
 			HabilitarDatosEmbarque();
 		}
-	});
+});
 
 function DeshabilitarDatosEmbarque(){
 
@@ -3668,4 +4194,171 @@ function LimpiarControles(){
 	//$('#nuevoSisSatelital').val("").trigger('change');
 
 
-	}
+}
+
+function impresionCertificadoPDFCotizacion(folio, id, foliocotizacion){
+
+    //alert($("#TB_OrigenCobertura option:selected" ).text());
+
+    var asosiado = $( "#nuevoAsociado option:selected" ).text();
+    var cliente = $( "#nuevoCliente option:selected" ).text();
+    var mercancia = $( "#TB_DescripcionMercancia" ).val();
+    var valormercancia1 = $("#valormercancia1").val(); 
+    var valormercancia2 = $("#valormercancia2").val(); 
+    var mediotransporte = $( "#MTPT option:selected" ).text();
+    var dobleremolque = $( "#nuevoRemolque option:selected" ).text();
+    var amparacontenedor = $( "#nuevoContenedor option:selected" ).text();
+    var tipocontenedor1 = $( "#nuevoTipoContenedor1 option:selected" ).text();
+    var tipocontenedor2 = $( "#nuevoTipoContenedor2 option:selected" ).text();
+    var tipodebien = $( "#nuevoBienesDesperdicios option:selected" ).text();
+    var TipoSeguro = $( "#Cmbx_VAPSG option:selected" ).text();
+    var Sumasolicitadaprimero = $("#TB_SumaSolicitada1").val();
+    var Sumasolicitadasegundo = $("#TB_SumaSolicitada2").val();
+    var TipoEmpaque = $("#nuevoTipoEmpaque").val();
+    var cv = $( "#nuevoCVJ option:selected" ).text();
+    var cobertura = $( "#nuevoCBM option:selected" ).text()
+    var primaneta = $("#PNETA").val();
+    var iva = $("#IVA").val();
+    var total = $("#TOTAL").val();
+    var Valorembarque = $("#TB_ValorEmbarque").val();
+    var rfc = $("#rfc").val();
+    var direccion = $("#direccion").val();
+    var email = $("#email").val();
+    var idcontenedor1 = $("#contenedor1").val();
+    var idcontenedor2 = $("#contenedor2").val();//idcontenedor1 ,idcontenedor1
+    var fechacobertura= $("#dt").val();
+    var horacobertura=$("#time").val();
+    var FechaHora=$("#DT_FechaHora").val();
+    var paiscobertura= $( "#TB_PaisOrigen option:selected" ).text();//$("#TB_PaisOrigen").val();
+    var nuevoTipoEmbarque=$("#nuevoTipoEmbarque").val();
+    var nuevoLNTRP = $("#TB_NLITPTA").val();
+    var nuevoNbLNTRP = $("#nuevoNbLNTRP").val();
+    var nuevoTipoVehiculo = $("#nuevoTipoVehiculo").val(); //TB_OrigenCobertura
+    var OrigenCobertura = $("#TB_MunicipioOrigenCobertura").val() + ", " + $("#TB_EstadoOrigenCobertura").val() + ", " +  $( "#TB_PaisOrigen option:selected" ).text();
+    var DestinoCobertura = $("#TB_MunicipioDestinoCobertura").val() + ", " + $("#TB_EstadoDestinoCobertura").val() + ", " + $( "#TB_PaisDestinoCobertura option:selected" ).text();//$("#TB_PaisDestinoCobertura").val();
+    var marca = $("#TB_Marca").val();
+    var motor = $("#TB_Motor").val();
+    var nombrechofer = $("#TB_NombreChofer").val();
+    var ProtocoloDescripcion = $("#TB_DescripcionProtocolo").val();
+    var numeroplacas = $("#TB_Placas").val();
+    var modelo = $("#TB_Modelo").val();
+    var serie = $("#TB_Serie").val();
+    var color = $("#TB_Color").val();
+    var ObservacionGnral = $("#TB_ObservacionGnral").val();
+    var NumeroGuia = $("#TB_NumeroGuia").val();
+    var EmailAsociado = $("#TB_EmailAsociado").val();
+    var deducibles = $("#TB_Deducible").val();
+    var deduciblescontenedor = $("#TB_CuotaContenedor").val();
+    var coberturamercancia = $("#TB_CoberturaMercancia").val();
+    var coberturacontenedor = $("#TB_CoberturaContenedor").val();
+    var ImagenAsociado = $("#TB_ImagenAsociado").val().substring(7);
+    var Descripcion_seguridad = $("#TB_DescripcionGPS").val(); 
+    
+
+    var _Id = id;
+    var _Folio = folio;
+    var foliocotizacion = foliocotizacion;
+    
+    //Funcion que manda a llamar la ventana para generar el pdf
+      VentanaCentrada('vistas/pdf/documentos/certificado_pdf.php?asociado='+asosiado+'&cliente='+cliente+'&mercancia='+mercancia+'&mediotransporte='+mediotransporte+'&dobleremolque='+dobleremolque+'&amparacontenedor='+amparacontenedor+'&tipocontenedor1='+tipocontenedor1+'&tipocontenedor2='+tipocontenedor2+'&tipodebien='+tipodebien+'&cv='+cv+'&cobertura='+cobertura+'&primaneta='+primaneta+'&iva='+iva+'&total='+total+'&valorembarque='+Valorembarque+'&rfc='+rfc+'&email='+email+'&direccion='+direccion+'&idcontenedor1='+idcontenedor1+'&idcontenedor2='+idcontenedor2+'&fechacobertura='+fechacobertura+'&horacobertura='+horacobertura+'&OrigenCobertura='+OrigenCobertura+'&paiscobertura='+paiscobertura+'&DestinoCobertura='+DestinoCobertura+'&nuevoTipoEmbarque='+nuevoTipoEmbarque+'&nuevoLNTRP='+nuevoLNTRP+'&nuevoTipoVehiculo='+nuevoTipoVehiculo+'&nuevoNbLNTRP='+nuevoNbLNTRP+'&marca='+marca+'&motor='+motor+'&nombrechofer='+nombrechofer+'&ProtocoloDescripcion='+ProtocoloDescripcion+'&numeroplacas='+numeroplacas+'&modelo='+modelo+'&serie='+serie+'&color='+color+'&ObservacionGnral='+ObservacionGnral+'&NumeroGuia='+NumeroGuia+'&_Id='+_Id+'&_Folio='+_Folio+'&EmailAsociado='+EmailAsociado+'&ImagenAsociado='+ImagenAsociado+'&FechaHora='+FechaHora+'&valormercancia2='+valormercancia2+'&valormercancia1='+valormercancia1+'&TipoEmpaque='+TipoEmpaque+'&Sumasolicitadaprimero='+Sumasolicitadaprimero+'&Sumasolicitadasegundo='+Sumasolicitadasegundo+'&deduciblescontenedor='+deduciblescontenedor+'&deducibles='+deducibles+'&coberturamercancia='+coberturamercancia+'&coberturacontenedor='+coberturacontenedor+'&TipoSeguro='+TipoSeguro+'&foliocotizacion='+foliocotizacion+'&Descripcion_seguridad='+Descripcion_seguridad, 'certificado','','1024','768','true');
+}
+
+function VentanaCentrada(theURL,winName,features, myWidth, myHeight, isCenter) { //v3.0
+    if(window.screen)if(isCenter)if(isCenter=="true"){
+      var myLeft = (screen.width-myWidth)/2;
+      var myTop = (screen.height-myHeight)/2;
+      features+=(features!='')?',':'';
+      features+=',left='+myLeft+',top='+myTop;
+    }
+    window.open(theURL,winName,features+((features!='')?',':'')+'width='+myWidth+',height='+myHeight);
+  }
+  
+//Cuando se se terminar de cargar la pagina, agrego los eventos a los controles
+/* document.addEventListener("DOMContentLoaded", () => {
+    
+    document.querySelector("#nuevoTLER").addEventListener("change", changetraslado);
+    //document.querySelector("#SL_Trimestral").addEventListener("change", changetrimestral);
+    //document.querySelector("#SL_Mensual").addEventListener("change", changeanual);
+}); */
+
+$('#nuevoTLER').change(function() {
+
+	const $select = document.querySelector("#nuevoTLER");
+
+	const indice = $select.selectedIndex;
+	
+    if (indice === -1) return; // Esto es cuando no hay elementos
+
+	//Se valida si se, selecciona como otra
+    if (indice == 6) {
+        
+		var dv_paqueteria = document.getElementById("seven_element_to_target");
+            if (dv_paqueteria.style.display === "none") {
+                dv_paqueteria.style.display = "flex";
+            } else if (dv_paqueteria.style.display === "flex") {
+                dv_paqueteria.style.display = "none";
+            }
+       //alert("ok");
+       
+    }else  if (indice == 2) {
+        
+
+		Swal.fire({
+			title:'Solicitar Autorizacion al administrador',
+			width: 600,
+			padding: '3em',
+			background: '#fff',
+			backdrop: `
+			  rgba(0,0,123,0.4)
+			  left top
+			  no-repeat
+			`
+		  }); 
+
+		  
+		  document.querySelector('#submit').disabled = true;
+
+
+		return false;
+		
+	 }
+
+})
+//const $select = document.querySelector("#nuevoTLER");
+  
+  /* const changetraslado = () => {
+	
+    const indice = $select.selectedIndex;
+	
+    if (indice === -1) return; // Esto es cuando no hay elementos
+
+	//Se valida si se, selecciona como otra
+    if (indice == 6) {
+        
+
+       //alert("ok");
+       
+    }else  if (indice == 2) {
+        
+
+		Swal.fire({
+			title:'Solicitar Autorizacion al administrador',
+			width: 600,
+			padding: '3em',
+			background: '#fff',
+			backdrop: `
+			  rgba(0,0,123,0.4)
+			  left top
+			  no-repeat
+			`
+		  }); 
+
+		  
+		  document.querySelector('#submit').disabled = true;
+
+
+		return false;
+		
+	 }
+    
+}; */

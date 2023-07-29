@@ -160,23 +160,18 @@ MODAL AGREGAR ASEGURADORA
                     </div>
                     <!-- termina contenedor-->
                     <div class="row">
-                        <div class="col-6 input-group mb-3">
+                        <div class="col-4 input-group mb-3">
                           <input type="text" class="form-control" name="nuevoTelefono" placeholder="Telefono" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Telefono" id="nuevoTelefono" required>
                         </div>
-                        <div class="col-6 input-group mb-3">
-                          <input type="text" class="form-control" name="nuevoCondicionesGenerales" placeholder=" Condiciones Generales" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Condiciones Generales" id="nuevoCondicionesGenerales" required>
+                        <div class="col-4 input-group mb-3">
+                        <input type="text" class="form-control" name="nuevoDireccion" placeholder="Direccion" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Direccion" id="nuevoDireccion" required>
+                        </div>
+                        <div class="col-4 input-group mb-3">
+                        <input type="text" class="form-control" name="nuevoPoliza" placeholder="Poliza" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Poliza" id="nuevoPoliza" required>
                         </div>
                     </div>
                     <!-- Aqui termina row -->
-                    <div class="row">
-                        <div class="col-6 input-group mb-3">
-                          <input type="text" class="form-control" name="nuevoDireccion" placeholder="Direccion" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Direccion" id="nuevoDireccion" required>
-                        </div>
-                        <div class="col-6 input-group mb-3">
-                          <input type="text" class="form-control" name="nuevoPoliza" placeholder="Poliza" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Poliza" id="nuevoPoliza" required>
-                        </div>
-                    </div>
-                    <!-- Aqui termina row -->
+                    
                
                     <!-- ENTRADA PARA SUBIR FOTO -->
                     <div class="input-group mb-3">
@@ -189,6 +184,15 @@ MODAL AGREGAR ASEGURADORA
                     <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
                               </br>
                             <br>
+                    <div class="input-group mb-3">
+                        <label>Subir Archivo PDF</label></br>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="file" class="pdf_file" name="pdf_file">
+                    </div>
+                    
+                              </br>
+                    
                     <!-- Aqui termina row -->
                   </div>
                 </div>     
@@ -231,48 +235,28 @@ MODAL EDITAR aseguradora
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="editarDescripcion" rel="txtTooltipNombre" onkeyup="mayus(this);" title="Nombre de Aseguradora" id="editarDescripcion" placeholder="Nombre de Aseguradora" required>
                       <input type="hidden" name="id" id="id">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fas fa-user"></span>
-                        </div>
-                      </div>
+                      
                     </div>
                     <!-- ENTRADA PARA EL RFC -->
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="editarRFC" rel="txtTooltipRFC" onkeyup="mayus(this);" title="RFC" placeholder=" RFC" id="editarRFC" required>
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fa fa-envelope"></span>
-                        </div>
-                      </div>
+                      
                     </div>
                     <!-- Termina RFC -->               
                      <!-- ENTRADA PARA CUOTA BASICA -->
                      <div class="input-group mb-3">
                       <input type="text" class="form-control" name="editarCuotaBasica" rel="txtTooltipCuotaBasica" onkeyup="mayus(this);" title="Cuota Basica" placeholder=" Cuota Basica" id="editarCuotaBasica" >
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fas fa-user"></span>
-                        </div>
-                      </div>
+                     
                     </div>
                     <!-- ENTRADA PARA EL Cuota_Rot -->
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="editarCuota_Rot" rel="txtTooltipCuotaRot" onkeyup="mayus(this);" title="Cuota ROT" placeholder=" Cuota Rot" id="editarCuota_Rot" >
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fa fa-envelope"></span>
-                        </div>
-                      </div>
+                     
                     </div>
                     <!-- ENTRADA PARA EL Cuota_TR -->
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="editarCuota_TR" rel="txtTooltipCuotaRT" onkeyup="mayus(this);" title="Cuota RT" placeholder=" Cuota TR" id="editarCuota_TR" >
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fa fa-envelope"></span>
-                        </div>
-                      </div>
+                      
                     </div>
                     <!-- ENTRADA PARA EL Cuota_Contenedor -->
                     <div class="input-group mb-3">
@@ -281,23 +265,18 @@ MODAL EDITAR aseguradora
                     </div>
                     <!-- termina contenedor-->
                     <div class="row">
-                        <div class="col-6 input-group mb-3">
+                        <div class="col-4 input-group mb-3">
                           <input type="text" class="form-control" name="editarTelefono" placeholder="Telefono" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Telefono" id="editarTelefono" required>
                         </div>
-                        <div class="col-6 input-group mb-3">
-                          <input type="text" class="form-control" name="editarCondicionesGenerales" placeholder=" Condiciones Generales" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Condiciones Generales" id="editarCondicionesGenerales" required>
-                        </div>
-                    </div>
-                    <!-- Aqui termina row -->
-                    <div class="row">
-                        <div class="col-6 input-group mb-3">
+                        <div class="col-4 input-group mb-3">
                           <input type="text" class="form-control" name="editarDireccion" placeholder="Direccion" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Direccion" id="editarDireccion" required>
                         </div>
-                        <div class="col-6 input-group mb-3">
-                          <input type="text" class="form-control" name="editarPoliza" placeholder="Poliza" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Poliza" id="editarPoliza" required>
+                        <div class="col-4 input-group mb-3">
+                        <input type="text" class="form-control" name="editarPoliza" placeholder="Poliza" rel="txtTooltipCuotaContenedor" onkeyup="mayus(this);" title="Poliza" id="editarPoliza" required>
                         </div>
                     </div>
                     <!-- Aqui termina row -->
+                    
                
                     <!-- ENTRADA PARA SUBIR FOTO -->
                     <div class="input-group mb-3">
@@ -311,6 +290,16 @@ MODAL EDITAR aseguradora
                     <img id="img_tag_id" name="img_tag_id" src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
                               </br>
                             <br>
+                    
+                    <div class="input-group mb-3">
+                        <label>Subir Archivo PDF</label></br>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="file" class="editarpdf_file" name="editarpdf_file">
+                        <input type="hidden" id="rutaactualpdf" name="rutaactualpdf">
+                    </div>
+                    
+                              </br>
                     <!-- Aqui termina row -->
 					        </div>
                 </div>

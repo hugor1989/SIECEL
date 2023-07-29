@@ -75,13 +75,10 @@ class ModeloMercancia{
 
 	static public function mdlIngresarGiro($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Clave, Descripcion) VALUES (:Clave, :Descripcion)");
-		
-		//Crear la clave automatica del perfil
-		$clave = substr($datos["descripcion"], -2); 
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Descripcion) VALUES (:Descripcion)");
 		
 		$stmt->bindParam(":Descripcion", $datos["descripcion"]);
-		$stmt->bindParam(":Clave", $clave);
+		
 
 		if($stmt->execute()){
 
@@ -105,11 +102,9 @@ class ModeloMercancia{
 	static public function mdlIngresarMercancia($tabla, $datos){
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Clave, Descripcion, Giro, Peligrosidad, Valor_Aseguradora, Valor_Apar,
-																  ROT, TR, Variacion_Termica,
-															      Valor_A, Valor_B, Valor_C, Valor_D, Valor_E, Valor_F)
+															      Valor_A, Valor_B, Valor_C, Valor_D, Valor_E)
 													 VALUES (:Clave, :Descripcion, :Giro, :Peligrosidad, :Valor_Aseguradora, :Valor_Apar,
-													 		 :ROT, :TR, :Variacion_Termica,
-															  :Valor_A, :Valor_B, :Valor_C, :Valor_D, :Valor_E, :Valor_F)");
+															  :Valor_A, :Valor_B, :Valor_C, :Valor_D, :Valor_E)");
 		
 		//Crear la clave automatica del perfil
 		$clave = substr($datos["descripcion"], -2); 
@@ -120,15 +115,11 @@ class ModeloMercancia{
 		$stmt->bindParam(":Peligrosidad", $datos["peligrosidad"]);
 		$stmt->bindParam(":Valor_Aseguradora", $datos["valoar_aseguradora"]);
 		$stmt->bindParam(":Valor_Apar", $datos["valoar_apar"]);
-		$stmt->bindParam(":ROT", $datos["rot"]);
-		$stmt->bindParam(":TR", $datos["tr"]);
-		$stmt->bindParam(":Variacion_Termica", $datos["vt"]);
 		$stmt->bindParam(":Valor_A", $datos["valora"]);
 		$stmt->bindParam(":Valor_B", $datos["valorb"]);
 		$stmt->bindParam(":Valor_C", $datos["valorc"]);
 		$stmt->bindParam(":Valor_D", $datos["valord"]);
 		$stmt->bindParam(":Valor_E", $datos["valore"]);
-		$stmt->bindParam(":Valor_F", $datos["valorf"]);
 
 		if($stmt->execute()){
 
@@ -180,9 +171,8 @@ class ModeloMercancia{
 	
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Descripcion = :Descripcion, Giro = :Giro, Peligrosidad = :Peligrosidad, 
 																 Valor_Aseguradora = :Valor_Aseguradora, Valor_Apar = :Valor_Apar,
-																 ROT = :ROT, TR= :TR, Variacion_Termica= :Variacion_Termica, 
 															     Valor_A = :Valor_A, Valor_B= :Valor_B, Valor_C= :Valor_C, 
-																 Valor_D= :Valor_D, Valor_E= :Valor_E, Valor_F= :Valor_F
+																 Valor_D= :Valor_D, Valor_E= :Valor_E
 																 WHERE Id = :Id");
 
 		$stmt -> bindParam(":Descripcion", $datos["descripcion"]);
@@ -190,15 +180,11 @@ class ModeloMercancia{
 		$stmt -> bindParam(":Peligrosidad", $datos["peligrosidad"]);
 		$stmt -> bindParam(":Valor_Aseguradora", $datos["valoraseguradora"]);
 		$stmt -> bindParam(":Valor_Apar", $datos["valorap"]);
-		$stmt -> bindParam(":ROT", $datos["rot"]);
-		$stmt -> bindParam(":TR", $datos["tr"]);
-		$stmt -> bindParam(":Variacion_Termica", $datos["vt"]);
 		$stmt -> bindParam(":Valor_A", $datos["valora"]);
 		$stmt -> bindParam(":Valor_B", $datos["valorb"]);
 		$stmt -> bindParam(":Valor_C", $datos["valorc"]);
 		$stmt -> bindParam(":Valor_D", $datos["valord"]);
 		$stmt -> bindParam(":Valor_E", $datos["valore"]);
-		$stmt -> bindParam(":Valor_F", $datos["valorf"]);
 		$stmt -> bindParam(":Id", $datos["id"]);
 		if($stmt -> execute()){
 

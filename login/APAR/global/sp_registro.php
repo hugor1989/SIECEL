@@ -98,11 +98,11 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
         $valormercanciamaximo1 = $_POST['valormercanciamaximo1'];
         $valormercanciamaximo2 = $_POST['valormercanciamaximo2'];
         $TransporteAntiguedad = $_POST['TransporteAntiguedad'];
-        $DescripcionCondicionesTER = $_POST['DescripcionCondicionesTER'];
         $ObservacionGnral = $_POST['ObservacionGnral'];
         $CuotaContenedor = $_POST['CuotaContenedor'];
         $CoberturaMercancia = $_POST['CoberturaMercancia'];
         $CoberturaContenedor = $_POST['CoberturaContenedor'];
+        $GeneraAutomatico = $_POST['GeneraAutomatico'];
 		
 		$new = $dtbs->new_certificado($Idcotizacion,$Fecha,$Folio,$Asosiado,$Cliente, $Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
                                       $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
@@ -117,8 +117,8 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
                                       $CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
                                       $DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro,
                                       $Griro, $TipoTraslado, $valormercancia1, $valormercancia2,$valormercanciamaximo1,
-                                      $valormercanciamaximo2,$TransporteAntiguedad,$DescripcionCondicionesTER,$ObservacionGnral,
-                                      $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor); //, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista
+                                      $valormercanciamaximo2,$TransporteAntiguedad,$ObservacionGnral,
+                                      $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor,$GeneraAutomatico); //, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
 		$retval['lastInsertId'] = $new[2];
@@ -195,11 +195,12 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
         $valormercanciamaximo1 = $_POST['valormercanciamaximo1'];
         $valormercanciamaximo2 = $_POST['valormercanciamaximo2'];
         $TransporteAntiguedad = $_POST['TransporteAntiguedad'];
-        $DescripcionCondicionesTER = $_POST['DescripcionCondicionesTER'];
         $ObservacionGnral = $_POST['ObservacionGnral'];
         $CuotaContenedor = $_POST['CuotaContenedor'];
         $CoberturaMercancia = $_POST['CoberturaMercancia'];
         $CoberturaContenedor = $_POST['CoberturaContenedor'];
+        $ComentariosRevision = $_POST['ComentariosRevision'];
+        $Status = $_POST['Status'];
 		
 		$new = $dtbs->new_registro($Fecha,$Folio,$Asosiado,$Cliente, $Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
                                    $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
@@ -214,8 +215,8 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
                                    $CuotaMercanciaUsuario, $PrimaNetaMercanciaUsuario, $PrimaNetaContenedorUsuario, $PrimaNetaTotalUsuario,
                                    $DerechoCertificadoUsuario, $IvaUsuario, $PrimaTotalUsuario, $TipoSeguro,
                                    $Griro, $TipoTraslado, $valormercancia1, $valormercancia2,$valormercanciamaximo1,
-                                   $valormercanciamaximo2,$TransporteAntiguedad,$DescripcionCondicionesTER,$ObservacionGnral,
-                                   $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor); //, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista
+                                   $valormercanciamaximo2,$TransporteAntiguedad,$ObservacionGnral,
+                                   $CuotaContenedor,$CoberturaMercancia, $CoberturaContenedor,$ComentariosRevision,$Status); //, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista
 		$retval['status'] = $new[0];
 		$retval['message'] = $new[1];
 		$retval['lastInsertId'] = $new[2];

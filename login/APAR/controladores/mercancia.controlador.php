@@ -88,15 +88,11 @@ class ControladorMercancia{
 								"peligrosidad" => $_POST["nuevoPeligrosidad"],
 								"valoar_aseguradora" => $_POST["nuevoValorA"],
 								"valoar_apar" => $_POST["nuevoValorAP"],
-								"rot" => $_POST["nuevoROT"],
-								"tr" => $_POST["nuevoRobo"],
-								"vt" => $_POST["nuevoVT"],
 								"valora" => $_POST["nuevoIntervalo1"],
 								"valorb" => $_POST["nuevoIntervalo2"],
 								"valorc" => $_POST["nuevoIntervalo3"],
 								"valord" => $_POST["nuevoIntervalo4"],
-								"valore" => $_POST["nuevoIntervalo5"],
-								"valorf" => $_POST["nuevoIntervalo6"]
+								"valore" => $_POST["nuevoIntervalo5"]
 								);
 
 				$respuesta = ModeloMercancia::mdlIngresarMercancia($tabla, $datos);
@@ -259,15 +255,11 @@ class ControladorMercancia{
 									"peligrosidad" => $_POST["editarPeligrosidad"],
 									"valoraseguradora" => $_POST["editarValorA"],
 									"valorap" => $_POST["editarValorAP"],
-									"rot" => $_POST["editarROT"],
-									"tr" => $_POST["editarRobo"],
-									"vt" => $_POST["editarVT"],
 									"valora" => $_POST["editarIntervalo1"],
 									"valorb" => $_POST["editarIntervalo2"],
 									"valorc" => $_POST["editarIntervalo3"],
 									"valord" => $_POST["editarIntervalo4"],
 									"valore" => $_POST["editarIntervalo5"],
-									"valorf" => $_POST["editarIntervalo6"],
 							   "id" => $_POST["id"]);
 
 				$respuesta = ModeloMercancia::mdlEditarMercancia($tabla, $datos);

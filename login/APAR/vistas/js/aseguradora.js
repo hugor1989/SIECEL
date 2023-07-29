@@ -20,7 +20,7 @@ $(".tablaAseguradora").on("click", ".btnEditarAseguradora", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-			console.log(respuesta["Id"]);
+			//console.log(respuesta["Id"]);
 			$("#editarDescripcion").val(respuesta["Descripcion"]);
 			$("#editarRFC").val(respuesta["RFC"]);
 			$("#editarCuotaBasica").val(respuesta["VT"]);
@@ -28,11 +28,16 @@ $(".tablaAseguradora").on("click", ".btnEditarAseguradora", function(){
 			$("#editarCuota_TR").val(respuesta["Cuota_TR"]);
 			$("#editarCuota_Contenedor").val(respuesta["Cuota_Contenedor"]);
 			$("#editarTelefono").val(respuesta["Telefono"]);
-			$("#editarCondicionesGenerales").val(respuesta["CondicionesGenerales"]);
 			$("#editarDireccion").val(respuesta["Direccion"]);
 			$("#editarPoliza").val(respuesta["NumeroPoliza"]);
 			$("#id").val(respuesta["Id"]);
 
+			//Aqui valido la url de la imagen que no venga vacia, si viene vacia, no cambio, si viene muestro imagen
+			if(respuesta["CondicionesGenerales"] != ""){
+
+				$("#rutaactualpdf").val(respuesta["CondicionesGenerales"]);
+			}
+			
 			//Aqui valido la url de la imagen que no venga vacia, si viene vacia, no cambio, si viene muestro imagen
 			if(respuesta["Logo"] != ""){
 

@@ -40,15 +40,11 @@
                           <th>Acciones</th>
                           <th>Valor Aseguradora</th>
                           <th>Valor Apar</th>
-                          <th>Cuota ROT + ROBO</th>
-                          <th>Cuota TR</th>
-                          <th>Cuota TR + VT</th>
                           <th>0 a 1'000,000</th>
                           <th>1'000,001 a 1'500,000 </th>
                           <th>1'500,001 a 3'000,000</th>
                           <th>3'000,001 a 5'100,000</th>
                           <th>5'100,001 a 10'000,000</th>
-                          <th>10'000,000 en adelante</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -93,18 +89,14 @@
                                       <button class="btn btn-outline-warning btn-block btn-sm btnEditarMercancia" idMercancia="'.$value["Id"].'" data-toggle="modal" data-target="#modalEditarMercancia"><i class="fa fa-edit"></i></button>
                                   </td> ';
                                echo'<td>'.$value["Valor_Aseguradora"].'</td>
-                                  <td>'.$value["Valor_Apar"].'</td>
-                                  <td>'.$value["ROT"].'</td>
-                                  <td>'.$value["TR"].'</td>';
+                                  <td>'.$value["Valor_Apar"].'</td>';
                                  
                                   
-                                echo' <td>'.$value["Variacion_Termica"].'</td>
-                                      <td>'.$value["Valor_A"].'</td>
+                                echo' <td>'.$value["Valor_A"].'</td>
                                       <td>'.$value["Valor_B"].'</td>
                                       <td>'.$value["Valor_C"].'</td>
                                       <td>'.$value["Valor_D"].'</td>
                                       <td>'.$value["Valor_E"].'</td>
-                                      <td>'.$value["Valor_F"].'</td>
                                       ';
 
                                                 
@@ -242,8 +234,11 @@ MODAL EDITAR mercancia
 <div class="modal fade" id="modalEditarMercancia" role="dialog" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form role="form" method="post" enctype="multipart/form-data" 
-                            id="register_form_mercanciaeditar" onKeypress="if(event.keyCode == 13) event.returnValue = false;">
+            <form role="form" 
+                  method="post" 
+                  enctype="multipart/form-data" 
+                  id="register_form_mercanciaeditar" 
+                  onKeypress="if(event.keyCode == 13) event.returnValue = false;">
               <div class="modal-header" style="background:#3c8dbc; color:white">
                 <h4 class="modal-title">Editar Mercancia</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -265,11 +260,6 @@ MODAL EDITAR mercancia
                               <input type="text" class="form-control" name="editarDescripcion" id="editarDescripcion" 
                                     onkeyup="mayus(this);" placeholder=" Nombre de Mercancia" >
                                     <input type="hidden" name="id" id="id">
-                              <div class="input-group-append">
-                              <div class="input-group-text">
-                                  <span class="fas fa-user"></span>
-                              </div>
-                              </div>
                           </div>
                           <!-- -->
                           <!-- ENTRADA PARA EL GIRO -->
@@ -290,11 +280,6 @@ MODAL EDITAR mercancia
                               ?>			
                               
                               </select>
-                              <div class="input-group-append">
-                              <div class="input-group-text">
-                                  <span class="fas fa-user"></span>
-                              </div>
-                              </div>
                           </div>
                           <!-- -->
                           <!-- ENTRADA PARA EL GIRO -->
@@ -306,84 +291,21 @@ MODAL EDITAR mercancia
                                   <option value="3">3</option>
                                   <option value="4">4</option>
                               </select>
-                              <div class="input-group-append">
-                                  <div class="input-group-text">
-                                      <span class="fas fa-user"></span>
-                                  </div>
-                              </div>
                           </div>
                           <!-- -->
                           <!-- ENTRADA PARA EL Valor Aseguradora -->
                           <div class="input-group mb-3">
                               <input type="text" class="form-control" name="editarValorA" id="editarValorA" placeholder=" Valor Aseguradora">
-                              <div class="input-group-append">
-                                  <div class="input-group-text">
-                                      <span class="fas fa-user"></span>
-                                  </div>
-                              </div>
                           </div>
-                          <!-- -->
-                          <!-- ENTRADA PARA EL Valor Apar -->
                           <div class="input-group mb-3">
                               <input type="text" class="form-control" name="editarValorAP" id="editarValorAP" placeholder=" Valor APAR">
-                              <div class="input-group-append">
-                                  <div class="input-group-text">
-                                      <span class="fas fa-user"></span>
-                                  </div>
-                              </div>
                           </div>
-                          <!-- --> 
                           </br>
                       <input type="button" class="next-form-med btn btn-info" value="Siguiente" />
                       </fieldset>
-                    <fieldset>
-                      <h2> Step 2: Cuotas</h2>
-                      <!-- Fin Empresa-->
-                      <div class="form-row mt-4">
-                          <div class="col-12 col-sm-6">
-                              <div class="input-group mb-3">
-                                  <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                                      title="ROT" data-toggle="tooltip" type="text" 
-                                      name="editarROT" id="editarROT" placeholder="ROT"/>
-                                      <div class="input-group-append">
-                                          <div class="input-group-text">
-                                              <span class="fa fa-percent"></span>
-                                          </div>
-                                      </div>
-                              </div> 
-                          </div>
-                          <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                              <div class="input-group mb-3">
-                                  <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                                          title="TR" data-toggle="tooltip" type="text" 
-                                          name="editarRobo" id="editarRobo" placeholder="TR"/>
-                                  <div class="input-group-append">
-                                      <div class="input-group-text">
-                                          <span class="fa fa-percent"></span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                              <div class="input-group mb-3">
-                              <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                                        title="VARIACION TERMINCA" data-toggle="tooltip" type="text" 
-                                        name="editarVT" id="editarVT" placeholder="VARIACION TERMINCA"/>
-                                  <div class="input-group-append">
-                                      <div class="input-group-text">
-                                          <span class="fa fa-percent"></span>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <!-- Fin-->
-                      <br>
-                          <input type="button" name="previous" class="previous-form-med btn btn-default" value="Atras" />
-                          <input type="button" name="next" class="next-form-medi btn btn-info" value="Siguiente" />
-                      </fieldset>
+                    
                       <fieldset>
-                          <h2>Step 3: Protocolos</h2>
+                          <h2>Step 2: Protocolos</h2>
                           <!-- Grupo de imput -->
                           <div class="form-row mt-4">
                               <div class="col-12 col-sm-6">
@@ -411,36 +333,31 @@ MODAL EDITAR mercancia
                           <!-- fin de grupo input-->
                           <div class="form-row mt-4">
                               <div class="col-12 col-sm-6">
-                              <div class="input-group mb-3">
+                                  <div class="input-group mb-3">
                                       <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
                                         title="de 3'000,001 a 5'100,000" data-toggle="tooltip" type="text" 
                                         name="editarIntervalo4" id="editarIntervalo4" placeholder="de 3'000,001 a 5'100,000" required/>
                                   </div>
                               </div>
                               <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                              <div class="input-group mb-3">
+                                  <div class="input-group mb-3">
                                       <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
                                         title="de 5'100,001 a 10'000,000" data-toggle="tooltip" type="text" 
                                         name="editarIntervalo5" id="editarIntervalo5" placeholder="de 5'100,001 a 10'000,000" required/>
                                   </div>
                               </div>
-                              <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                              <div class="input-group mb-3">
-                                      <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                                        title="de 10'000,000 en adelante" data-toggle="tooltip" type="text" 
-                                        name="editarIntervalo6" id="editarIntervalo6" placeholder="de 10'000,000 en adelante" required/>
-                                  </div>
-                              </div>
                           </div> 
                           <!-- fin de grupo input-->
                           </br>
+                          <input type="button" name="previous" class="previous-form-med btn btn-default" value="Atras" />
+                          <button type="submit" class="btn btn-primary">Guardar Mercancia</button>
+                      </fieldset>
                    </div>
                 </div>   
-                <div class="modal-footer justify-content-between">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <div class="modal-footer justify-content-between">  
+                  <input type="button" name="previous" class="previous-form-med btn btn-default" value="Atras" />
                   <button type="submit" class="btn btn-primary">Guardar Mercancia</button>
-                  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                </div>
+                </div> -->
                   <?php
 
                      $nuevoDescripcion = new ControladorMercancia();
