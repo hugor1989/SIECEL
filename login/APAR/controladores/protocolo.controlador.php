@@ -10,10 +10,7 @@ class ControladorProtocolo{
 
 		if(isset($_POST["nuevoDescripcion"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoDescripcion"])){
-
-				
-
+			//if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoDescripcion"])){
 
 				$tabla = "protocolo";
 
@@ -46,8 +43,8 @@ class ControladorProtocolo{
 					</script>';
 				}	
 
-			}
-			else{
+			//}
+			/* else{
 
 				echo '<script>
 
@@ -71,7 +68,7 @@ class ControladorProtocolo{
 
 				</script>';
 
-			}
+			} */
 
 
 		}
@@ -99,7 +96,7 @@ class ControladorProtocolo{
 
 		if(isset($_POST["EditarDescripcion"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["EditarDescripcion"])){
+			//if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["EditarDescripcion"])){
 
 				$tabla = "protocolo";				
 
@@ -131,7 +128,8 @@ class ControladorProtocolo{
 				}
 
 
-			}else{
+			//}
+			/* else{
 
 				echo'<script>
 
@@ -150,7 +148,7 @@ class ControladorProtocolo{
 
 			  	</script>';
 
-			}
+			} */
 
 		}
 

@@ -125,146 +125,107 @@ class ControladorUsuarios{
 
 		
 		if(isset($_POST["nuevoNombre"])){
-
-
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"])){
-
-				try {
-					
-					/*=============================================
-				VALIDAR IMAGEN
-				=============================================*/
-
-				$ruta = "";
-
-				//$usuario = mt_rand(100,999);
-
-				$tabla2="usuario";
-
-				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
-				$ultimoUsuario = ModeloUsuarios::mdlObtenerUltimoUsuario($tabla2);
-
-				
-				if($ultimoUsuario != null && $ultimoUsuario!= ''){
-
-					$ultimoUsuario++;
-				}else{
-
-					
-					$ultimoUsuario = "1";
-				}
-
-				//$prefijo="UA"; 
-				//$usuriofinal=$prefijo.$ultimoUsuario;
-				
-
-				if(isset($_FILES["nuevaFoto"]["tmp_name"])){
-
-					list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
-
-					$nuevoAncho = 500;
-					$nuevoAlto = 500;
-
-					/*=============================================
-					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
-					=============================================*/
-
-					$directorio = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT);
-
-					mkdir($directorio, 0755);
-
-					/*=============================================
-					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
-					=============================================*/
-
-					if($_FILES["nuevaFoto"]["type"] == "image/jpeg"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT)."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagejpeg($destino, $ruta);
-
-					}
-
-					if($_FILES["nuevaFoto"]["type"] == "image/png"){
-
-						/*=============================================
-						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-						=============================================*/
-
-						$aleatorio = mt_rand(100,999);
-
-						$ruta = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT)."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);						
-
-						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-						imagepng($destino, $ruta);
-
-					}
-
-				}
-
-				$tabla = "usuario";
-				
-				$datos = array("nombre" => $_POST["nuevoNombre"],
-							   "email" => $_POST["nuevoEmail"],
-							   "usuario" => $_POST["nuevoUsuario"],//str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT),
-					           "password" => $encriptar,
-					           "perfil" => $_POST["nuevoPerfil"],
-							   "idaseguradora" => $_POST["nuevoAseguradora"],
-							   "empresa" => $_POST["nuevoEmpresa"],
-							   "rfc" => $_POST["nuevoRFC"],
-							   "calle" => $_POST["nuevoCalle"],
-							   "numerointerior" => $_POST["nuevoNumeroInterior"],
-							   "numeroexterior" => $_POST["nuevoNumeroExterior"],
-							   "colonia" => $_POST["nuevoColonia"],
-							   "cp" => $_POST["nuevoCP"],
-							   "estado" => $_POST["nuevoEstado"],
-							   "municipio" => $_POST["nuevoMunicipio"],
-							   "pais" => $_POST["nuevoPais"],
-							   "emailadicional" => $_POST["nuevoEmailAdicional"],
-							   "giro" => $_POST["nuevoGiro"],
-							   "telefono" => $_POST["nuevoTelefono"],
-							   "celular" => $_POST["nuevoCelular"],
-							   "contacto" => $_POST["nuevoContacto"],
-							  "nextel" => $_POST["nuevoNextel"],
-							   "cuentabancaria" => $_POST["nuevoCuentaBancaria"],
-							    "cuentabancariaad" => $_POST["nuevoCuentaBancariaAdicional"],
-							   "comision" => $_POST["nuevoComision"],
-							   "comisionasociado" => $_POST["nuevoComisionAsociado"],
-							   "abreviatura" => $_POST["nuevoAbreviatura"],
-							   "cuotabasica" => $_POST["nuevoCuotaBasica"],
-							   "cuotarot" => $_POST["nuevoCuota_Rot"],
-							   "cuotatr" => $_POST["nuevoCuota_TR"],
-							   "cuotacontenedor" => $_POST["nuevoCuota_Contenedor"],
-							   "primaminima" => $_POST["nuevoPrimaMinima"], 
-							   "derechocertificado" => $_POST["nuevoDerechoCertificado"],
-							   "localidad" => $_POST["nuevoLocalidad"],
-					           "foto"=>$ruta
-							);
-
-				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
 			
-				if($respuesta == "ok"){
+			if(isset($_POST["nuevoComision"]) && isset($_POST["nuevoComisionAsociado"]) && isset($_POST["nuevoAbreviatura"]) && isset($_POST["nuevoCuota_Rot"])
+			&& isset($_POST["nuevoCuota_TR"]) && isset($_POST["nuevoCuotaBasica"]) && isset($_POST["nuevoCuota_Contenedor"]) && isset($_POST["nuevoPrimaMinima"])
+			&& isset($_POST["nuevoDerechoCertificado"]))
+			{
 
+				
+				//if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"])){
+
+					try {
+						
+						/*=============================================
+					VALIDAR IMAGEN
+					=============================================*/
+	
+					$ruta = "";
+	
+					//$usuario = mt_rand(100,999);
+	
+					$tabla2="usuario";
+	
+					$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+	
+					$ultimoUsuario = ModeloUsuarios::mdlObtenerUltimoUsuario($tabla2);
+	
+					
+					if($ultimoUsuario != null && $ultimoUsuario!= ''){
+	
+						$ultimoUsuario++;
+					}else{
+	
+						
+						$ultimoUsuario = "1";
+					}
+	
+					//$prefijo="UA"; 
+					//$usuriofinal=$prefijo.$ultimoUsuario;
+					
+	
+					if(isset($_FILES["nuevaFoto"]["tmp_name"])){
+	
+						list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
+	
+						$nuevoAncho = 500;
+						$nuevoAlto = 500;
+	
+						/*=============================================
+						CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+						=============================================*/
+	
+						$directorio = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT);
+	
+						mkdir($directorio, 0755);
+	
+						/*=============================================
+						DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+						=============================================*/
+	
+						if($_FILES["nuevaFoto"]["type"] == "image/jpeg"){
+	
+							/*=============================================
+							GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+							=============================================*/
+	
+							$aleatorio = mt_rand(100,999);
+	
+							$ruta = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT)."/".$aleatorio.".jpg";
+	
+							$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);						
+	
+							$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	
+							imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	
+							imagejpeg($destino, $ruta);
+	
+						}
+	
+						if($_FILES["nuevaFoto"]["type"] == "image/png"){
+	
+							/*=============================================
+							GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+							=============================================*/
+	
+							$aleatorio = mt_rand(100,999);
+	
+							$ruta = "vistas/img/usuarios/".str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT)."/".$aleatorio.".png";
+	
+							$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);						
+	
+							$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	
+							imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	
+							imagepng($destino, $ruta);
+	
+						}
+	
+					}
 					echo '<script>
-
+	
 					Swal.fire({
 
 						type: "success",
@@ -276,71 +237,190 @@ class ControladorUsuarios{
 
 						if(result.value){
 						
-							window.location = "usuarios";
+							
 
 						}
 					});
 					</script>';
-				}
-
-				} catch (Exception $e) {
-
-					$var =  $e->getMessage();
 					
-					echo '<script>
+					$tabla = "usuario";
 
-					Swal.fire({
+					if($_POST["SL_EmpresaAsociada"] != null && $_POST["SL_EmpresaAsociada"] > 0){
 
-						type: "error",
-						title:'.$var.',
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
+						$datos = array("nombre" => $_POST["nuevoNombre"],
+								   "email" => $_POST["nuevoEmail"],
+								   "usuario" => $_POST["nuevoUsuario"],//str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT),
+								   "password" => $encriptar,
+								   "perfil" => $_POST["nuevoPerfil"],
+								   "idaseguradora" => $_POST["nuevoAseguradora"],
+								   "comision" => $_POST["nuevoComision"],
+								   "comisionasociado" => $_POST["nuevoComisionAsociado"],
+								   "abreviatura" => $_POST["nuevoAbreviatura"],
+								   "cuotabasica" => $_POST["nuevoCuotaBasica"],
+								   "cuotarot" => $_POST["nuevoCuota_Rot"],
+								   "cuotatr" => $_POST["nuevoCuota_TR"],
+								   "cuotacontenedor" => $_POST["nuevoCuota_Contenedor"],
+								   "primaminima" => $_POST["nuevoPrimaMinima"], 
+								   "derechocertificado" => $_POST["nuevoDerechoCertificado"],
+								   "SL_EmpresaAsociada" => $_POST["SL_EmpresaAsociada"],
+								   "foto"=>$ruta
+								);
+					
 
-					}).then(function(result){
+					}else{
 
-						if(result.value){
+						$datos = array("nombre" => $_POST["nuevoNombre"],
+								   "email" => $_POST["nuevoEmail"],
+								   "usuario" => $_POST["nuevoUsuario"],//str_pad($ultimoUsuario, 3, "0", STR_PAD_LEFT),
+								   "password" => $encriptar,
+								   "perfil" => $_POST["nuevoPerfil"],
+								   "idaseguradora" => $_POST["nuevoAseguradora"],
+								   "empresa" => $_POST["nuevoEmpresa"],
+								   "rfc" => $_POST["nuevoRFC"],
+								   "calle" => $_POST["nuevoCalle"],
+								   "numerointerior" => $_POST["nuevoNumeroInterior"],
+								   "numeroexterior" => $_POST["nuevoNumeroExterior"],
+								   "colonia" => $_POST["nuevoColonia"],
+								   "cp" => $_POST["nuevoCP"],
+								   "estado" => $_POST["nuevoEstado"],
+								   "municipio" => $_POST["nuevoMunicipio"],
+								   "pais" => $_POST["nuevoPais"],
+								   "emailadicional" => $_POST["nuevoEmailAdicional"],
+								   "giro" => $_POST["nuevoGiro"],
+								   "telefono" => $_POST["nuevoTelefono"],
+								   "celular" => $_POST["nuevoCelular"],
+								   "contacto" => $_POST["nuevoContacto"],
+								  "nextel" => $_POST["nuevoNextel"],
+								   "cuentabancaria" => $_POST["nuevoCuentaBancaria"],
+									"cuentabancariaad" => $_POST["nuevoCuentaBancariaAdicional"],
+								   "comision" => $_POST["nuevoComision"],
+								   "comisionasociado" => $_POST["nuevoComisionAsociado"],
+								   "abreviatura" => $_POST["nuevoAbreviatura"],
+								   "cuotabasica" => $_POST["nuevoCuotaBasica"],
+								   "cuotarot" => $_POST["nuevoCuota_Rot"],
+								   "cuotatr" => $_POST["nuevoCuota_TR"],
+								   "cuotacontenedor" => $_POST["nuevoCuota_Contenedor"],
+								   "primaminima" => $_POST["nuevoPrimaMinima"], 
+								   "derechocertificado" => $_POST["nuevoDerechoCertificado"],
+								   "localidad" => $_POST["nuevoLocalidad"],
+								   "SL_EmpresaAsociada" => $_POST["SL_EmpresaAsociada"],
+								   "foto"=>$ruta
+								);
+
+					}
+
+					
+					
+					$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+				
+					if($respuesta == "ok"){
+	
+						echo '<script>
+	
+						Swal.fire({
+	
+							type: "success",
+							title: "¡El usuario ha sido guardado correctamente!",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+	
+						}).then(function(result){
+	
+							if(result.value){
+							
+								window.location = "usuarios";
+	
+							}
+						});
+						</script>';
+					}
+	
+					} catch (Exception $e) {
+	
+						$var =  $e->getMessage();
 						
-							window.location = "usuarios";
-
-						}
-					});
-					</script>';
-
+						echo '<script>
+	
+						Swal.fire({
+	
+							type: "error",
+							title:'.$var.',
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+	
+						}).then(function(result){
+	
+							if(result.value){
+							
+								window.location = "usuarios";
+	
+							}
+						});
+						</script>';
+	
+						
+						die();
+					}
+	
+						   
+	
+				//}
+				/* else{
+	
+					echo '<script>
+	
+						Swal.fire({
+	
+							type: "error",
+							title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+	
+						}).then(function(result){
+	
+							if(result.value){
+							
+								window.location = "usuarios";
+	
+							}
+	
+						});
 					
-					die();
-				}
+	
+					</script>';
+	
+				} */
 
-			   		
 
-			}
-			else{
+			}else{
 
 				echo '<script>
 
-					Swal.fire({
-
-						type: "error",
-						title: "¡El usuario no puede ir vacío o llevar caracteres especiales!",
-						showConfirmButton: true,
-						confirmButtonText: "Cerrar"
-
-					}).then(function(result){
-
-						if(result.value){
+				Swal.fire({
+	
+					type: "error",
+					title: "Favor de llenar los campos con la informacion solicitada",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+	
+				}).then(function(result){
+	
+					if(result.value){
+					
 						
-							window.location = "usuarios";
-
-						}
-
-					});
-				
-
-				</script>';
-
+	
+					}
+	
+				});
+			
+	
+			</script>';
 			}
 
-
 		}
+		
+	
+
 	}
 
 	/*=============================================
@@ -384,6 +464,18 @@ class ControladorUsuarios{
 
 		return $respuesta;
 	}
+	/*=============================================
+	MOSTRAR VENDEDORES
+	=============================================*/
+
+	static public function ctrMostrarEmpresasAsociada($item, $valor){
+
+		$tabla = "EmpresaAsociada";
+
+		$respuesta = ModeloUsuarios::MdlMostrarEmpresasAsociada($tabla, $item, $valor);
+
+		return $respuesta;
+	}
 
 	/*=============================================
 	EDITAR USUARIO
@@ -393,7 +485,9 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarNombre"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
+		//	if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"])){
+
+			
 
 				/*=============================================
 				VALIDAR IMAGEN
@@ -516,13 +610,15 @@ class ControladorUsuarios{
 						
 				//		</script>";
 
-				$datos = array("nombre" => $_POST["editarNombre"],
+				$datos = array("Perfil" => $_POST["editarPerfil"],
 								"email" => $_POST["editarEmail"],
+								"Nombre" => $_POST["editarNombre"],
+								"password" => $encriptar,
+								"foto"=>$ruta,
 								"empresa" => $_POST["editarEmpresa"],
-								"idaseguradora" => $_POST["editarAseguradora"],
+								 "idaseguradora" => $_POST["editarAseguradora"],
 								"rfc" => $_POST["editarRFC"],
 								"calle" => $_POST["editarCalle"],
-								"password" => $encriptar,
 								"numerointerior" => $_POST["editarNumeroInterior"],
 								"numeroexterior" => $_POST["editarNumeroExterior"],
 								"colonia" => $_POST["editarColonia"],
@@ -577,7 +673,7 @@ class ControladorUsuarios{
 
 				}
 
-			}else{
+			/* }else{
 
 				echo'<script>
 
@@ -596,7 +692,7 @@ class ControladorUsuarios{
 
 			  	</script>';
 
-			}
+			} */
 
 		}
 

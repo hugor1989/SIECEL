@@ -24,17 +24,11 @@ $(".TablaMercancia").on("click", ".btnEditarMercancia", function(){
 			$("#editarPeligrosidad> [value=" + respuesta["Peligrosidad"] + "]").attr("selected", "true");
 			$("#editarValorA").val(respuesta["Valor_Aseguradora"]);
 			$("#editarValorAP").val(respuesta["Valor_Apar"]);
-
-			$("#editarROT").val(respuesta["ROT"]);
-			$("#editarRobo").val(respuesta["TR"]);
-			$("#editarVT").val(respuesta["Variacion_Termica"]);
 			$("#editarIntervalo1").val(respuesta["Valor_A"]);
 			$("#editarIntervalo2").val(respuesta["Valor_B"]);
 			$("#editarIntervalo3").val(respuesta["Valor_C"]);
 			$("#editarIntervalo4").val(respuesta["Valor_D"]);
 			$("#editarIntervalo5").val(respuesta["Valor_E"]);
-			$("#editarIntervalo6").val(respuesta["Valor_F"]);
-			
 			$("#id").val(respuesta["Id"]);
 
 		}

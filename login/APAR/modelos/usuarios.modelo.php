@@ -144,7 +144,38 @@ class ModeloUsuarios{
 		$stmt = null;
 
 	}
+/*=============================================
+	MOSTRAR EMPRESAS ASOCIADAS
+	=============================================*/
 
+	static public function mdlMostrarEmpresasAsociada($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 	/*=============================================
 	REGISTRO DE USUARIO
 	=============================================*/
@@ -160,7 +191,41 @@ class ModeloUsuarios{
 		
 		//$usuriofinal=$prefijo.$ultimoUsuario;
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Nombre, Password, Username, Foto, Perfil, Email,
+
+		if($datos["SL_EmpresaAsociada"] > 0){
+
+
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Nombre, Password, Username, Foto, Perfil, Email,
+																	Comision, Abreviatura, Cuota_VT,
+																	Cuota_Rot, Cuota_TR, Cuota_Contenedor,
+																	Prima_Minima, Derecho_Certificado, ComisionAsociado, IdAseguradora,IdEmpresaAsociada) 
+													VALUES (:Nombre, :Password, :Username, :Foto, :Perfil, :Email,
+															:Comision, :Abreviatura, :Cuota_VT,
+															:Cuota_Rot, :Cuota_TR, :Cuota_Contenedor,
+															:Prima_Minima, :Derecho_Certificado, :ComisionAsociado, :IdAseguradora, :IdEmpresaAsociada)");
+
+			$stmt->bindParam(":Nombre", $datos["nombre"]);
+			$stmt->bindParam(":Username", $datos["usuario"]);
+			$stmt->bindParam(":Foto", $datos["foto"]);
+			$stmt->bindParam(":Email", $datos["email"]);
+			$stmt->bindParam(":Password", $datos["password"]);
+			$stmt->bindParam(":Perfil", $datos["perfil"]);
+			$stmt->bindParam(":Comision", $datos["comision"]);
+			$stmt->bindParam(":ComisionAsociado", $datos["comisionasociado"]);
+			$stmt->bindParam(":Abreviatura", $datos["abreviatura"]);
+			$stmt->bindParam(":Cuota_VT", $datos["cuotabasica"]);
+			$stmt->bindParam(":Cuota_Rot", $datos["cuotarot"]);
+			$stmt->bindParam(":Cuota_TR", $datos["cuotatr"]);
+			$stmt->bindParam(":Cuota_Contenedor", $datos["cuotacontenedor"]);
+			$stmt->bindParam(":Prima_Minima", $datos["primaminima"]);
+			$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
+			$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+			$stmt->bindParam(":IdEmpresaAsociada", $datos["SL_EmpresaAsociada"]);
+
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Nombre, Password, Username, Foto, Perfil, Email,
 																  Empresa, RFC, Calle, Numero_Interior, Numero_Exterior,
 																  Colonia, CodigoPostal, Estado, Municipio, Pais,
 																  Email_Adicional, Giro, Telefono, Celular,
@@ -177,41 +242,47 @@ class ModeloUsuarios{
 															   :Cuota_Rot, :Cuota_TR, :Cuota_Contenedor,
 															   :Prima_Minima, :Derecho_Certificado, :Localidad, :ComisionAsociado, :IdAseguradora)");
 
-		$stmt->bindParam(":Nombre", $datos["nombre"]);
-		$stmt->bindParam(":Username", $datos["usuario"]);
-		$stmt->bindParam(":Foto", $datos["foto"]);
-		$stmt->bindParam(":Email", $datos["email"]);
-		$stmt->bindParam(":Password", $datos["password"]);
-		$stmt->bindParam(":Perfil", $datos["perfil"]);
-	 	$stmt->bindParam(":Empresa", $datos["empresa"]);
-		$stmt->bindParam(":RFC", $datos["rfc"]);
-		$stmt->bindParam(":Calle", $datos["calle"]);
-		$stmt->bindParam(":Numero_Interior", $datos["numerointerior"]);
-		$stmt->bindParam(":Numero_Exterior", $datos["numeroexterior"]);
-		$stmt->bindParam(":Colonia", $datos["colonia"]);
-		$stmt->bindParam(":CodigoPostal", $datos["cp"]);
-		$stmt->bindParam(":Estado", $datos["estado"]);
-		$stmt->bindParam(":Municipio", $datos["municipio"]);
-		$stmt->bindParam(":Pais", $datos["pais"]);
-		$stmt->bindParam(":Email_Adicional", $datos["emailadicional"]);
-		$stmt->bindParam(":Giro", $datos["giro"]);
-		$stmt->bindParam(":Telefono", $datos["telefono"]);
-		$stmt->bindParam(":Celular", $datos["celular"]);
-		$stmt->bindParam(":Contacto", $datos["contacto"]);
-		$stmt->bindParam(":Nextel", $datos["nextel"]);
-		$stmt->bindParam(":CuentaBancaria", $datos["cuentabancaria"]);
-		$stmt->bindParam(":CuentaBancaria_Adicional", $datos["cuentabancariaad"]);
-		$stmt->bindParam(":Comision", $datos["comision"]);
-		$stmt->bindParam(":ComisionAsociado", $datos["comisionasociado"]);
-		$stmt->bindParam(":Abreviatura", $datos["abreviatura"]);
-		$stmt->bindParam(":Cuota_VT", $datos["cuotabasica"]);
-		$stmt->bindParam(":Cuota_Rot", $datos["cuotarot"]);
-		$stmt->bindParam(":Cuota_TR", $datos["cuotatr"]);
-		$stmt->bindParam(":Cuota_Contenedor", $datos["cuotacontenedor"]);
-		$stmt->bindParam(":Prima_Minima", $datos["primaminima"]);
-		$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
-		$stmt->bindParam(":Localidad", $datos["localidad"]);
-		$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+				$stmt->bindParam(":Nombre", $datos["nombre"]);
+				$stmt->bindParam(":Username", $datos["usuario"]);
+				$stmt->bindParam(":Foto", $datos["foto"]);
+				$stmt->bindParam(":Email", $datos["email"]);
+				$stmt->bindParam(":Password", $datos["password"]);
+				$stmt->bindParam(":Perfil", $datos["perfil"]);
+				$stmt->bindParam(":Empresa", $datos["empresa"]);
+				$stmt->bindParam(":RFC", $datos["rfc"]);
+				$stmt->bindParam(":Calle", $datos["calle"]);
+				$stmt->bindParam(":Numero_Interior", $datos["numerointerior"]);
+				$stmt->bindParam(":Numero_Exterior", $datos["numeroexterior"]);
+				$stmt->bindParam(":Colonia", $datos["colonia"]);
+				$stmt->bindParam(":CodigoPostal", $datos["cp"]);
+				$stmt->bindParam(":Estado", $datos["estado"]);
+				$stmt->bindParam(":Municipio", $datos["municipio"]);
+				$stmt->bindParam(":Pais", $datos["pais"]);
+				$stmt->bindParam(":Email_Adicional", $datos["emailadicional"]);
+				$stmt->bindParam(":Giro", $datos["giro"]);
+				$stmt->bindParam(":Telefono", $datos["telefono"]);
+				$stmt->bindParam(":Celular", $datos["celular"]);
+				$stmt->bindParam(":Contacto", $datos["contacto"]);
+				$stmt->bindParam(":Nextel", $datos["nextel"]);
+				$stmt->bindParam(":CuentaBancaria", $datos["cuentabancaria"]);
+				$stmt->bindParam(":CuentaBancaria_Adicional", $datos["cuentabancariaad"]);
+				$stmt->bindParam(":Comision", $datos["comision"]);
+				$stmt->bindParam(":ComisionAsociado", $datos["comisionasociado"]);
+				$stmt->bindParam(":Abreviatura", $datos["abreviatura"]);
+				$stmt->bindParam(":Cuota_VT", $datos["cuotabasica"]);
+				$stmt->bindParam(":Cuota_Rot", $datos["cuotarot"]);
+				$stmt->bindParam(":Cuota_TR", $datos["cuotatr"]);
+				$stmt->bindParam(":Cuota_Contenedor", $datos["cuotacontenedor"]);
+				$stmt->bindParam(":Prima_Minima", $datos["primaminima"]);
+				$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
+				$stmt->bindParam(":Localidad", $datos["localidad"]);
+				$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+
+		}
+		
+
+			
+		
 		
 		if($stmt->execute()){
 
@@ -264,7 +335,18 @@ class ModeloUsuarios{
 
 	static public function mdlEditarUsuario($tabla, $datos){
 		
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Nombre = :Nombre, Email = :Email, Foto=:Foto, Password = :Password,
+// Password = :Password,Foto=:Foto,
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET  Nombre = :Nombre, Password = :Password, Foto=:Foto, Email = :Email,  
+											  Perfil=:Perfil,  Empresa =:Empresa, RFC=:RFC, Calle=:Calle, Numero_Interior=:Numero_Interior,
+											  Numero_Exterior=:Numero_Exterior, Colonia=:Colonia, Municipio=:Municipio, Estado=:Estado,
+											  CodigoPostal=:CodigoPostal, Pais=:Pais, Email_Adicional=:Email_Adicional, Giro=:Giro, Telefono=:Telefono,
+											  Celular=:Celular, Contacto=:Contacto, Nextel=:Nextel, CuentaBancaria=:CuentaBancaria, CuentaBancaria_Adicional=:CuentaBancaria_Adicional,
+											  Comision=:Comision, Abreviatura=:Abreviatura, Cuota_VT=:Cuota_VT, Cuota_Rot=:Cuota_Rot, Cuota_TR=:Cuota_TR, 
+											  Cuota_Contenedor=:Cuota_Contenedor, Prima_Minima = :Prima_Minima, Derecho_Certificado=:Derecho_Certificado, Localidad=:Localidad, ComisionAsociado=:ComisionAsociado, IdAseguradora=:IdAseguradora
+											  WHERE Id = :Id");
+
+
+		/* $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Nombre = :Nombre, Email = :Email, Foto=:Foto, Password = :Password,
 																 Empresa =:Empresa, RFC=:RFC, Calle=:Calle, Numero_Interior=:Numero_Interior, 
 																 Numero_Exterior=:Numero_Exterior, Colonia=:Colonia, Municipio=:Municipio, Estado=:Estado, 
 																 CodigoPostal=:CodigoPostal, Pais=:Pais, 
@@ -272,11 +354,14 @@ class ModeloUsuarios{
 																 Contacto=:Contacto, Nextel=:Nextel, CuentaBancaria=:CuentaBancaria, CuentaBancaria_Adicional=:CuentaBancaria_Adicional,
 																 Comision=:Comision, Abreviatura=:Abreviatura, Cuota_VT=:Cuota_VT, Cuota_Rot=:Cuota_Rot, Cuota_TR=:Cuota_TR, 
 																 Cuota_Contenedor=:Cuota_Contenedor, Prima_Minima = :Prima_Minima, Derecho_Certificado=:Derecho_Certificado, Localidad=:Localidad, ComisionAsociado=:ComisionAsociado, IdAseguradora=:IdAseguradora WHERE Id = :Id");
-		$stmt->bindParam(":Nombre", $datos["nombre"]);
+		 */
+		
+		$stmt->bindParam(":Perfil", $datos["Perfil"]);
 		$stmt->bindParam(":Email", $datos["email"]);
-		$stmt->bindParam(":Empresa", $datos["empresa"]);
+		$stmt->bindParam(":Nombre", $datos["Nombre"]);
 		$stmt->bindParam(":Password", $datos["password"]);
 		$stmt->bindParam(":Foto", $datos["foto"]);
+		$stmt->bindParam(":Empresa", $datos["empresa"]);
 		$stmt->bindParam(":RFC", $datos["rfc"]);
 		$stmt->bindParam(":Calle", $datos["calle"]);
 		$stmt->bindParam(":Numero_Interior", $datos["numerointerior"]);
@@ -304,7 +389,7 @@ class ModeloUsuarios{
 		$stmt->bindParam(":Prima_Minima", $datos["primaminima"]);
 		$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
 		$stmt->bindParam(":Localidad", $datos["localidad"]);
-		$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+		$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]); 
 		$stmt -> bindParam(":Id", $datos["id"]);
 
 		if($stmt -> execute()){

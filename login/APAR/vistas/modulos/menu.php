@@ -33,14 +33,10 @@ session_start();
 
                 echo '
                 
-                <li class="nav-item menu-open">
-                  <a href="inicio" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Dashboard
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-    
+              <li class="nav-item">
+                <a href="inicio" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>Dashboard</p>
                 </a>
               </li>
               <!-- Inicia Usuarios-->
@@ -55,13 +51,13 @@ session_start();
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="usuarios" class="nav-link">
-                      <i class="fa fa-user nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Listado de Usuarios</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="crear-usuario" class="nav-link">
-                      <i class="fa fa-users nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Crear Usuarios</p>
                     </a>
                   </li>
@@ -78,13 +74,13 @@ session_start();
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="clientes" class="nav-link">
-                      <i class="fa fa-user nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Clientes</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="crear-cliente" class="nav-link">
-                      <i class="fa fa-user nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Crear Cliente</p>
                     </a>
                   </li>
@@ -102,19 +98,19 @@ session_start();
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="mercancia" class="nav-link">
-                      <i class="fas fa-boxes nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Lista Mercancias</p>
                     </a>
                   </li>
                   <li class="nav-item">
                   <a href="giro" class="nav-link">
-                    <i class="fas fa-boxes nav-icon"></i>
+                    <i class="far fa-circle nav-icon"></i>
                     <p>Lista de Giros</p>
                   </a>
                 </li>
                   <li class="nav-item">
                     <a href="crear-mercancia" class="nav-link">
-                      <i class="fas fa-people-carry nav-icon"></i>
+                      <i class="far fa-circle nav-icon"></i>
                       <p>Crear Mercancia</p>
                     </a>
                   </li>

@@ -16,6 +16,18 @@ class ControladorAseguradora{
 				$name = "vistas/img/aseguradora/".$_FILES['nuevaFoto']['name'];
 				$filename=$_FILES['nuevaFoto']['name'];
 
+				//Codigo para archivo pdf
+				$file_name = "";
+				if (isset($_FILES['pdf_file']['name']))
+				{
+					$file_name = $_FILES['pdf_file']['name'];
+					$namepdf = "vistas/pdf/aseguradoraspdf/".$_FILES['pdf_file']['name'];
+					$file_tmp = $_FILES['pdf_file']['tmp_name'];
+					// Move the uploaded pdf file into the pdf folder
+					move_uploaded_file($file_tmp,$namepdf);
+				}
+				
+
 				if(move_uploaded_file($tmp_name,$name))
 				{
 					$tabla = "aseguradora";
@@ -29,7 +41,7 @@ class ControladorAseguradora{
 									"cuota_contenedor" => $_POST["nuevoCuota_Contenedor"],
 									"direccion" => $_POST["nuevoDireccion"],
 									"poliza" => $_POST["nuevoPoliza"],
-									"condicionesgenerales" => $_POST["nuevoCondicionesGenerales"],
+									"condicionesgenerales" => $namepdf,
 									"telefono" => $_POST["nuevoTelefono"],
 									"ruta" => $name
 								);
@@ -285,15 +297,35 @@ class ControladorAseguradora{
 
 		if(isset($_POST["editarDescripcion"])){
 
+			
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDescripcion"])){
 
-				if(isset($_FILES["editarFoto"]["tmp_name"])){
+				$tmp_name = $_FILES["editarFoto"]["tmp_name"];
 
+				if(isset($tmp_name) && $tmp_name !="" && $tmp_name !=" "){
+
+					
 
 					$tmp_name = $_FILES["editarFoto"]["tmp_name"];
 					$name = "vistas/img/aseguradora/".$_FILES['editarFoto']['name'];
 					$filename=$_FILES['editarFoto']['name'];
 
+					//Codigo para el pdf
+					//Codigo para archivo pdf
+					$file_name = "";
+					if (isset($_FILES['editarpdf_file']['name']))
+					{
+						$file_name = $_FILES['editarpdf_file']['name'];
+						$namepdf = "vistas/pdf/aseguradoraspdf/".$_FILES['editarpdf_file']['name'];
+						$file_tmp = $_FILES['editarpdf_file']['tmp_name'];
+						// Move the uploaded pdf file into the pdf folder
+						move_uploaded_file($file_tmp,$namepdf);
+					}else{
+						
+						$file_name = $_POST["rutaactualpdf"];
+					}
+
+					/////////
 					if(move_uploaded_file($tmp_name,$name)){
 						$tabla = "aseguradora";
 						//$ruta = $dir.$nombreArchivo;
@@ -306,7 +338,7 @@ class ControladorAseguradora{
 									"cuota_contenedor" => $_POST["editarCuota_Contenedor"],
 									"direccion" => $_POST["editarDireccion"],
 									"poliza" => $_POST["editarPoliza"],
-									"condicionesgenerales" => $_POST["editarCondicionesGenerales"],
+									"condicionesgenerales" => $file_name,
 									"telefono" => $_POST["editarTelefono"],
 									"ruta" => $name,
 									"id" => $_POST["id"]);
@@ -341,7 +373,40 @@ class ControladorAseguradora{
 
 				}else{
 
-					$tabla = "aseguradora";				
+				
+					//Codigo para el pdf
+					//Codigo para archivo pdf
+					$namepdf = "";
+					if (isset($_FILES['editarpdf_file']['name']))
+					{
+						$file_name = $_FILES['editarpdf_file']['name'];
+						$namepdf = "vistas/pdf/aseguradoraspdf/".$_FILES['editarpdf_file']['name'];
+						$file_tmp = $_FILES['editarpdf_file']['tmp_name'];
+						// Move the uploaded pdf file into the pdf folder
+						move_uploaded_file($file_tmp,$namepdf);
+					}else{
+						
+						$namepdf = $_POST["rutaactualpdf"];
+					}
+
+					$tabla = "aseguradora";
+
+					echo'<script>
+	
+					Swal.fire({
+						  type: "success",
+						  title: '.$namepdf.'"entro al edit",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result) {
+									if (result.value) {
+
+									
+
+									}
+								})
+
+					</script>';
 
 					$datos = array("descripcion" => $_POST["editarDescripcion"],
 									"rfc" => $_POST["editarRFC"],
@@ -351,7 +416,7 @@ class ControladorAseguradora{
 									"cuota_contenedor" => $_POST["editarCuota_Contenedor"],
 									"direccion" => $_POST["editarDireccion"],
 									"poliza" => $_POST["editarPoliza"],
-									"condicionesgenerales" => $_POST["editarCondicionesGenerales"],
+									"condicionesgenerales" => $namepdf,
 									"telefono" => $_POST["editarTelefono"],
 									"ruta" => $_POST["rutaactual"],
 									"id" => $_POST["id"]);

@@ -32,43 +32,43 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                         <tr>
-                          <th>Usuario</th>
-                          <th>Nombre</th>
-                          <th>Perfil</th>
-                          <th>Aseguradora</th>
-                          <th>Acciones</th>
-                          <th>Estatus</th>
-                          <th>Limite Asegurable %</th>
-                          <th>Comision</th>
-                          <th>Cuota ROT Y ROBO</th>
-                          <th>Cuota TR</th>
-                          <th>Cuota TR + VT</th>
-                          <th>Cuota Contenedor</th>
-                          <th>Prima Minima</th>
-                          <th>Derecho Certificado</th>
-                          <th>Abreviatura</th>
-                          <th>Email</th>
-                          <th>RFC</th>
-                          <th>Puesto</th>
-                          <th>Calle</th>
-                          <th>Numero Interior</th>
-                          <th>Numero Exterior</th>
-                          <th>Colonia</th>
-                          <th>Municipio</th>
-                          <th>Estado</th>
-                          <th>CodigoPostal</th>
-                          <th>Localidad</th>
-                          <th>Pais</th>
-                          <th>Email Adicional</th>
-                          <th>Telefono</th>
-                          <th>Celular</th>
-                          <th>Contacto</th>
-                          <th>Nextel</th>
-                          <th>CuentaBancaria</th>
-                          <th>CuentaBancaria Adicional</th>
-                          <th>Giro</th>
-                          <th>Foto</th>
-                          <th>Último login</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Usuario</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Nombre de Usuario</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Perfil</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Aseguradora</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Acciones</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Estatus</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Limite Asegurable %</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Comision</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Cuota ROT Y ROBO</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Cuota TR</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Cuota TR + VT</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Cuota Contenedor</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Prima Minima</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Derecho Certificado</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Abreviatura</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Email</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">RFC</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Puesto</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Calle</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Numero Interior</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Numero Exterior</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Colonia</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Municipio</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Estado</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">CodigoPostal</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Localidad</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Pais</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Email Adicional</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Telefono</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Celular</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Contacto</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Nextel</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">CuentaBancaria</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">CuentaBancaria Adicional</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Giro</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Foto</th>
+                          <th  style="font-weight: bold; font-size:13px; font-family:Arial">Último login</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -97,10 +97,10 @@
   
                         
                           echo ' <tr>
-                                  <td>'.$value["Username"].'</td>
-                                  <td>'.$value["Nombre"].'</td>
-                                  <td>'.$perfil["Descripcion"].'</td>
-                                  <td>'.$aseguradora["Descripcion"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Username"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Nombre"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$perfil["Descripcion"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$aseguradora["Descripcion"].'</td>
                                   <td>
                                     <div class="btn-group">
                                         <button class="btn btn-outline-warning btn-block btn-sm btnEditarUsuario" idUsuario="'.$value["Id"].'" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-edit"></i></button>
@@ -115,36 +115,36 @@
                                     echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["Id"].'" estadoUsuario="1">Desactivado</button></td>';
 
                                   }    
-                            echo '<td>'.$value["Comision"].'</td>
-                                  <td>'.$value["ComisionAsociado"].'</td>
-                                  <td>'.$value["Cuota_Rot"].'</td>
-                                  <td>'.$value["Cuota_TR"].'</td>
-                                  <td>'.$value["Cuota_VT"].'</td>
-                                  <td>'.$value["Cuota_Contenedor"].'</td>
-                                  <td>'.$value["Prima_minima"].'</td>
-                                  <td>'.$value["Derecho_Certificado"].'</td>
+                            echo '<td style="font-size:11px; font-family:Arial">'.$value["Comision"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["ComisionAsociado"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Cuota_Rot"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Cuota_TR"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Cuota_VT"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Cuota_Contenedor"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Prima_minima"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Derecho_Certificado"].'</td>
                                   ';
-                            echo '<td>'.$value["Abreviatura"].'</td>      
-                                  <td>'.$value["Email"].'</td>
-                                  <td>'.$value["RFC"].'</td>
-                                  <td>'.$value["Puesto"].'</td>
-                                  <td>'.$value["Calle"].'</td>
-                                  <td>'.$value["Numero_Interior"].'</td>
-                                  <td>'.$value["Numero_Exterior"].'</td>
-                                  <td>'.$value["Colonia"].'</td>
-                                  <td>'.$value["Municipio"].'</td>
-                                  <td>'.$value["Estado"].'</td>
-                                  <td>'.$value["CodigoPostal"].'</td>
-                                  <td>'.$value["Localidad"].'</td>
-                                  <td>'.$value["Pais"].'</td>
-                                  <td>'.$value["Email_Adicional"].'</td>
-                                  <td>'.$value["Telefono"].'</td>
-                                  <td>'.$value["Celular"].'</td>
-                                  <td>'.$value["Contacto"].'</td>
-                                  <td>'.$value["Nextel"].'</td>
-                                  <td>'.$value["CuentaBancaria"].'</td>
-                                  <td>'.$value["CuentaBancaria_Adicional"].'</td>
-                                  <td>'.$value["Giro"].'</td>
+                            echo '<td style="font-size:11px; font-family:Arial">'.$value["Abreviatura"].'</td>      
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Email"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["RFC"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Puesto"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Calle"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Numero_Interior"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Numero_Exterior"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Colonia"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Municipio"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Estado"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["CodigoPostal"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Localidad"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Pais"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Email_Adicional"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Telefono"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Celular"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Contacto"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Nextel"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["CuentaBancaria"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["CuentaBancaria_Adicional"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["Giro"].'</td>
                                   ';
 
 
@@ -160,7 +160,7 @@
                                                
 
                                   echo '
-                                  <td>'.$value["ultimo_login"].'</td>
+                                  <td style="font-size:11px; font-family:Arial">'.$value["ultimo_login"].'</td>
                                 </tr>';
                             }
                         ?> 
@@ -302,7 +302,7 @@ MODAL EDITAR USUARIO
                         </div>
                         <!-- -->
                         </br>
-                            <input type="button" class="next-forma btn btn-info" value="Next" />
+                            <input type="button" class="next-forma btn btn-info" value="Siguiente" />
                             </fieldset>
                         <fieldset>
                             <h2> Step 2: Datos Empresa</h2>
@@ -362,7 +362,7 @@ MODAL EDITAR USUARIO
                                     <input class="multisteps-form__input form-control" rel="txtTooltipTelefono" onkeyup="mayus(this);" title="Telefono" data-toggle="tooltip" type="text" name="editarTelefono" id="editarTelefono" placeholder="Telefono" />
                                 </div>
                                 <div class="col-12 col-md-6 mt-4">
-                                    <input class="multisteps-form__input form-control" rel="txtTooltipTelefonoCelular" onkeyup="mayus(this);" title="Telefono Celulñar" data-toggle="tooltip" type="text" name="editarCelular" id="editarCelular" placeholder="Celular" />
+                                    <input class="multisteps-form__input form-control" rel="txtTooltipTelefonoCelular" onkeyup="mayus(this);" title="Telefono Celular" data-toggle="tooltip" type="text" name="editarCelular" id="editarCelular" placeholder="Celular" />
                                 </div>
                             </div>
                             <!-- fin Telefono-->

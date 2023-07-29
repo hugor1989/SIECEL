@@ -241,7 +241,7 @@ var form_count = 1, previous_form, next_form, total_forms;
 			setProgressBarValue(++form_count);
 		}
 	});
-
+/* 
 	$(".next-form-me").click(function(){
 		if($("#nuevoROT").val() == ''){
 			Swal.fire("Error ", "Favor de Ingresar Valor ROT", "error");
@@ -259,7 +259,7 @@ var form_count = 1, previous_form, next_form, total_forms;
 			previous_form.hide();
 			setProgressBarValue(++form_count);
 		}
-	});
+	}); */
 
 	$(".previous-form-m").click(function(){
 		previous_form = $(this).parent();
@@ -299,25 +299,6 @@ var form_count = 1, previous_form, next_form, total_forms;
 		}else if(document.getElementById("editarGiro").value == ''){
 			Swal.fire("Error ", "Favor de Seleccionar el Giro", "error");
 			return;
-		}else{
-			previous_form = $(this).parent();
-			next_form = $(this).parent().next();
-			next_form.show();
-			previous_form.hide();
-			setProgressBarValue(++form_count);
-		}
-	});
-
-	$(".next-form-medi").click(function(){
-		if($("#nuevoROT").val() == ''){
-			Swal.fire("Error ", "Favor de Ingresar Valor ROT", "error");
-				return;
-		}else if($("#nuevoRobo").val() == ''){
-			Swal.fire("Error ", "Favor de Ingresar Valor RPBO", "error");
-				return;
-		}else if($("#nuevoOtros").val() == ''){
-			Swal.fire("Error ", "Favor de Ingresar Valor OTROS", "error");
-				return;
 		}else{
 			previous_form = $(this).parent();
 			next_form = $(this).parent().next();

@@ -149,6 +149,37 @@
                     </fieldset>
                     <fieldset>
                         <h2> Step 2: Datos Empresa</h2>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" 
+                                       class="custom-control-input"
+                                        name="Ch_EmpresaAsociada" id="Ch_EmpresaAsociada">
+                                <label class="custom-control-label" for="Ch_EmpresaAsociada">Compañia Asociada</label>
+                            </div>
+                        </div>
+                        <div id="FM_Paqueteria" class="form-row" style="display: none;">
+                            <div id="five_element_to_target" class="col-12 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="SpanEmbCamion">Compañia Asociada</span>
+                                    </div>
+                                    <select id="SL_EmpresaAsociada" name="SL_EmpresaAsociada" class="form-control select2 float-right">
+                                    <option value="0">Selecccionar Empresa</option>
+                                    <?php
+                                        $perfil = ControladorUsuarios::ctrMostrarEmpresasAsociada($item, $valor);
+
+                                        foreach ($perfil as $key => $value){
+
+                                        ?>
+                                        <option value="<?php echo $value["Id"] ?>"><?php echo $value["RazonSocial"] ?></option>
+
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-12 col-md-6 mt-4">
                                 <input class="multisteps-form__input form-control" 
@@ -158,8 +189,9 @@
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
                                     type="text" 
                                     name="nuevoEmpresa" 
-                                    id="nuevoEmpresa" 
-                                    placeholder="Empresa" />
+                                    id="nuevoEmpresa"
+                                    placeholder="Empresa"
+                                     />
                             </div>
                             <div class="col-12 col-md-6 mt-4">
                                 <input class="multisteps-form__input form-control"
@@ -170,7 +202,7 @@
                                     oninput="validarInput(this.value);" 
                                     type="text" 
                                     name="nuevoRFC" 
-                                    id="nuevoRFC" 
+                                    id="nuevoRFC"
                                     placeholder="RFC" />
                                 <p id="demo"></p>        
                             </div>
@@ -181,19 +213,25 @@
                                 <input class="multisteps-form__input form-control" rel="txtTooltipCalle" 
                                     title="Calle" data-toggle="tooltip"
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    type="text" name="nuevoCalle" id="nuevoCalle" placeholder="Calle" />
+                                    type="text" 
+                                    name="nuevoCalle" 
+                                    id="nuevoCalle" placeholder="Calle" />
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
                             <input class="multisteps-form__input form-control" rel="txtTooltipNumeroExterior" 
                                     title="Numero Exterior" data-toggle="tooltip"
                                         onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
-                                        type="text" name="nuevoNumeroExterior" id="nuevoNumeroExterior" placeholder="NumeroExterior" />
+                                        type="text" 
+                                        name="nuevoNumeroExterior"
+                                         id="nuevoNumeroExterior" placeholder="NumeroExterior" />
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
                             <input class="multisteps-form__input form-control" rel="txtTooltipNumeroInterior" 
                                         title="Numero Interior" data-toggle="tooltip" 
                                         onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                        type="text" name="nuevoNumeroInterior" id="nuevoNumeroInterior" placeholder="Numero Interior" />
+                                        type="text" 
+                                        name="nuevoNumeroInterior"
+                                         id="nuevoNumeroInterior" placeholder="Numero Interior" />
                             </div>
                         </div>
                         <!-- Fin calle-->
@@ -202,25 +240,30 @@
                                 <input class="multisteps-form__input form-control" rel="txtTooltipColonia" 
                                     title="Colonia" data-toggle="tooltip" type="text" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    name="nuevoColonia" id="nuevoColonia" placeholder="Colonia" />
+                                    name="nuevoColonia" 
+                                    id="nuevoColonia" placeholder="Colonia" />
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
                                 <input class="multisteps-form__input form-control" rel="txtTooltipPais" 
                                     title="Pais" data-toggle="tooltip" type="text" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    name="nuevoPais" id="nuevoPais" placeholder="Pais" value="MEXICO" />
+                                    name="nuevoPais"
+                                     id="nuevoPais" placeholder="Pais" value="MEXICO" />
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
                                 <input class="multisteps-form__input form-control" rel="txtTooltipCP" 
                                     title="Codigo Postal" data-toggle="tooltip" type="text" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    name="nuevoCP"  id="nuevoCP" placeholder="Codigo Postal" />
+                                    name="nuevoCP"  
+                                    id="nuevoCP" placeholder="Codigo Postal" />
                             </div>
                         </div>
                         <!-- Fin Colonia-->
                         <div class="form-row mt-4">
                             <div class="col-12 col-sm-6">
-                                <select class="form-control select2"  id="nuevoEstado" name="nuevoEstado" onchange="selectEstados();" style="width: 100%;">
+                                <select 
+                                class="form-control select2"  
+                                id="nuevoEstado" name="nuevoEstado" onchange="selectEstados();" style="width: 100%;">
                                     <option value="">Seleccione Estado</option>
                                     <?php
                                         $perfil = ControladorEstados::ctrMostrarEstados($item, $valor);
@@ -237,7 +280,7 @@
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
                                 <select class="form-control select2" id="nuevoMunicipio" name="nuevoMunicipio" style="width: 100%;">
-                                        <option value="">Seleccione Estado</option>
+                                        <option value="">Seleccione Municipio</option>
                                 </select>
                             </div>
                             <div class="col-6 col-sm-3 mt-4 mt-sm-0">
@@ -259,7 +302,9 @@
                                 <input class="multisteps-form__input form-control" rel="txtTooltipEmailAdicional" 
                                     title="Email Empresa" data-toggle="tooltip"
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    type="text" name="nuevoEmailAdicional" id="nuevoEmailAdicional" placeholder="Email Empresa" />
+                                    type="text" 
+                                    name="nuevoEmailAdicional"
+                                     id="nuevoEmailAdicional" placeholder="Email Empresa" />
                             </div>
                         </div>
                         <!-- fin Giro-->
@@ -272,7 +317,7 @@
                             </div>
                             <div class="col-12 col-md-6 mt-4">
                                 <input type="text" class="multisteps-form__input form-control" rel="txtTooltipTelefonoCelular" 
-                                    title="Celular" data-toggle="tooltip" name="nuevoCelular" 
+                                    title="Telefono Adicional" data-toggle="tooltip" name="nuevoCelular" 
                                     id="nuevoCelular" data-inputmask='"mask": "99 999-99999"' data-mask>
                             </div>
                         </div>
@@ -282,13 +327,17 @@
                                 <input class="multisteps-form__input form-control" rel="txtTooltipContacto" 
                                     title="Contacto" data-toggle="tooltip" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
-                                        type="text" name="nuevoContacto" id="nuevoContacto" placeholder="Nombre Contacto" />
+                                        type="text"
+                                         name="nuevoContacto"
+                                          id="nuevoContacto" placeholder="Nombre Contacto" />
                             </div>
                             <div class="col-12 col-md-6 mt-4">
                                 <input class="multisteps-form__input form-control" rel="txtTooltipNextel" 
                                     title="Nextel" data-toggle="tooltip" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    type="text" name="nuevoNextel" id="nuevoNextel" placeholder="Nextel" />
+                                    type="text" 
+                                    name="nuevoNextel"
+                                     id="nuevoNextel" placeholder="Nextel" />
                             </div>
                         </div>
                         <!-- fin Nextel-->
@@ -297,13 +346,16 @@
                                 <input class="multisteps-form__input form-control" rel="txtTooltipBanco" 
                                     title="Banco" data-toggle="tooltip" type="text" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    name="nuevoCuentaBancaria" id="nuevoCuentaBancaria" placeholder="Banco" />
+                                    name="nuevoCuentaBancaria"
+                                     id="nuevoCuentaBancaria" placeholder="Banco" />
                             </div>
                             <div class="col-12 col-md-6 mt-4">
                                 <input class="multisteps-form__input form-control" type="text" rel="txtTooltipClaveBancaria" 
                                     title="Clave Interbancaria" 
                                     onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
-                                    data-toggle="tooltip" name="nuevoCuentaBancariaAdicional" id="nuevoCuentaBancariaAdicional" placeholder="Clave Bancaria" />
+                                    data-toggle="tooltip" 
+                                    name="nuevoCuentaBancariaAdicional"
+                                     id="nuevoCuentaBancariaAdicional" placeholder="Clave Bancaria" />
                             </div>
                         </div>
                         </br>
@@ -314,9 +366,11 @@
                             <label>Peso máximo de la foto 2MB</label></br>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" class="nuevaFoto" name="nuevaFoto">
+                            <input type="file" class="nuevaFoto"  name="nuevaFoto">
                         </div>
                         <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                        
+                        
                                 </br>
                                 <br>
                             <input type="button" name="previous" class="previous-form btn btn-default" value="Atras" />

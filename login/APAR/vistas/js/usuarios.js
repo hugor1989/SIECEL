@@ -490,12 +490,16 @@ $(document).ready(function(){
 $(function () {
 	
 	 $("#example1").DataTable({
-		"responsive": false, "lengthChange": false, "autoWidth": true,
-        "scrollX": true,
-		"scrollY": "700px",
-		"pageLength": 10,
-        "scrollCollapse": true,
-		fixedColumns:   {
+								"paging": true,
+								"lengthChange": false,
+								"searching": false,
+								"processing": true,
+								"ordering": false,
+								"info": false,
+								"responsive": true,
+								"autoWidth": false,
+								"pageLength": 10,
+		/* fixedColumns:   {
             leftColumns: 2,
         },
 		columnDefs: [
@@ -509,7 +513,7 @@ $(function () {
 			{ width: 150, targets: 29 }, //Contacto
 			{ width: 150, targets: 33 }, //GIRO
 			{ width: 130, targets: 35 }, //fecha login
-        ],
+        ], */
 		/* fixedColumns:   {
             leftColumns: 2,
         }, */
@@ -608,26 +612,100 @@ var form_count = 1, previous_form, next_form, total_forms;
 	
 	$(".next-form").click(function(){
 		
-		if($("#nuevoNombre").val() == '' ){
-			Swal.fire("Error ", "Favor de Ingresar el Nombre", "error");
-			return;
-		}else if($("#txtPassword").val() == ''){
-		Swal.fire("Error ", "Favor de Ingresar Password", "error");
-			return;
-		}else if($("#nuevoEmail").val() == ''){
-			Swal.fire("Error ", "Favor de Ingresar Email", "error");
+		if(form_count == 1){
+
+			if($("#nuevoNombre").val() == '' ){
+				Swal.fire("Error ", "Favor de Ingresar el Nombre", "error");
 				return;
-		}else if(document.getElementById("nuevoPerfil").value == ''){
-			Swal.fire("Error ", "Favor de Seleccionar el Perfil de Usuario", "error");
-			return;
-		}else{
-			previous_form = $(this).parent();
-			next_form = $(this).parent().next();
-			next_form.show();
-			previous_form.hide();
-			setProgressBarValue(++form_count);
+			}else if($("#txtPassword").val() == ''){
+			Swal.fire("Error ", "Favor de Ingresar Password", "error");
+				return;
+			}else if($("#nuevoEmail").val() == ''){
+				Swal.fire("Error ", "Favor de Ingresar Email", "error");
+					return;
+			}else if(document.getElementById("nuevoPerfil").value == ''){
+				Swal.fire("Error ", "Favor de Seleccionar el Perfil de Usuario", "error");
+				return;
+			}else{
+				previous_form = $(this).parent();
+				next_form = $(this).parent().next();
+				next_form.show();
+				previous_form.hide();
+				setProgressBarValue(++form_count);
+			}
+		}else if (form_count == 2){
+
+			var Chec_EAS = $("#Ch_EmpresaAsociada").is(":checked");
+
+			if(Chec_EAS == false){
+
+				if($("#nuevoEmpresa").val() == '' ){
+					Swal.fire("Error ", "Favor de Ingresar el nombre de la empresa", "error");
+					return;
+				}else if($("#nuevoRFC").val() == ''){
+				Swal.fire("Error ", "Favor de Ingresar el RFC de la empresa", "error");
+					return;
+				}else if($("#nuevoCalle").val() == ''){
+					Swal.fire("Error ", "Favor de Ingresar la calle", "error");
+						return;
+				}else if($("#nuevoNumeroExterior").val() == ''){
+					Swal.fire("Error ", "Favor de Ingresar el numero exterior", "error");
+						return;
+				}else if($("#nuevoColonia").val() == ''){
+					Swal.fire("Error ", "Favor de Ingresar el Codigo Colonia", "error");
+						return;
+				}else if($("#nuevoNumeronuevoCPExterior").val() == ''){
+					Swal.fire("Error ", "Favor de Ingresar el Codigo Postal", "error");
+						return;
+				}else if($("#nuevoEmailAdicional").val() == ''){
+					Swal.fire("Error ", "Favor de Ingresar el email de la empresa", "error");
+						return;
+				}else if(document.getElementById("nuevoPais").value == ''){
+					Swal.fire("Error ", "Favor de Seleccionar el pais", "error");
+					return;
+				}else{
+					previous_form = $(this).parent();
+					next_form = $(this).parent().next();
+					next_form.show();
+					previous_form.hide();
+					setProgressBarValue(++form_count);
+				}
+
+			}else{
+
+				document.getElementById("nuevoEmpresa").disabled = false;
+				document.getElementById("nuevoRFC").disabled = false;
+				document.getElementById("nuevoCalle").disabled = false;
+				document.getElementById("nuevoNumeroExterior").disabled = false;
+				document.getElementById("nuevoNumeroInterior").disabled = false;
+				document.getElementById("nuevoColonia").disabled = false;
+				document.getElementById("nuevoPais").disabled = false;
+				document.getElementById("nuevoCP").disabled = false;
+				document.getElementById("nuevoEstado").disabled = false;
+				document.getElementById("nuevoMunicipio").disabled = false;
+				document.getElementById("nuevoLocalidad").disabled = false;
+				document.getElementById("nuevoGiro").disabled = false;
+				document.getElementById("nuevoEmailAdicional").disabled = false;
+				document.getElementById("nuevoTelefono").disabled = false;
+				document.getElementById("nuevoCelular").disabled = false;
+				document.getElementById("nuevoContacto").disabled = false;
+				document.getElementById("nuevoNextel").disabled = false;
+				document.getElementById("nuevoCuentaBancaria").disabled = false;
+				document.getElementById("nuevoCuentaBancariaAdicional").disabled = false;
+
+				previous_form = $(this).parent();
+					next_form = $(this).parent().next();
+					next_form.show();
+					previous_form.hide();
+					setProgressBarValue(++form_count);
+			}
+
+			
+
 		}
+		
 	});
+
 
 	$(".previous-form").click(function(){
 		previous_form = $(this).parent();
@@ -644,7 +722,8 @@ var form_count = 1, previous_form, next_form, total_forms;
 		.css("width",percent+"%")
 		.html(percent+"%");
 	}
-
+	
+	
 	
 
 	///Funciones que correnponde al form de editar
@@ -675,3 +754,76 @@ var form_count = 1, previous_form, next_form, total_forms;
 		.css("width",percent+"%")
 		.html(percent+"%");
 	}
+
+	$("#Ch_EmpresaAsociada").change(function () {
+        if (this.checked) {
+			var dv_paqueteria = document.getElementById("FM_Paqueteria");
+            if (dv_paqueteria.style.display === "none") {
+                dv_paqueteria.style.display = "flex";
+            }
+
+			document.getElementById("nuevoEmpresa").disabled = true;
+			document.getElementById("nuevoRFC").disabled = true;
+			document.getElementById("nuevoCalle").disabled = true;
+			document.getElementById("nuevoNumeroExterior").disabled = true;
+			document.getElementById("nuevoNumeroInterior").disabled = true;
+			document.getElementById("nuevoColonia").disabled = true;
+			document.getElementById("nuevoPais").disabled = true;
+			document.getElementById("nuevoCP").disabled = true;
+			document.getElementById("nuevoEstado").disabled = true;
+			document.getElementById("nuevoMunicipio").disabled = true;
+			document.getElementById("nuevoLocalidad").disabled = true;
+			document.getElementById("nuevoGiro").disabled = true;
+			document.getElementById("nuevoEmailAdicional").disabled = true;
+			document.getElementById("nuevoTelefono").disabled = true;
+			document.getElementById("nuevoCelular").disabled = true;
+			document.getElementById("nuevoContacto").disabled = true;
+			document.getElementById("nuevoNextel").disabled = true;
+			document.getElementById("nuevoCuentaBancaria").disabled = true;
+			document.getElementById("nuevoCuentaBancariaAdicional").disabled = true;
+			
+			//Se oculta los div que no se usaran div de placas
+           /*  var dv_fmplacas = document.getElementById("prueba");
+            if (dv_fmplacas.style.display === "none") {
+                dv_fmplacas.style.display = "flex";
+            } else {
+                dv_fmplacas.style.display = "none";
+            } */
+		}else{
+			var dv_paqueteria = document.getElementById("FM_Paqueteria");
+            if (dv_paqueteria.style.display === "none") {
+                dv_paqueteria.style.display = "flex";
+            } else if (dv_paqueteria.style.display === "flex") {
+                dv_paqueteria.style.display = "none";
+            }
+
+			document.getElementById("nuevoEmpresa").disabled = false;
+			document.getElementById("nuevoRFC").disabled = false;
+			document.getElementById("nuevoCalle").disabled = false;
+			document.getElementById("nuevoNumeroExterior").disabled = false;
+			document.getElementById("nuevoNumeroInterior").disabled = false;
+			document.getElementById("nuevoColonia").disabled = false;
+			document.getElementById("nuevoPais").disabled = false;
+			document.getElementById("nuevoCP").disabled = false;
+			document.getElementById("nuevoEstado").disabled = false;
+			document.getElementById("nuevoMunicipio").disabled = false;
+			document.getElementById("nuevoLocalidad").disabled = false;
+			document.getElementById("nuevoGiro").disabled = false;
+			document.getElementById("nuevoEmailAdicional").disabled = false;
+			document.getElementById("nuevoTelefono").disabled = false;
+			document.getElementById("nuevoCelular").disabled = false;
+			document.getElementById("nuevoContacto").disabled = false;
+			document.getElementById("nuevoNextel").disabled = false;
+			document.getElementById("nuevoCuentaBancaria").disabled = false;
+			document.getElementById("nuevoCuentaBancariaAdicional").disabled = false;
+			
+
+			//Se oculta los div que no se usaran div de placas
+            /* var dv_fmplacas = document.getElementById("prueba");
+            if (dv_fmplacas.style.display === "none") {
+                dv_fmplacas.style.display = "flex";
+            } else {
+                dv_fmplacas.style.display = "none";
+            } */
+		}
+	})

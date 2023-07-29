@@ -1,7 +1,7 @@
 <?php  
  $hostBD = "localhost";  
- $userBD = "aparcomm_aparcomm";  
+ $userBD = "siecelppr_pprpar";  
  $passBD = "wB8G[NdmsFj;";  
- $dataBD = "aparcomm_apar";  
+ $dataBD = "siecelppr_ppr";  
  $message = "";  
  ?>

@@ -290,22 +290,49 @@ function validarrfc() {
 
 $(function () {
 	
-	$("#TB_Clientes").DataTable({
-	   "responsive": false, "lengthChange": false, "autoWidth": true,
-	   "scrollX": true,
-	   "scrollY": "700px",
-	   "pageLength": 10,
-	   "scrollCollapse": true,
-	   fixedColumns:   {
-		   leftColumns: 2,
-	   },
-	   columnDefs: [
-		{ width: 210, targets: 0 }, //Nombre
-		],
-	   "buttons": ["csv", "excel","colvis"]
-	 }).buttons().container().appendTo('#TB_Clientes_wrapper .col-md-6:eq(0)');
+	$("#TB_Clientes").DataTable({"paging": true,
+								"lengthChange": false,
+								"searching": false,
+								"processing": true,
+								"ordering": false,
+								"info": false,
+								"responsive": true,
+								"autoWidth": false,
+								"pageLength": 5,
+							fixedColumns:   {
+								leftColumns: 2,
+							},
+							columnDefs: [
+							{ width: 50, targets: 0 }, //Nombre
+							],
+							"buttons": ["csv", "excel","colvis"]
+							}).buttons().container().appendTo('#TB_Clientes_wrapper .col-md-6:eq(0)');
+
+	/*  $("#example1").DataTable({"paging": true,
+							   "lengthChange": false,
+							   "searching": false,
+								"processing": true,
+								"ordering": false,
+								"info": false,
+								"responsive": true,
+								"autoWidth": false,
+								"pageLength": 5,
+								"dom": '<"top"f>rtip',
+								"fnDrawCallback": function( oSettings ) {},
+								"ajax": {"url": "global/sp_categorias.php",
+										"type": "POST",
+										"data" : {method : "list_categoria"},
+										error: function (request, textStatus, errorThrown) {
+										swal(request.responseJSON.message);
+								}},
+							columns: [
+								{ "data": null,render :  function ( data, type, full, meta ) {
+									return  meta.row + 1;
+								}},
+							{"data": "Id" },
+							{"data": "Descripcion" },
+							{ "data": null, render : function(data,type,row){
+							return "<button title='Edit' class='btn btn-edit btn-warning btn-xs'><i class='fa fa-pencil'></i> Editar</button>  <button title='Delete' class='btn btn-hapus  btn-danger btn-xs'><i class='fa fa-remove'></i> Eliminar</button> ";
+							}},]
+							}); */
    });
-
-
-
-						

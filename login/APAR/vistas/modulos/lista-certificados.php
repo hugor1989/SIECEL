@@ -89,7 +89,12 @@
                           <td>'.$fecha.'</td>
                           <td>'.$value["AsociadoDescripcion"].'</td>
                           <td>'.$value["ClienteDescripcion"].'</td>  
-                          <td><button type="button" class="btn-sm btnFoliocertificado" idFolioCertificado="certificado_'.$value["Foliocertificado"].'.pdf"><i class="fas fa-file-pdf" aria-hidden="true""> Descargar PDF</i></button></td>
+                          <td><a class="btn-sm" role="button" href="vistas/certificados/certificado_'.$value["Foliocertificado"].'.pdf"
+                          download="'.$value["Foliocertificado"].'">
+                          <i class="fas fa-file-pdf" aria-hidden="true"">
+                            Download
+                            </i>
+                          </a></td>
                           
                           </tr>';
   

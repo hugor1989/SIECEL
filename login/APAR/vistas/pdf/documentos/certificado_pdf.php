@@ -13,7 +13,6 @@
 
     require '../../lib/vendor/autoload.php';
 
-
 	//Se incluyen las librerias
 	include '../../phpqrcode/qrlib.php';
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
@@ -145,7 +144,7 @@
 			$mail->Host = 'mail.siecel-ppr.com';
 			$mail->SMTPAuth = true;
 			$mail->Username = 'notificaciones@siecel-ppr.com';
-			$mail->Password = 'Dn7k*w$.';
+			$mail->Password = '3c%}rEKnL0Qz';
 			$mail->SMTPSecure = 'ssl';
 			$mail->Port = 465;
 	
@@ -167,6 +166,7 @@
 			$mail->WordWrap = 50;
 			$mail->IsHTML = true;
 			$mail->addStringAttachment($file, $nombrearchiv);
+		    $mail->AddAttachment('../../pdf/aseguradoraspdf/condiciones_chubb.pdf', 'condiciones_chubb.pdf');
 			$mail->addStringAttachment($filenuevo, $Nombre_ReciboCobro);   
 			$mail->Subject = $assunto;
 			$mail->Body = '<br/>' . $mensagem . '<br/>';

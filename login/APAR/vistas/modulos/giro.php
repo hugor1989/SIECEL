@@ -31,8 +31,6 @@
                     <table  class="table table-bordered tableGiro">
                       <thead>
                         <tr>
-                          <th style="width:10px">#</th>
-                          <th>Clave</th>
                           <th>Descripcion</th>
                           <th>Estatus</th>
                           <th>Acciones</th>
@@ -49,8 +47,7 @@
                         foreach ($giro as $key => $value){
                         
                           echo ' <tr>
-                                  <td>'.($key+1).'</td>
-                                  <td>'.$value["Clave"].'</td>
+                                  
                                   <td>'.$value["Descripcion"].'</td>
                                   ';
 
@@ -75,8 +72,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                          <th style="width:10px">#</th>
-                          <th>Clave</th>
+                      
                           <th>Descripcion</th>
                           <th>Estatus</th>
                           <th>Acciones</th>
@@ -154,7 +150,7 @@ MODAL EDITAR Perfil
           <div class="modal-content">
             <form role="form" method="post" enctype="multipart/form-data">
               <div class="modal-header" style="background:#3c8dbc; color:white">
-                <h4 class="modal-title">Editar Perfil</h4>
+                <h4 class="modal-title">Editar Giro</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -166,11 +162,6 @@ MODAL EDITAR Perfil
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" name="EditarDescripcion" onkeyup="mayus(this);" id="EditarDescripcion" placeholder="Ingresar Descripcion" required>
                       <input type="hidden" id="id" name="id">
-                      <div class="input-group-append">
-                        <div class="input-group-text">
-                          <span class="fas fa-user"></span>
-                        </div>
-                      </div>
                     </div>                 
                   </div>
                 </div>   

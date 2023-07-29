@@ -10,13 +10,13 @@ class ControladorPersona{
 
 		if(isset($_POST["nuevoNombre"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"])){
+			//if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"])){
 
 
-				echo '<script>
+				/* echo '<script>
 					alert("entro a guardar");
 					</script>';
-
+ */
 				//echo $_POST["nuevoNombre"];
 
 				$tabla = "persona";
@@ -57,16 +57,23 @@ class ControladorPersona{
 							   "pais" => $_POST["nuevoPais"],
                                 "rfc" => $_POST["nuevoRFC"],
 								"tipopersona" => $_POST["tipopersona"],
-                               "calle" => $_POST["nuevoCalle"],
-                               "ninterior" => $_POST["nuevoNumeroInterior"],
-                               "nexterior" => $_POST["nuevoNumeroExterior"],
-                               "colonia" => $_POST["nuevoColonia"],
-                               "municipio" => $_POST["nuevoMunicipio"],
-                               "estado" => $_POST["nuevoEstado"],
-                               "cp" => $_POST["nuevoCP"],
-                               "email" => $_POST["nuevoEmail"],
-							   "asociado" => $_POST["idasociado"],
-							   "localidad" => $_POST["nuevoLocalidad"]
+                                "calle" => $_POST["nuevoCalle"],
+                                "ninterior" => $_POST["nuevoNumeroInterior"],
+                                "nexterior" => $_POST["nuevoNumeroExterior"],
+                                "colonia" => $_POST["nuevoColonia"],
+                                "municipio" => $_POST["nuevoMunicipio"],
+                                "estado" => $_POST["nuevoEstado"],
+                                "cp" => $_POST["nuevoCP"],
+                                "email" => $_POST["nuevoEmail"],
+							    "asociado" => $_POST["idasociado"],
+							    "localidad" => $_POST["nuevoLocalidad"],
+								/////Se Agregan los nuevos
+								"RegimenFiscal" => $_POST["nuevoRegimenFiscal"],
+								"NombreConracto" => $_POST["nuevoContactoNombre"],
+								"PuestoConracto" => $_POST["nuevoContactoPuesto"],
+								"EmailConracto" => $_POST["nuevoContactoEmail"],
+								"TelefonoConracto" => $_POST["nuevoContactoTelefono"],
+								"nuevoUsoCFDI" => $_POST["nuevoUsoCFDI"],
 							  );
 
 				$respuesta = ModeloPersona::mdlIngresarAsociado($tabla2, $datos);
@@ -115,7 +122,7 @@ class ControladorPersona{
 				   
 			   }
 				
-			}
+			/* }
 			else{
 
 				echo '<script>
@@ -140,7 +147,7 @@ class ControladorPersona{
 
 				</script>';
 
-			}
+			} */
 
 
 		}
@@ -203,6 +210,14 @@ class ControladorPersona{
 
 		return $respuesta;
 	}
+	static public function ctrMostrarAsociadoUsuario($item, $valor){
+
+		$tabla = "persona";
+
+		$respuesta = ModeloPersona::mdlMostrarAsociadoUsuario($tabla, $item, $valor);
+
+		return $respuesta;
+	}
 	static public function ctrMostrarAsociadoItem($item, $valor){
 
 		$tabla = "persona";
@@ -236,7 +251,7 @@ class ControladorPersona{
 
 		if(isset($_POST["nombre"])){
 
-			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombre"])){
+			//if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombre"])){
 
 				$tabla = "persona";				
 
@@ -309,7 +324,7 @@ class ControladorPersona{
 				}
 
 
-			}else{
+			/* }else{
 
 				echo'<script>
 
@@ -328,7 +343,7 @@ class ControladorPersona{
 
 			  	</script>';
 
-			}
+			} */
 
 		}
 
