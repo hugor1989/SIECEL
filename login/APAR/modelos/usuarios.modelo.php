@@ -195,14 +195,16 @@ class ModeloUsuarios{
 		if($datos["SL_EmpresaAsociada"] > 0){
 
 
+	
+
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(Nombre, Password, Username, Foto, Perfil, Email,
 																	Comision, Abreviatura, Cuota_VT,
 																	Cuota_Rot, Cuota_TR, Cuota_Contenedor,
-																	Prima_Minima, Derecho_Certificado, ComisionAsociado, IdAseguradora,IdEmpresaAsociada) 
+																	Prima_Minima, Derecho_Certificado, ComisionAsociado, IdAseguradora,IdEmpresaAsociada,ImagenBase64) 
 													VALUES (:Nombre, :Password, :Username, :Foto, :Perfil, :Email,
 															:Comision, :Abreviatura, :Cuota_VT,
 															:Cuota_Rot, :Cuota_TR, :Cuota_Contenedor,
-															:Prima_Minima, :Derecho_Certificado, :ComisionAsociado, :IdAseguradora, :IdEmpresaAsociada)");
+															:Prima_Minima, :Derecho_Certificado, :ComisionAsociado, :IdAseguradora, :IdEmpresaAsociada, :ImagenBase64)");
 
 			$stmt->bindParam(":Nombre", $datos["nombre"]);
 			$stmt->bindParam(":Username", $datos["usuario"]);
@@ -221,6 +223,7 @@ class ModeloUsuarios{
 			$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
 			$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
 			$stmt->bindParam(":IdEmpresaAsociada", $datos["SL_EmpresaAsociada"]);
+			$stmt->bindParam(":ImagenBase64", base64_encode(file_get_contents( $datos["foto"])));
 
 
 		}else{
@@ -232,7 +235,7 @@ class ModeloUsuarios{
 																  Contacto, Nextel, CuentaBancaria, CuentaBancaria_Adicional,
 																  Comision, Abreviatura, Cuota_VT,
 																  Cuota_Rot, Cuota_TR, Cuota_Contenedor,
-																  Prima_Minima, Derecho_Certificado, Localidad, ComisionAsociado, IdAseguradora) 
+																  Prima_Minima, Derecho_Certificado, Localidad, ComisionAsociado, IdAseguradora,ImagenBase64) 
 													   VALUES (:Nombre, :Password, :Username, :Foto, :Perfil, :Email,
 													   		   :Empresa, :RFC, :Calle, :Numero_Interior, :Numero_Exterior,
 															   :Colonia, :CodigoPostal, :Estado, :Municipio, :Pais,
@@ -240,7 +243,10 @@ class ModeloUsuarios{
 															   :Contacto, :Nextel, :CuentaBancaria, :CuentaBancaria_Adicional,
 															   :Comision, :Abreviatura, :Cuota_VT,
 															   :Cuota_Rot, :Cuota_TR, :Cuota_Contenedor,
-															   :Prima_Minima, :Derecho_Certificado, :Localidad, :ComisionAsociado, :IdAseguradora)");
+															   :Prima_Minima, :Derecho_Certificado, :Localidad, :ComisionAsociado, :IdAseguradora,:ImagenBase64)");
+
+
+				
 
 				$stmt->bindParam(":Nombre", $datos["nombre"]);
 				$stmt->bindParam(":Username", $datos["usuario"]);
@@ -277,6 +283,8 @@ class ModeloUsuarios{
 				$stmt->bindParam(":Derecho_Certificado", $datos["derechocertificado"]);
 				$stmt->bindParam(":Localidad", $datos["localidad"]);
 				$stmt->bindParam(":IdAseguradora", $datos["idaseguradora"]);
+				$stmt->bindParam(":ImagenBase64", base64_encode(file_get_contents( $datos["foto"])));
+				
 
 		}
 		

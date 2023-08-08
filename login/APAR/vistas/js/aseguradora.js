@@ -42,7 +42,11 @@ $(".tablaAseguradora").on("click", ".btnEditarAseguradora", function(){
 			if(respuesta["Logo"] != ""){
 
 				$("#rutaactual").val(respuesta["Logo"]);
-				$("#img_tag_id").attr("src",respuesta["Logo"])
+
+				var baseStr64 = respuesta["Logo"];
+				img_tag_id.setAttribute('src', "data:image/jpg;base64," + baseStr64);
+				//$("#img_tag_id").attr('src', 'data:image/*;base64,' + respuesta["Logo"]);
+				//$("#img_tag_id").attr("src",respuesta["Logo"])
 			}
 			
 		}

@@ -43,7 +43,8 @@ class ControladorAseguradora{
 									"poliza" => $_POST["nuevoPoliza"],
 									"condicionesgenerales" => $namepdf,
 									"telefono" => $_POST["nuevoTelefono"],
-									"ruta" => $name
+									"ruta" => $name,
+									"pdf" => file_get_contents($_FILES['pdf_file']['name'])
 								);
 
 					$respuesta = ModeloAseguradora::mdlIngresarAseguradora($tabla, $datos);
@@ -338,7 +339,7 @@ class ControladorAseguradora{
 									"cuota_contenedor" => $_POST["editarCuota_Contenedor"],
 									"direccion" => $_POST["editarDireccion"],
 									"poliza" => $_POST["editarPoliza"],
-									"condicionesgenerales" => $file_name,
+									"condicionesgenerales" => $namepdf,
 									"telefono" => $_POST["editarTelefono"],
 									"ruta" => $name,
 									"id" => $_POST["id"]);
@@ -382,8 +383,14 @@ class ControladorAseguradora{
 						$file_name = $_FILES['editarpdf_file']['name'];
 						$namepdf = "vistas/pdf/aseguradoraspdf/".$_FILES['editarpdf_file']['name'];
 						$file_tmp = $_FILES['editarpdf_file']['tmp_name'];
+
+						
 						// Move the uploaded pdf file into the pdf folder
 						move_uploaded_file($file_tmp,$namepdf);
+
+						//$namepdf = base64_encode(file_get_contents($file_tmp));
+
+						///$namepdf = fopen($file_tmp, "rb")
 					}else{
 						
 						$namepdf = $_POST["rutaactualpdf"];
@@ -391,22 +398,7 @@ class ControladorAseguradora{
 
 					$tabla = "aseguradora";
 
-					echo'<script>
-	
-					Swal.fire({
-						  type: "success",
-						  title: '.$namepdf.'"entro al edit",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
-									if (result.value) {
-
-									
-
-									}
-								})
-
-					</script>';
+				
 
 					$datos = array("descripcion" => $_POST["editarDescripcion"],
 									"rfc" => $_POST["editarRFC"],

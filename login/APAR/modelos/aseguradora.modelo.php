@@ -112,8 +112,12 @@ class ModeloAseguradora{
 													  VALUES (:Clave, :Descripcion, :RFC, :VT, :Cuota_Rot, :Cuota_TR, :Cuota_Contenedor, :Telefono, :CondicionesGenerales, :NumeroPoliza, :Logo, :Direccion)");
 		
 		//Crear la clave automatica del perfil
-		$clave = substr($datos["descripcion"], -2); 
 
+		//$pdf_b64 = base64_decode($datos["condicionesgenerales"]);
+
+		//$encode = base64_encode(file_get_contents( $datos["condicionesgenerales"])); //base64_encode($datos[""]);
+
+		$clave = substr($datos["descripcion"], -2); 
 		$stmt->bindParam(":Descripcion", $datos["descripcion"]);
 		$stmt->bindParam(":Clave", $clave);
 		$stmt->bindParam(":RFC", $datos["rfc"]);
@@ -122,9 +126,9 @@ class ModeloAseguradora{
 		$stmt->bindParam(":Cuota_TR", $datos["cuota_tr"]);
 		$stmt->bindParam(":Cuota_Contenedor", $datos["cuota_contenedor"]);
 		$stmt->bindParam(":Telefono", $datos["telefono"]);
-		$stmt->bindParam(":CondicionesGenerales", $datos["condicionesgenerales"]);
+		$stmt->bindParam(":CondicionesGenerales",  $datos["condicionesgenerales"]);
 		$stmt->bindParam(":NumeroPoliza", $datos["poliza"]);
-		$stmt->bindParam(":Logo", $datos["ruta"]);
+		$stmt->bindParam(":Logo", base64_encode(file_get_contents($datos["ruta"])));
 		$stmt->bindParam(":Direccion", $datos["direccion"]);
 
 
@@ -222,7 +226,8 @@ class ModeloAseguradora{
 	
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET Descripcion = :Descripcion, RFC = :RFC, VT = :VT,
 																 Cuota_Rot = :Cuota_Rot, Cuota_TR = :Cuota_TR, Cuota_Contenedor = :Cuota_Contenedor,
-																 Telefono = :Telefono, CondicionesGenerales = :CondicionesGenerales, NumeroPoliza = :NumeroPoliza, Direccion = :Direccion, Logo = :Logo WHERE Id = :Id");
+																 Telefono = :Telefono, CondicionesGenerales = :CondicionesGenerales, NumeroPoliza = :NumeroPoliza, 
+																 Direccion = :Direccion, Logo = :Logo WHERE Id = :Id");
 
 		$stmt ->bindParam(":Descripcion", $datos["descripcion"]);
 		$stmt ->bindParam(":RFC", $datos["rfc"]);

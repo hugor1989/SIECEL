@@ -148,9 +148,9 @@
                                   ';
 
 
-                                  if($value["Foto"] != ""){
+                                  if($value["ImagenBase64"] != ""){
 
-                                    echo '<td><img src="'.$value["Foto"].'" class="img-thumbnail" width="100px"></td>';
+                                    echo '<td><img src="data:image/*;base64,'.$value["ImagenBase64"].'" class="img-thumbnail" width="100px"></td>';
 
                                   }else{
 
@@ -394,7 +394,7 @@ MODAL EDITAR USUARIO
                             <div class="input-group mb-3">
                             <input type="file" class="nuevaFoto" name="editarFoto" id="editarFoto">
                             </div>
-                                <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                                <img src="vistas/img/usuarios/default/anonymous.png" id="imageneditar" name="imageneditar" class="img-thumbnail previsualizar" width="170px">
                             </br>
                         <!--</div>-->
                             <br>

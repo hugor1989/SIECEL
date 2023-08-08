@@ -82,46 +82,6 @@
             </br>
         <input type="button" class="next-form-m btn btn-info" value="Siguiente" />
         </fieldset>
-       <!-- <fieldset>
-        <h2> Step 2: Deducibles</h2>
-        <div class="form-row mt-4">
-            <div class="col-12 col-sm-6">
-                <div class="input-group mb-3">
-                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                        title="ROT" data-toggle="tooltip" type="text" 
-                        name="nuevoROT" id="nuevoROT" placeholder="ROT"/>
-                        
-                </div> 
-            </div>
-            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                <div class="input-group mb-3">
-                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                            title="TR" data-toggle="tooltip" type="text" 
-                            name="nuevoRobo" id="nuevoRobo" placeholder="TR"/>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fa fa-percent"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                <div class="input-group mb-3">
-                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
-                            title="VARIACION TERMINCA" data-toggle="tooltip" type="text" 
-                            name="nuevoVT" id="nuevoVT" placeholder="VARIACION TERMINCA"/>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fa fa-percent"></span>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <br>
-            <input type="button" name="previous" class="previous-form-m btn btn-default" value="Atras" />
-            <input type="button" name="next" class="next-form-me btn btn-info" value="Siguiente" />
-        </fieldset> -->
         <fieldset>
             <h2>Step 3: Protocolos</h2>
             <!-- Grupo de imput -->
