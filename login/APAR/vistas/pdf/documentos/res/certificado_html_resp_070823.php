@@ -8,7 +8,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 }
 -->
 </style>
-<page backtop="15mm" backbottom="15mm" backleft="5mm" backright="5mm" >
+<page backtop="15mm" backbottom="15mm" backleft="15mm" backright="15mm" style="font-size: 12pt; font-family: arial" >
         <page_footer>
   
         <table class="page_footer">
@@ -107,93 +107,87 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
         </tr>
         <tr>
-            <td colspan="2" style="width:100%;  text-align: center; color:#034694;font-size: 20px;  ">
+            <td colspan="2" style="width:100%;  text-align: center; color:#034694;font-size: 11pt;  ">
                 <strong>CONSTANCIA DE EMBARQUE</strong>
             </td>
         </tr>
     </table>
     <br>
    
-    <table cellspacing="0"  style="width: 100%;padding:0mm;">
+    <table cellspacing="0"  style="width: 100%;   font-size: 8pt;padding:0mm;">
         <tr text-align: rigth;">
-            <td style="width: 12%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">N° de Póliza:</td>
-            <td style="width: 14%; font-size: 14px; text-align: left; color:#212529"><strong>50-19637</strong></td>
-            <td style="width: 13%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">CERTIFICADO:</td>
-            <td style="width: 30%; font-size: 14px; text-align: left; color:#212529"><strong><?php echo $_Folio ?></strong></td>
-            <td style="width: 15%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">FECHA Y HORA:</td>
-            <td style="width: 15%; font-size: 14px; text-align: left; color:#212529"><strong><? echo date("d-m-Y", strtotime($FechaHora))?></strong></td>
+            <td style="width: 14%; text-align: center; color:#000000; ">N° DE POLIZA</td>
+            <td style="width: 14%; text-align: left; color:#212529"><strong>50-19637</strong></td>
+            <td style="width: 8%; text-align: center; color:#000000; ">CERTIFICADO</td>
+            <td style="width: 25%; text-align: left; color:#212529"><strong><?php echo $_Folio ?></strong></td>
+            <td style="width: 15%; text-align: center; color:#000000; ">FECHA Y HORA</td>
+            <td style="width: 24%; text-align: left; color:#212529"><strong><? echo $FechaHora?></strong></td>
         </tr>
     </table> 
 
    
     <br>
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff;">
+    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; color:#ffffff;">
 		<tr>
 		<td style="width:100%; background-color:#034694" ><strong>DATOS DEL ASEGURADO Y BENEFICIARIO</strong> <br></td>
 		</tr>
     </table>
 
-    <table cellspacing="0"  style="width: 100%;padding:0mm;">
+    <table cellspacing="0"  style="width: 100%;   font-size: 8pt;padding:0mm;">
         <tr>
-            <td style="width: 15%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left; color:#000000; ">ASEGURADO:</td>
-            <td style="width: 60%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left; color:#212529"><strong>PAR PROFESSIONAL RISK S.C.</strong></td>
-            <td style="width: 25%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left; color:#212529">RFC:<strong><? echo $rfc; ?></strong></td>
+            <td style="width: 15%; text-align: left; color:#000000; ">ASEGURADO:</td>
+            <td style="width: 60%; text-align: left; color:#212529"><strong>PAR PROFESSIONAL RISK S.C.</strong></td>
+            <td style="width: 25%; text-align: left; color:#212529">RFC:<strong><? echo $rfc; ?></strong></td>
         </tr>
     </table>   
-    <table cellspacing="0" style="width: 100%; padding:0mm;">
+    <table cellspacing="0" style="width: 100%;   font-size: 8pt;padding:0mm;">
         <tr>
-            <td style="width: 15%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left;  color:#000000;">BENEFICIARIO:</td>
-            <td style="width: 85%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left; color:#212529"><strong><? echo $cliente; ?></strong></td>
+            <td style="width: 15%; text-align: left;  color:#000000;">BENEFICIARIO:</td>
+            <td style="width: 85%; text-align: left; color:#212529"><strong><? echo $cliente; ?></strong></td>
         </tr>
     </table>
-    <table cellspacing="0" style="width: 100%; padding:0mm;">    
+    <table cellspacing="0" style="width: 100%;  font-size: 8pt;padding:0mm;">    
         <tr>
-            <td style="width: 15%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left;  color:#000000;">DOMICILIO:</td>
-            <td style="width: 85%; font-size: 10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $direccion;?></strong></td>
+            <td style="width: 15%; text-align: left;  color:#000000;">DOMICILIO:</td>
+            <td style="width: 85%; text-align: left; color:#212529"><strong><?php echo $direccion;?></strong></td>
         </tr>
     </table>
     <br>
-    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; color:#ffffff; font-style:arial;">
 		<tr>
-		<td style="width:100%; background-color:#034694"><strong>DATOS DEL EMBARQUE</strong> <br></td>
+		<td style="width:100%; background-color:#034694"><strong>DATOS DEL EMBARQUE Y TRANSPORTE</strong> <br></td>
 		</tr>
     </table>
 
-    <table cellspacing="0"  style="width: 100%; padding:0mm;">
+    <table cellspacing="0"  style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
         <tr>
-            <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "> NUMERO DE GUIA</td>
-            <td style="width:10%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo $NumeroGuia ?></strong></td>
-            <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">COBERTURA A PARTIR DE LAS</td>
-            <td style="width:10%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; "><strong><?php echo $horacobertura ?></strong></td>
-            <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DEL DIA </td>
-            <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?   setlocale(LC_TIME, "spanish");
-                                                                  $newDate = date("d-m-Y", strtotime($fechacobertura)); 
-                                                                  $mesDesc = strftime("%d de %B de %Y", strtotime($newDate));
-                                                                  echo $mesDesc;  ?></strong></td>
+            <td style="width: 25%; text-align: left; color: #000000; "> NUMERO DE GUIA</td>
+            <td style="width:10%; text-align: left;"><strong><?php echo $NumeroGuia ?></strong></td>
+            <td style="width: 20%; text-align: left; color: #000000; ">ID CONTENEDOR 1</td>
+            <td style="width:10%; text-align: left; "><strong><?php echo $idcontenedor1 ?></strong></td>
+            <td style="width: 20%; text-align: left; color: #000000; ">ID CONTENEDOR 2 </td>
+            <td style="width:15%; text-align: left;"><strong><? echo $idcontenedor2 ?></strong></td>
         </tr>
-        
+        <tr>
+            <td style="width: 25%; text-align: left; color: #000000; "> COBERTURA A PARTIR DE LAS</td>
+            <td style="width:10%; text-align: left;"><strong><?php echo $horacobertura;?></strong></td>
+            <td style="width:20%; text-align: left; color: #000000; ">DEL DIA </td>
+            <td style="width:10%; text-align: left; "><strong><?php echo $fechacobertura ?></strong></td>
+            <td style="width:20%; text-align: left; color: #000000; "> CONTINUACION DE VIAJE </td>
+            <td style="width:15%; text-align: left;"><strong><?php echo strtoupper($cv) ?></strong> ES CONTINUACION DE VIAJE</td>
+        </tr>
     </table>
-        <table cellspacing="0" style="width: 100%; padding:0mm;">
-            <tr >
-                <td style="width: 40%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;  color: #000000; ">LUGAR DE ORIGEN DE LA COBERTURA</td>
-                <td style="width:60%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($OrigenCobertura) ?></strong></td>
+        <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
+            <tr style="font-style:arial;">
+                <td style="width: 40%; text-align: left;  color: #000000; ">LUGAR DE ORIGEN DE LA COBERTURA</td>
+                <td style="width:60%; text-align: left;"><strong><?php echo strtoupper($OrigenCobertura) ?></strong></td>
                 
             </tr>
         </table>
-        <table cellspacing="0" style="width: 100%; padding:0mm;">
-            <tr>
-                <td style="width: 40%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;  color: #000000; ">LUGAR DE DESTINO DE LA COBERTURA</td>
-                <td style="width:60%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($DestinoCobertura) ?></strong></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%; padding:0mm;">
-            <tr text-align: rigth;>
-                <td style="width:18%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">MEDIO DE TRANSPORTE:</td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: right;"><strong><?php echo strtoupper($mediotransporte) ?></strong></td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;  color: #000000; ">TIPO DE EMBARQUE:</td>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong><?php echo strtoupper($nuevoTipoEmbarque) ?></strong></td>
-                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> TIPO DE LINEA TRANSPORTISTA: </td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $nuevoNbLNTRP; ?></strong></td>
+        <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
+            <tr style="font-style:arial;">
+                <td style="width: 40%; text-align: left;  color: #000000; ">LUGAR DE DESTINO DE LA COBERTURA</td>
+                <td style="width:60%; text-align: left;"><strong><?php echo strtoupper($DestinoCobertura) ?></strong></td>
             </tr>
         </table>
         <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
@@ -202,7 +196,6 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:30%; text-align: center;"><strong><?php echo strtoupper($TipoSeguro) ?></strong></td>
                 <td style="width: 15%; text-align: left;  color: #000000; ">TIPO DE EMPAQUE</td>
                 <td style="width:35%; text-align: center;"><strong><?php echo strtoupper($TipoEmpaque) ?></strong></td>
-
             </tr>
         </table>
 
@@ -212,7 +205,6 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:100%; background-color:#034694"><strong>DATOS DEL TRANSPORTE:</strong> <br></td>
             </tr>
         </table>
-        
 
         
        /*  <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
