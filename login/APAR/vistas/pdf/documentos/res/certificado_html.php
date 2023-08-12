@@ -5,10 +5,9 @@ tr    { vertical-align: top; }
 td    { vertical-align: top; }
 table.page_footer {width: 100%; border: none; background-color: white; padding: 2mm;border-collapse:collapse; border: none;}
 
-}
 -->
 </style>
-<page backtop="15mm" backbottom="15mm" backleft="5mm" backright="5mm" >
+<page backtop="8mm" backbottom="8mm" backleft="5mm" backright="5mm" >
         <page_footer>
   
         <table class="page_footer">
@@ -24,11 +23,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <table cellspacing="0" style="width: 100%;">
         <tr>
              <td style="width: 40%; color: #444444;">
-                <img style="width: 50%; float:left" src="../../img/logo_nuevo_apar.png" alt="Logo" class="center" ><br>
+                <img style="width: 40%; float:left" src="../../img/logo-par-modificado.png" alt="Logo" class="center" ><br>
                 
             </td>
             <td style="width: 25%; color: #444444;">
-                <img style="width: 45%;float:right" src="../../img/logo_chub_320.png" alt="Logo"><br>
+                <img style="width: 40%;float:right" src="../../img/logo_chub_320.png" alt="Logo"><br>
             </td>
         </tr>
         <tr>
@@ -189,174 +188,202 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table cellspacing="0" style="width: 100%; padding:0mm;">
             <tr text-align: rigth;>
                 <td style="width:18%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">MEDIO DE TRANSPORTE:</td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: right;"><strong><?php echo strtoupper($mediotransporte) ?></strong></td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;  color: #000000; ">TIPO DE EMBARQUE:</td>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong><?php echo strtoupper($nuevoTipoEmbarque) ?></strong></td>
+                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($mediotransporte) ?></strong></td>
+                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;  color: #000000; ">TIPO DE EMBARQUE:</td>
+                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($nuevoTipoEmbarque) ?></strong></td>
                 <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> TIPO DE LINEA TRANSPORTISTA: </td>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $nuevoNbLNTRP; ?></strong></td>
             </tr>
         </table>
-        <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
-            <tr style="font-style:arial;">
-                <td style="width: 20%; text-align: left; color: #000000; ">VALOR PARA EL SEGURO</td>
-                <td style="width:30%; text-align: center;"><strong><?php echo strtoupper($TipoSeguro) ?></strong></td>
-                <td style="width: 15%; text-align: left;  color: #000000; ">TIPO DE EMPAQUE</td>
-                <td style="width:35%; text-align: center;"><strong><?php echo strtoupper($TipoEmpaque) ?></strong></td>
-
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿ES CONTINUACION DE VIAJE?</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($cv) ?></strong></td>
+                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;  color: #000000; ">¿ES UNA CARGA FULL?</td>
+                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong><?php echo strtoupper($dobleremolque) ?></strong></td>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> TIPO TRANSPORTE: </td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $nuevoTipoVehiculo; ?></strong></td>
             </tr>
         </table>
-
-        <br>
-        <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; color:#ffffff; font-style:arial;">
-            <tr>
-                <td style="width:100%; background-color:#034694"><strong>DATOS DEL TRANSPORTE:</strong> <br></td>
-            </tr>
-        </table>
-        
-
-        
-       /*  <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
-            <tr>
-                <td style="width: 20%; text-align: left; color:#000000; ">MEDIO DE TRANSPORTE: </td>
-                <td style="width: 14%; text-align: left; color:#212529"><strong><?php echo $mediotransporte; ?></strong></td>
-                <td style="width: 17%; text-align: left; color:#000000; ">TIPO DE LINEA TRANSPORTISTA: </td>
-                <td style="width: 22%; text-align: left; color:#212529"><strong><?php echo $nuevoNbLNTRP; ?></strong></td>
-                <td style="width: 14%; text-align: left; color:#000000; ">COLOR:</td>
-                <td style="width: 8%; text-align: left; color:#212529"><strong><? echo $color ?></strong></td>
-            </tr>
-            <tr>
-                <td style="width: 20%; text-align: left; color:#000000; ">NOMBRE DE LINEA TRANSPORTISTA </td>
-                <td style="width: 14%; text-align: left; color:#212529"><strong><?php echo $nuevoLNTRP; ?></strong></td>
-                <td style="width: 17%; text-align: left; color:#000000; ">MODELO </td>
-                <td style="width: 22%; text-align: left; color:#212529"><strong><?php echo $modelo; ?></strong></td>
-                <td style="width: 14%; text-align: left; color:#000000; ">NUMERO DE PLACAS</td>
-                <td style="width: 8%; text-align: left; color:#212529"><strong><? echo $numeroplacas ?></strong></td>
-            </tr>
-            <tr>
-                <td style="width: 20%; text-align: left;  color:#000000; ">MARCA DE UNIDAD </td>
-                <td style="width: 14%; text-align: left; color:#212529"><strong><?php echo $marca; ?></strong></td>
-                <td style="width: 17%; text-align: left;  color:#000000; ">NUMERO DE SERIE </td>
-                <td style="width: 22%; text-align: left; color:#212529"><strong><?php echo $serie; ?></strong></td>
-                <td style="width: 14%; text-align: left;  color:#000000; ">NUMERO MOTOR</td>
-                <td style="width: 8%; text-align: left; color:#212529"><strong><? echo $motor ?></strong></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%; text-align: center; font-size: 8pt;padding:0mm;">
-            <tr>
-                <td style="width: 20%; text-align: left; color:#000000; ">NOMBRE CHOFER </td>
-                <td style="width: 50%; text-align: left; color:#212529"><strong><?php echo $nombrechofer; ?></strong></td>
-                <td style="width: 20%; text-align: left; color:#000000; ">TELEFONO CHOFER </td>
-                <td style="width: 10%; text-align: left; color:#212529"><strong>3333333</strong></td>
-                
-            </tr>
-        </table> */
-        <br>
-        <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; color:#ffffff; font-style:arial;">
-            <tr>
-                <td style="width:100%; background-color:#034694"><strong>BIENES TRANSPORTADOS</strong> <br></td>
-            </tr>
-        </table>
-        <table cellspacing="0"  style="width: 100%;  text-align: center; font-size: 8pt;padding:0mm;">
-            <tr>
-                <td style="width: 20%; text-align: left; color:#000000; ">DESCRIPCION </td>
-                <td style="width: 80%; text-align: left; color:#212529"><strong><?php echo $mercancia; ?></strong></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%;  text-align: center; font-size: 8pt;padding:0mm;">
-            <tr>
-                <td style="width: 20%; text-align: left; color:#000000; ">VALOR EMBARQUE </td>
-                <td style="width: 13%; text-align: left; color:#212529"><strong>$ <?php echo number_format($valorembarque,2); ?></strong></td>
-                <td style="width: 15%; text-align: right;  color:#000000; ">MONEDA </td>
-                <td style="width: 18%; text-align: left; color:#212529"><strong>PESOS MEXICANOS</strong></td>
-                <td style="width: 20%; text-align: left;  color:#000000; ">NUMERO DE REMOLQUES </td>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:30%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿LA CARGA ES SOBRE DIMENSIONADA?</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: right;"><strong>NO</strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;  color: #000000; ">NUMERO DE REMOLQUES</td>
                 <?php if ($valorembarque != "" && $tipocontenedor2 == "Selecionar Opcion" && $tipocontenedor2 == "Selecionar Opcion" && $dobleremolque == "No"){
                             
-                            echo ' <td style="width:14%; text-align: left; "><strong>1</strong> <br></td>';
+                            echo '<td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong>1</strong> <br></td>';
                         }else if($valorembarque != "" && $tipocontenedor1 != "Selecionar Opcion" && $tipocontenedor2 == "Selecionar Opcion" && $dobleremolque == "No"){
                             
-                            echo ' <td style="width:14%; text-align: left; "><strong>1</strong> <br></td>';
+                            echo '<td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong>1</strong> <br></td>';
 
                         }else if($valorembarque != "" && $tipocontenedor1 == "Selecionar Opcion" && $tipocontenedor2 == "Selecionar Opcion" && $dobleremolque == "Si"){
                             
-                            echo ' <td style="width:14%; text-align: left; "><strong>2</strong> <br></td>';
+                            echo ' <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong>2</strong> <br></td>';
                         }
                         else if($valorembarque != "" && $tipocontenedor1 != "Selecionar Opcion" && $tipocontenedor2 != "Selecionar Opcion" && $dobleremolque == "Si"){
                             
-                            echo ' <td style="width:14%; text-align: left; "><strong>2</strong> <br></td>';
+                            echo '<td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;"><strong>2</strong> <br></td>';
                         }
                     ?>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> ¿Transporte con edad mayor a 30 años? </td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong>NO</strong></td>
             </tr>
         </table>
-    
-    <table cellspacing="0"  style="width: 100%; text-align: left; font-size: 8pt; color:#ffffff; font-style:arial;">
+        <table cellspacing="0"  style="width: 100%; padding:0mm;">
             <tr>
-                <td style="width:100%; background-color:#034694"><strong>RIESGOS CUBIERTOS</strong> <br></td>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; "> MONEDA</td>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Pesos Mexicanos</strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "></td>
+                <td style="width:10%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; "><strong></strong></td>
+                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "> </td>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
             </tr>
-    </table>
-    <table cellspacing="0"  style="width: 100%;  text-align: center; font-size: 8pt;padding:0mm;">
+        </table>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
             <tr>
-                <td style="width: 100%; text-align: left; "><strong><?php echo strtoupper($coberturamercancia) ?></strong> </td>
+                <td style="width:100%; background-color:#034694"><strong>DESCRIPCION MERCANCIAS:</strong> <br></td>
             </tr>
-    </table>
-  
-   <?php
-             if($amparacontenedor == "Si"){
-
-                echo '  <table cellspacing="0" style="width: 100%;  text-align: center; font-size: 8pt;padding:0mm;">
-                            <tr>
-                                <td style="width: 15%; text-align: rigth; color:#000000"><strong>PARA CONTENEDOR</strong></td>
-                                <td style="width: 85%; text-align: left; color:#FF0000"><strong>10% SOBRE EL VALOR DEL CONTENEDOR CON MINIMO DE 40 UMA.</strong></td>
-                            </tr>
-                        </table>';
-             }
-        ?>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE BIENES</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipodebien) ?></strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DESCRIPCION DE MERCANCIAS:</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($mercancia) ?></strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE EMPAQUE:</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TipoEmpaque) ?></strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">VALOR TOTAL DEL EMBARQUE </td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($valorembarque,2); ?></strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">VALOR PARA EL SEGURO</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TipoSeguro) ?></strong></td>
+            </tr>
+        </table>
         <br>
-        
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; font-style:arial;">
-		<tr>
-		    <td style="width:100%; text-align: left;  color:#ffffff; background-color:#034694"><strong>DEDUCIBLES</strong></td>
-		</tr>
-    </table>
-   
-    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 8pt; font-style:arial;">
-        <tr>
-            <td style="width:100%; text-align: left; "><strong> PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
-		</tr>
-    </table>
-    <br>
-    <?php if ($amparacontenedor == "Si") { ?>
-    <table cellspacing="0" style="width: 100%;   text-align: center; font-size: 8pt;padding:0mm;">
-        <tr>
-            <td style="width:15%; text-align: rigth; color:#000000 "><strong>PARA CONTENEDOR</strong></td>
-            <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($deduciblescontenedor) ?></strong> <br></td>
-		</tr>
-    </table>
-    <?php } ?>
-    <?php if ($Descripcion_seguridad != "") { ?>
-    <table cellspacing="0" style="width: 100%;   text-align: center; font-size: 8pt;padding:0mm;">
-        <tr>
-            <td style="width:15%; text-align: rigth; color:#000000 "><strong>Protocolo</strong></td>
-            <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong> <br></td>
-		</tr>
-    </table>
-    <?php } ?>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+            <tr>
+                <td style="width:100%; background-color:#034694"><strong>COBERTURAS Y DEDUCIBLES DE MERCANCIAS</strong> <br></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">coberturas</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($coberturamercancia) ?></strong></td>
+                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">deducibles</td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
+            </tr>
+        </table>              
+        <br>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+            <tr>
+                <td style="width:100%; background-color:#034694"><strong>DESCRIPCION CONTENEDORES:</strong> <br></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:30%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿SE CUBREN CONTENEDORES?</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($amparacontenedor) ?></strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">¿ES UNA CARGA FULL?</td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($dobleremolque) ?></strong></td>
+            </tr>
+            
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE CONTENEDOR 1:</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipocontenedor1) ?></strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">VALOR MAXIMO</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">SUMA ASEGURADA</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($Sumasolicitadaprimero,2); ?></strong></td>    
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE CONTENEDOR 2:</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipocontenedor2) ?></strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">VALOR MAXIMO</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">SUMA ASEGURADA</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($Sumasolicitadasegundo,2); ?></strong></td>    
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+            <tr>
+                <td style="width:100%; background-color:#034694"><strong>COBERTURAS Y DEDUCIBLES DE CONTENEDORES:</strong> <br></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">COBERTURAS</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DEDUCIBLE</td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($deduciblescontenedor) ?></strong></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+            <tr>
+                <td style="width:100%; background-color:#034694"><strong>DESCRIPCION INCREMENTALES:</strong> <br></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿SE CUBREN INCREMENTALES?</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO</strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">VALOR TOTAL DE INCREMENTALES</td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+            <tr>
+                <td style="width:100%; background-color:#034694"><strong>COBERTURAS Y DEDUCIBLES DE INCREMENTALES</strong> <br></td>
+            </tr>
+        </table>
+        <table cellspacing="0" style="width: 100%;">
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">COBERTURAS</td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong> Riesgos Ordinarios de Transito, Robo Total con violencia y/o asalto, Ratería, pillería y hurto a consecuencia de un riesgo ordinario de tránsito,  Maniobras de carga y descarga, </strong></td>
+            </tr>
+            <tr text-align: rigth;>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DEDUCIBLE</td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
+            </tr>
+        </table>
     <br>
     <?php if ($ObservacionGnral != "") { ?>
-    <table cellspacing="0" style="width: 100%; border: solid 0px black;  text-align: center; font-size: 8pt;padding:0mm;">
+     <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
         <tr>
-            <td style="width:15%; text-align: rigth; color:#000000 "><strong>Observaciones</strong></td>
+            <td style="width:100%; background-color:#034694"><strong>Observaciones</strong> <br></td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+        <tr>
             <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($ObservacionGnral) ?></strong> <br></td>
 		</tr>
     </table>
     <?php }else{ ?>
-        <table cellspacing="0" style="width: 100%; border: solid 0px black;  text-align: center; font-size: 8pt;padding:0mm;">
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
         <tr>
-            <td style="width:15%; text-align: rigth; color:#000000 "><strong>Observaciones</strong></td>
-            <td style="width:85%; text-align: left; "><strong>SIN OBSERVACIONES</strong> <br></td>
+            <td style="width:100%; background-color:#034694"><strong>Observaciones</strong> <br></td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+        <tr>
+        <td style="width:85%; text-align: left; "><strong>SIN OBSERVACIONES</strong> <br></td>
 		</tr>
     </table>
     <?php } ?>
-    <br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
     <table cellspacing="0" style="width: 100%;font-size: 7pt;">
         <tr>
              <td style="width: 30%; color: #444444;">
@@ -377,7 +404,13 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <br><br><br>
 	<table cellspacing="0" style="width: 100%; ">
 		<tr>
-            <td style="width:100%; text-align: righ;  color:#ffffff; background-color:#034694"><strong>Obligacion de Asegurado:</strong></td>
+            <td style="width:100%; text-align: righ;><strong>Es condición indispensable para garantizar cobertura que se cumpla con las siguientes medidas de prevención con el objeto de evitar o minimizar las posibles pérdidas o daños a la carga. </strong></td>
+		</tr>
+        <tr>
+            <td style="width:100%; text-align: righ;><strong>El asegurado, quienes lo representen o a quienes haya contratado, aceptan estar de acuerdo en el momento en que falte a cualquiera de ellas queda sin protección o cobertura por parte de la compañía de seguros. </strong></td>
+		</tr>
+        <tr>
+            <td style="width:100%; text-align: righ;><strong>En caso de siniestro, si la medida de prevención no tiene relación directa con el siniestro, dicha medida de prevención no será limitante de cobertura o se tomará como exclusión.</strong></td>
 		</tr>
 	</table>
     <table cellspacing="0" style="width: 100%; ">
@@ -387,18 +420,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			<br>
 			<ul class="list-inline">
 				<li class="list-inline-item">Para el transporte en buque, el Asegurado garantiza la transportación bajo cubierta a menos que la mercancía sea transportada dentro de contenedor cerrado en buque porta contenedores.</li>
-				<li class="list-inline-item">Para el transporte terrestre, así como para las conexiones marítimas, el asegurado garantiza el uso de caminos de cuota cuando estén disponibles, utilizar vehículos con caja metálica cerrada. Únicamente se permitirá el uso de vehículos sin caja metálica cerrada cuando la naturaleza de los bienes haga imposible el uso de dichas cajas, sin embargo, deberá contarse con lonas en excelente estado protegiendo la mercancía.</li>
-				<li class="list-inline-item">Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y las casetas de peaje donde exista vigilancia por personal designado para ello y cuente con lugar especificado para aparcar en las carreteras</li>
-			    <li class="list-inline-item">La única excepción para lo anterior es una falla mecánica súbita e imprevista del medio de transporte.</li>
-				<li class="list-inline-item">No obstante lo anterior, en ninguna circunstancia los vehículos podrán abandonarse por más de ocho horas naturales.</li>
-				<li class="list-inline-item">Los conductores deberán utilizar equipos de comunicación y/o teléfonos celulares.</li>
-				<li class="list-inline-item">Revisión exhaustiva del interior de los medios de conducción, para detectar residuos o aromas de la carga.</li>
+				<li class="list-inline-item">Para el transporte terrestre, así como para las conexiones marítimas, el asegurado garantiza el uso de caminos de cuota cuando estén disponibles.</li>
+				<li class="list-inline-item">Utilizar vehículos con caja metálica cerrada. Únicamente se permitirá el uso de vehículos sin caja metálica cerrada cuando la naturaleza de los bienes haga imposible el uso de dichas cajas, sin embargo, deberá contarse con lonas en excelente estado protegiendo la mercancía.</li>
+			    <li class="list-inline-item">Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y las casetas de peaje donde cuenten con vigilancia física o electrónica de dicho lugar y cuente con lugar especificado para aparcar en las carreteras. La única excepción para lo anterior es una falla mecánica súbita e imprevista del medio de transporte. No obstante, lo anterior, en ninguna circunstancia los vehículos podrán abandonarse por más de ocho horas naturales, salvo que el motivo de abandono sea la reparación de la falla mecánica y que no aplica en caso de accidente grave que ponga en peligro la integridad del chofer.</li>
+				<li class="list-inline-item">Los conductores deberán utilizar equipos de comunicación y/o teléfonos celulares con saldo suficiente y batería cargada con la obligación de reportar cualquier situación fuera de la operación normal o recibir instrucciones en caso de monitoreo.</li>
+				<li class="list-inline-item">Revisión exhaustiva del interior de los medios de conducción, para detectar residuos o aromas de la carga. Esta medida podrá ser validada con la presentación del certificado de limpieza y/o y check list de inspección y que opera para las coberturas de Contacto con Otras Cargas y Contaminación y Manchas a consecuencia de un riesgo cubierto.</li>
+				<li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS, o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre, así como custodia por personal de una empresa especializada en seguridad que cuente con los permisos correspondientes de la autoridad competente, desde su origen hasta su descarga final.</li>
 				<li class="list-inline-item">Para que surta efecto la cobertura a consecuencia de fallas en sistema de refrigeración, se deberán utilizar cajas refrigeradas con una antigüedad máxima de 15 años.</li>
 				<li class="list-inline-item">Para permanencias intermedias como parte del curso ordinario de tránsito, deberá realizarse en predios debidamente cerrados con barda perimetral o malla ciclónica que cuenten con control de entradas y salidas y con personal de vigilancia las 24 horas del día.</li>
-				<li class="list-inline-item">Para embarcaciones menores y de placer, Caminos de cuota siempre que la ruta lo permita, monitoreo activo mediante GPS, amarre y trincado al medio de transporte.</li>
-				<li class="list-inline-item">Para mercancías que sobrepasen dimensiones y capacidad, deberán cumplir con lo establecido en el “Reglamento sobre el peso, dimensiones y capacidad de los vehículos de autotransporte que transitan en los caminos y puentes de jurisdicción federal”.</li>
-				<li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre.</li>
-				<li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS, o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre, así como custodia por personal de una empresa especializada en seguridad que cuente con los permisos correspondientes de la autoridad competente, desde su origen hasta su descarga final.</li>
+				<li class="list-inline-item">Para mercancías que sobrepasen dimensiones y capacidad, deberán cumplir con lo establecido en el “Reglamento sobre el peso, dimensiones y capacidad de los vehículos de autotransporte que transitan en los caminos y puentes de jurisdicción federal”. En caso de sobrepasar dimensiones deberá cumplir con apego a la NOM-040-SCT-2-2012, Para el transporte de objetos indivisibles de gran peso y/o volumen, peso y dimensiones de las combinaciones vehiculares y de las grúas industriales y su tránsito por caminos y puentes de jurisdicción federal.</li>
 			</ul>
 			</td>
         </tr>    	
@@ -406,42 +436,65 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <table cellspacing="0" style="width: 100%;">
         <tr style="font-style:arial; font-size:12px; text-align: justify;">
             <td style="width:100%; text-align: righ;  color:#000000; ">
-				<strong>Si el contenido de esta Constancia de Embarque o sus modificaciones no concordaren con la oferta, el Asegurado o Contratante podrá pedir la rectificación una hora antes de iniciar su vigencia. Transcurrido este plazo se considerarán aceptadas las estipulaciones de la Constancia o de sus modificaciones.</strong>
+				POLIZA DE SEGURO SUJETA A CONDICIONES GENERALES PARA EL SEGURO DE TRANSPORTE DE MERCANCIAS DE CHUBB SEGUROS MEXICO, S.A., Registro 06-367-I.1.1/10186, oficio 06-367-I.1.1/4852, expediente 732.4 (S-60)/1 Y A CONDICIONES PARTICULARES DE LA POLIZA HH43000134 DE CHUBB SEGUROS MEXICO, S.A.
 			</td>
 		</tr>
     </table>
-    <table cellspacing="0" style="width: 100%;">
-        <tr style="font-style:arial; font-size:12px; text-align: justify;">
-            <td style="width:100%; text-align: righ;  color:#000000; ">
-				<strong>Se recomienda y se invita al Contratante que, para cualquier aclaración o duda respecto al alcance de sus coberturas, exclusiones y restricciones, lea cuidadosamente la totalidad de su Constancia, misma que le es entregada con este documento</strong>
-			</td>
-		</tr>
-    </table>
-    <table cellspacing="0" style="width: 100%;">
-        <tr style="font-style:arial; font-size:12px; text-align: justify;">
-			<td style="width:100%; text-align: righ;  color:#000000; ">
-				Para cualquier duda, aclaración o queja puede comunicarte a los tels. 33 38 09 86 28 o 624 355 4498 a APAR (Asesores Profesionales en Administración de Riesgos) las 24 Hrs, <strong>contacto@apar.com.mx</strong>
-			</td>
-		</tr>
-    </table>
-    <table cellspacing="0" style="width: 100%;">
-        <tr style="font-style:arial; font-size:9px; text-align: rigth;">
-			<td style="width:100%; text-align: righ;  color:#000000;">
-				<strong>ASOCIADO (314) 141 8113   (314) 114 1622 RADIO 92*744973*2 / 92*13*1429  www.sacseguros.com.mx</strong>
-			</td>
-		</tr>
+    <br><br>
+    <table cellspacing="0" style="width: 100%; text-align: center;  font-size: 14px; font-family: Arial, Helvetica, sans-serif; ">
+        <tr>
+            <td style="width:100%;"><strong>EXTRACTO DE LAS CONDICIONES GENERALES Y PARTICULARES DE POLIZA</strong> <br></td>
+        </tr>
     </table>
 	<br>
     <table cellspacing="0" style="width: 100%;">
-        <tr style="font-style:arial; font-size:12px; text-align: rigth;">
-			<td style="width:50%; text-align: center;  color:#000000; background-color:yellow">
-				<strong>CONSTANCIA DE EMBARQUE</strong>
-			</td>
-			<td style="width:50%; text-align: righ;  color:#000000; background-color:yellow">
-				<strong><?php echo $_Folio ?></strong>
-			</td>
-		</tr>
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "><strong>Vigencia del Seguro para Transporte Terrestre y/o Aéreo o de ambas clases</strong></td>
+        </tr>
     </table>
+    <br>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">La vigencia que se otorga sobre los bienes Asegurados comienza desde el momento en que dichos bienes inician su tránsito y dejan el domicilio del remitente para su transporte, continúa durante el curso ordinario del viaje y cesa con la terminación del tránsito de los bienes en el domicilio del consignatario, entre los puntos de origen, destino y riesgos cubiertos indicados en la carátula de la CONSTANCIA DE EMBARQUE.</td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">Para los embarques en vehículos de carga propios y/o bajo el control del asegurado, el seguro entra en vigor desde el momento en que el medio de transporte inicia su tránsito y cesa al terminar éste en su destino final.</td>
+        </tr>
+    </table>
+    <br>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "><strong>Vigencia del Seguro. Transporte Marítimo</strong></td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">Este seguro entra en vigor desde el momento en que los bienes queden a cargo de los porteadores para su transporte, continúa durante el curso ordinario de su viaje y termina con la descarga de los mismos, sobre los muelles, en el puerto de destino.</td>
+        </tr>
+    </table>
+    <br>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "><strong>Bienes asegurados:</strong></td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">1.	Todo tipo de mercancías, excepto las especificadas como bienes excluidos.</td>
+        </tr>
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">2.	Contenedores metálicos secos y refrigerados de 20, 40, 45 pies y High Cube</td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%;">
+        <tr text-align: rigth;>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: justify; color: #000000; ">Esta CONSTANCIA DE EMBARQUE se destina a cubrir la mercancía descrita en el apartado de DESCRIPCIÓN DE MERCNACÍA.</td>
+        </tr>
+       
+    </table>
+
     <table cellspacing="0" border="0" style="width: 100%; border: solid 0px black; padding:0mm;">
        
     <tr style="font-style:arial; font-size:12px; width:100%; text-align: justify;">
