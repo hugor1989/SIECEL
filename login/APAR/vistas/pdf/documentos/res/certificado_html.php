@@ -185,18 +185,18 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:60%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($DestinoCobertura) ?></strong></td>
             </tr>
         </table>
-        <table cellspacing="0" style="width: 100%; padding:0mm;">
-            <tr text-align: rigth;>
-                <td style="width:18%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">MEDIO DE TRANSPORTE:</td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($mediotransporte) ?></strong></td>
-                <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;  color: #000000; ">TIPO DE EMBARQUE:</td>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($nuevoTipoEmbarque) ?></strong></td>
-                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> TIPO DE LINEA TRANSPORTISTA: </td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $nuevoNbLNTRP; ?></strong></td>
+        <table style="width: 100%;">
+            <tr>
+                <td style="width:17%;   font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">MEDIO DE TRANSPORTE:</td>
+                <td style="width:15%; font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($mediotransporte) ?></strong></td>
+                <td style="width:15%;  font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left;  color: #000000; ">TIPO DE EMBARQUE:</td>
+                <td style="width:8%;  font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($nuevoTipoEmbarque) ?></strong></td>
+                <td style="width:18%;   font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> TIPO DE LINEA TRANSPORTISTA: </td>
+                <td  style="width:26%; font-size:8px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $nuevoNbLNTRP; ?></strong></td>
             </tr>
         </table>
-        <table cellspacing="0" style="width: 100%;">
-            <tr text-align: rigth;>
+        <table style="width: 100%;">
+            <tr>
                 <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿ES CONTINUACION DE VIAJE?</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($cv) ?></strong></td>
                 <td style="width:16%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center;  color: #000000; ">¿ES UNA CARGA FULL?</td>
@@ -227,19 +227,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                         }
                     ?>
                 <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#000000; "> ¿Transporte con edad mayor a 30 años? </td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong>NO</strong></td>
+                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo strtoupper($MayorAnios) ?></strong></td>
             </tr>
         </table>
-        <table cellspacing="0"  style="width: 100%; padding:0mm;">
-            <tr>
-                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; "> MONEDA</td>
-                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Pesos Mexicanos</strong></td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "></td>
-                <td style="width:10%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; "><strong></strong></td>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; "> </td>
-                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
-            </tr>
-        </table>
+        
         <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
             <tr>
                 <td style="width:100%; background-color:#034694"><strong>DESCRIPCION MERCANCIAS:</strong> <br></td>
@@ -266,8 +257,12 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">VALOR PARA EL SEGURO</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TipoSeguro) ?></strong></td>
             </tr>
+            <tr text-align: rigth;>
+                <td style="width:25%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; "> MONEDA</td>
+                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Pesos Mexicanos</strong></td>
+            </tr>
         </table>
-        <br>
+        
         <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
             <tr>
                 <td style="width:100%; background-color:#034694"><strong>COBERTURAS Y DEDUCIBLES DE MERCANCIAS</strong> <br></td>
@@ -275,10 +270,56 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         </table>
         <table cellspacing="0" style="width: 100%;">
             <tr text-align: rigth;>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">coberturas</td>
-                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($coberturamercancia) ?></strong></td>
-                <td style="width:8%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">deducibles</td>
-                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
+                <td style="width:50%; font-size:12px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">COBERTURAS</td>
+                <td style="width:50%; font-size:12px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">DEDUCIBLES</td>
+            </tr>
+            <tr>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Riesgos Ordinarios de Transito</strong></td>
+                <?php if($cobertura == "ROT Y ROBO" || $cobertura == "TODO RIESGO" || $cobertura == "TODO RIESGO Y VT") {?>
+
+                    <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DeducibleROT) ?></strong></td>
+
+                <?php }?>
+                
+            </tr>
+            <tr>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Robo total con violencia y/o asalto, Rateria, pilleria y huto a consecuencia de un riesgo ordinario de transito.</strong></td>
+                <?php if($cobertura == "ROT Y ROBO" || $cobertura == "TODO RIESGO" || $cobertura == "TODO RIESGO Y VT") {?>
+
+                    <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DEDUCIBLE_ROBO) ?></strong></td>
+
+                <?php }?>
+             
+            </tr>
+            <tr>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Otro Riesgos Adicionales de transporte</strong></td>
+                <?php if($cobertura == "TODO RIESGO Y VT") {?>
+
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DEDUCIBLE_OTROS_R) ?></strong></td>
+
+                <?php }else{?>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <?php } ?>
+            </tr>
+            <tr>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Cobertura de Variacion Termica</strong></td>
+                <?php if($cobertura == "TODO RIESGO Y VT") {?>
+
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DEDUCIBLE_SVT) ?></strong></td>
+
+                <?php }else{?>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <?php } ?>
+            </tr>
+            <tr>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Cobertura Trayecto Maritimo, Aereo</strong></td>
+                <?php if($mediotransporte == "COMBINACION AEREO - MARITIMO" || $mediotransporte == "COMBINACION AEREO - MARITIMO - TERRESTRE" || $mediotransporte == "COMBINACION AEREO - TERRESTRE" || $mediotransporte == "COMBINACION MARITIMO - TERRESTRE" ) {?>
+
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_MARITIMO_AEREO_COMBINADO) ?></strong></td>
+
+                <?php }else{?>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <?php } ?>
             </tr>
         </table>              
         <br>
@@ -300,16 +341,12 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <tr text-align: rigth;>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE CONTENEDOR 1:</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipocontenedor1) ?></strong></td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">VALOR MAXIMO</td>
-                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">SUMA ASEGURADA</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($Sumasolicitadaprimero,2); ?></strong></td>    
             </tr>
             <tr text-align: rigth;>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE CONTENEDOR 2:</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipocontenedor2) ?></strong></td>
-                <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">VALOR MAXIMO</td>
-                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">SUMA ASEGURADA</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($Sumasolicitadasegundo,2); ?></strong></td>    
             </tr>
@@ -352,14 +389,13 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table cellspacing="0" style="width: 100%;">
             <tr text-align: rigth;>
                 <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">COBERTURAS</td>
-                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong> Riesgos Ordinarios de Transito, Robo Total con violencia y/o asalto, Ratería, pillería y hurto a consecuencia de un riesgo ordinario de tránsito,  Maniobras de carga y descarga, </strong></td>
+                <td style="width:80%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong> Riesgos Ordinarios de Transito, Robo Total con violencia y/o asalto, Ratería, pillería y hurto a consecuencia de un riesgo ordinario de tránsito,  Maniobras de carga y descarga, </strong></td>
             </tr>
             <tr text-align: rigth;>
                 <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DEDUCIBLE</td>
-                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
+                <td style="width:80%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
             </tr>
         </table>
-    <br>
     <?php if ($ObservacionGnral != "") { ?>
      <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
         <tr>
