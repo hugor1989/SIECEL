@@ -238,6 +238,12 @@
                                         }	
                                         ?>			
                               </select>
+                              <input type="hidden"  name="TB_DeducibleROT" id="TB_DeducibleROT"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_ROBO" id="TB_DEDUCIBLE_ROBO"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_OTROS_R" id="TB_DEDUCIBLE_OTROS_R"/>
+                              <input type="hidden" name="TB_DEDUCIBLE_SVT" id="TB_DEDUCIBLE_SVT"/>
+                              <input type="hidden" name="TB_EMBARQUE_CARRETERA_LIBRE" id="TB_EMBARQUE_CARRETERA_LIBRE"/>
+                              <input type="hidden" name="TB_MARITIMO_AEREO_COMBINADO" id="TB_MARITIMO_AEREO_COMBINADO"/>
                             </div>
                           </div>
                           <div class="col-md-4">

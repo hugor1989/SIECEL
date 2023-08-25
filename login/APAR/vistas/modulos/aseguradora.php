@@ -77,9 +77,21 @@
                                   <td>'.$value["Cuota_TR"].'</td>
                                   <td>'.$value["VT"].'</td>
                                   <td>'.$value["Cuota_Contenedor"].'</td>
-                                  <td>'.$value["CondicionesGenerales"].'</td>
+                                  
+
+                                  
+
+                                  <td><a class="btn-sm" role="button" href="'.$value["CondicionesGenerales"].'"
+                                        download="'.$value["CondicionesGenerales"].'">
+                                        <i class="fas fa-file-pdf" aria-hidden="true"">
+                                          Descargar
+                                        </i>
+                                      </a>
+                                  </td>
+                                  
                                   <td>'.$value["Telefono"].'</td>
-                                  <td>'.$value["Logo"].'</td>
+                                  <td><img src="data:image/*;base64,'.$value["Logo"].'" class="img-thumbnail" width="100px"></td>
+                                  
                                   <td>'.$value["NumeroPoliza"].'</td>
                                   ';
 

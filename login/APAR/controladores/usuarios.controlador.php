@@ -170,6 +170,9 @@ class ControladorUsuarios{
 	
 						$nuevoAncho = 500;
 						$nuevoAlto = 500;
+
+						$data = base64_encode(file_get_contents( $_FILES["nuevaFoto"]["tmp_name"] ));
+
 	
 						/*=============================================
 						CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
@@ -245,6 +248,23 @@ class ControladorUsuarios{
 					
 					$tabla = "usuario";
 
+					// Get the image and convert into string
+					/* $file_tmp= ;
+					$data = file_get_contents( $file_tmp );
+					$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data); */
+
+					// Get the image and convert into string
+				/* 	$img = file_get_contents(
+					$_FILES['nuevaFoto']['tmp_name']);
+						
+					// Encode the image string data into base64
+					$data = base64_encode($img);
+						 */
+					
+					// Encode the image string data into base64
+					//$database = base64_encode($img);
+	  
+
 					if($_POST["SL_EmpresaAsociada"] != null && $_POST["SL_EmpresaAsociada"] > 0){
 
 						$datos = array("nombre" => $_POST["nuevoNombre"],
@@ -263,7 +283,8 @@ class ControladorUsuarios{
 								   "primaminima" => $_POST["nuevoPrimaMinima"], 
 								   "derechocertificado" => $_POST["nuevoDerechoCertificado"],
 								   "SL_EmpresaAsociada" => $_POST["SL_EmpresaAsociada"],
-								   "foto"=>$ruta
+								   "foto"=>$ruta,
+								   "ImagenBase64" => $data
 								);
 					
 
@@ -304,7 +325,8 @@ class ControladorUsuarios{
 								   "derechocertificado" => $_POST["nuevoDerechoCertificado"],
 								   "localidad" => $_POST["nuevoLocalidad"],
 								   "SL_EmpresaAsociada" => $_POST["SL_EmpresaAsociada"],
-								   "foto"=>$ruta
+								   "foto"=>$ruta,
+								   "ImagenBase" => $data
 								);
 
 					}

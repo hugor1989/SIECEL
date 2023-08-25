@@ -141,19 +141,7 @@ $(".table-bordered").on("click", ".btnEditarUsuario", function(){
 			var len = respuesta.length;
             for(var i=0; i<len; i++){
 
-			/* 	
-				$("#TB_Folio").val(respuesta[i].Abreviatura);
-				$("#TB_ObjComision").val(respuesta[i].Comision);
-				$("#TB_ObjCuotaBasica").val(respuesta[i].Cuota_VT);
-				$("#TB_ObjCuotaRot").val(respuesta[i].Cuota_Rot);
-				$("#TB_ObjCuotaTR").val(respuesta[i].Cuota_TR);
-				$("#TB_ObjCuotaContenedor").val(respuesta[i].Cuota_Contenedor);
-				$("#TB_ObjPrimaminima").val(respuesta[i].Prima_minima);
-				$("#TB_ObjDerechoCertificado").val(respuesta[i].Derecho_Certificado);
-				$("#TB_EmailAsociado").val(respuesta[i].Email);
-				$("#TB_ImagenAsociado").val(respuesta[i].Foto); */
-
-
+		
 				$("#editarNombre").val(respuesta[i].Nombre);
 				$("#editarUsuario").val(respuesta[i].Username);
 				$("#editarEmail").val(respuesta[i].Email);
@@ -195,9 +183,14 @@ $(".table-bordered").on("click", ".btnEditarUsuario", function(){
 
 				if(respuesta[i].Foto != ""){
 
-					$(".previsualizar").attr("src", respuesta[i].Foto);
+					$("#imageneditar").attr('src', 'data:image/*;base64,' + respuesta[i].ImagenBase64);
+
+					//$(".previsualizar").attr("src", "data:image/*base64," +  respuesta[i].ImagenBase64);
+					//$(".previsualizar").attr("src", respuesta[i].Foto);
 
 				}else{
+
+					
 
 					$(".previsualizar").attr("src", "vistas/img/usuarios/default/anonymous.png");
 

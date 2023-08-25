@@ -41,10 +41,16 @@
                           <th>Valor Aseguradora</th>
                           <th>Valor Apar</th>
                           <th>0 a 1'000,000</th>
-                          <th>1'000,001 a 1'500,000 </th>
-                          <th>1'500,001 a 3'000,000</th>
-                          <th>3'000,001 a 5'100,000</th>
+                          <th>1'000,001 a 2'000,000 </th>
+                          <th>2'000,001 a 3'000,000</th>
+                          <th>3'000,001 a 5'000,000</th>
                           <th>5'100,001 a 10'000,000</th>
+                          <th>DEDUCIBLE ROT</th>
+                          <th>DEDUCIBLE ROBO</th>
+                          <th>DEDUCIBLE OTROS RIESGOS</th>
+                          <th>DEDUCIBLE SVT</th>
+                          <th>EMBARQUE CARRETERA LIBRE</th>
+                          <th>MARITIMO AEREO COMBINADO</th>
                         </tr>
                       </thead>
                     <tbody>
@@ -96,7 +102,13 @@
                                       <td>'.$value["Valor_B"].'</td>
                                       <td>'.$value["Valor_C"].'</td>
                                       <td>'.$value["Valor_D"].'</td>
-                                      <td>'.$value["Valor_E"].'</td>
+                                      <td >'.$value["Valor_E"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["DEDUCIBLE_ROT"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["DEDUCIBLE_ROBO"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["DEDUCIBLE_OTROS_R"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["DEDUCIBLE_SVT"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["EMBARQUE_CARRETERA_LIBRE"].'</td>
+                                      <td  style="font-size:14px; font-family:Arial">'.$value["MARITIMO_AEREO_COMBINADO"].'</td>
                                       ';
 
                                                 

@@ -4,7 +4,7 @@
 	session_start();
 	if (!empty($_SESSION['active'])) 
 	{
-		header('location: APAR/');
+		header('location: PAR/');
 	}else
 	{
 		if (!empty($_POST)){
@@ -91,7 +91,7 @@
 					</span>
 					
 					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="first-name" class="input100" type="email" name="ingUsuario" placeholder="Usuario" required>
+						<input id="first-name" class="input100" type="text" name="ingUsuario" placeholder="Usuario" required>
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
@@ -108,7 +108,7 @@
 					</div>
 				</form>
 
-				<div class="login100-more" style="background-image: url('images/logo.png');"></div>
+				<div class="login100-more" style="background-image: url('images/logo_login.png');"></div>
 			</div>
 		</div>
 	</div>

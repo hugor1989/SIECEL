@@ -171,7 +171,8 @@
                             <div class="col-12 col-md-6 mt-4">
                               <input type="text" class="form-control floating" 
                                      onkeyup="mayus(this);"  
-                                     id="nuevoNumeroExterior" name="nuevoNumeroExterior" disabled required>
+                                     id="nuevoNumeroExterior" name="nuevoNumeroExterior"
+                                     disabled >
                               <label for="usr">Numero Exterior</label>
                             </div>
                             <div class="col-12 col-md-6 mt-4">

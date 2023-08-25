@@ -183,12 +183,44 @@ $(".ajax_view").on("click", ".btnEditarCotizacion", function(){
            
             ObtenerDatosAsociado($("#EnuevoAsociado").val());
             ObtenerDatosCliennte($("#EnuevoCliente").val());
+            ObtenerMercanciaAutorizar($("#EnuevoMercancia").val());
 
 		}
 
 	});
 
 })
+
+function ObtenerMercanciaAutorizar(idmercancia){
+	var idMercancia = idmercancia;
+	
+	var datos = new FormData();
+	datos.append("idMercancia", idMercancia);
+
+	$.ajax({
+
+		url:"ajax/giro.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+
+
+
+            $("#TB_DeducibleROT").val(respuesta["DEDUCIBLE_ROT"]);
+            $("#TB_DEDUCIBLE_ROBO").val(respuesta["DEDUCIBLE_ROBO"]);
+            $("#TB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+            $("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
+            $("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+            $("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
+			
+		}
+
+	});
+  }
 
 //Funcion que sirve para obtener el giro de la mercancia seleccionada
 function ObtenerDatosAsociado(idAsociado){
@@ -633,14 +665,7 @@ function impresionCertificadoPDF(folio, id, foliocotizacion){
     var nuevoTipoVehiculo = $("#EnuevoTipoVehiculo").val(); //TB_OrigenCobertura
     var OrigenCobertura = $("#ETB_MunicipioOrigenCobertura").val() + ", " + $("#ETB_EstadoOrigenCobertura").val() + ", " +  $( "#ETB_PaisOrigen option:selected" ).text();
     var DestinoCobertura = $("#ETB_MunicipioDestinoCobertura").val() + ", " + $("#ETB_EstadoDestinoCobertura").val() + ", " + $( "#ETB_PaisDestinoCobertura option:selected" ).text();//$("#TB_PaisDestinoCobertura").val();
-    var marca = $("#ETB_Marca").val();
-    var motor = $("#ETB_Motor").val();
-    var nombrechofer = $("#ETB_NombreChofer").val();
     var ProtocoloDescripcion = $("#ETB_DescripcionProtocolo").val();
-    var numeroplacas = $("#ETB_Placas").val();
-    var modelo = $("#ETB_Modelo").val();
-    var serie = $("#ETB_Serie").val();
-    var color = $("#ETB_Color").val();
     var ObservacionGnral = $("#ETB_ObservacionGnral").val();
     var NumeroGuia = $("#ETB_NumeroGuia").val();
     var EmailAsociado = $("#ETB_EmailAsociado").val();
@@ -650,14 +675,27 @@ function impresionCertificadoPDF(folio, id, foliocotizacion){
     var coberturacontenedor = $("#TB_CoberturaContenedor").val();
     var ImagenAsociado = $("#TB_ImagenAsociado").val().substring(7);
     var Descripcion_seguridad = $("#ETB_DescripcionGPS").val(); 
+    var MayorAnios = $( "#EEMAYOR option:selected" ).text();
+    var TB_DeducibleROT = $("#TB_DeducibleROT").val(); 
+    var TB_DEDUCIBLE_ROBO = $("#TB_DEDUCIBLE_ROBO").val(); 
+    var TB_DEDUCIBLE_OTROS_R = $("#TB_DEDUCIBLE_OTROS_R").val(); 
+    var TB_DEDUCIBLE_SVT = $("#TB_DEDUCIBLE_SVT").val(); 
+    var TB_MARITIMO_AEREO_COMBINADO = $("#TB_MARITIMO_AEREO_COMBINADO").val(); 
     
+     /*  var marca = $("#ETB_Marca").val();
+    var motor = $("#ETB_Motor").val();
+    var nombrechofer = $("#ETB_NombreChofer").val(); */
+        /* var numeroplacas = $("#ETB_Placas").val();
+    var modelo = $("#ETB_Modelo").val();
+    var serie = $("#ETB_Serie").val();
+    var color = $("#ETB_Color").val(); */
 
     var _Id = id;
     var _Folio = folio;
     var foliocotizacion = foliocotizacion;
     
     //Funcion que manda a llamar la ventana para generar el pdf
-      VentanaCentrada('vistas/pdf/documentos/certificado_pdf.php?asociado='+asosiado+'&cliente='+cliente+'&mercancia='+mercancia+'&mediotransporte='+mediotransporte+'&dobleremolque='+dobleremolque+'&amparacontenedor='+amparacontenedor+'&tipocontenedor1='+tipocontenedor1+'&tipocontenedor2='+tipocontenedor2+'&tipodebien='+tipodebien+'&cv='+cv+'&cobertura='+cobertura+'&primaneta='+primaneta+'&iva='+iva+'&total='+total+'&valorembarque='+Valorembarque+'&rfc='+rfc+'&email='+email+'&direccion='+direccion+'&idcontenedor1='+idcontenedor1+'&idcontenedor2='+idcontenedor2+'&fechacobertura='+fechacobertura+'&horacobertura='+horacobertura+'&OrigenCobertura='+OrigenCobertura+'&paiscobertura='+paiscobertura+'&DestinoCobertura='+DestinoCobertura+'&nuevoTipoEmbarque='+nuevoTipoEmbarque+'&nuevoLNTRP='+nuevoLNTRP+'&nuevoTipoVehiculo='+nuevoTipoVehiculo+'&nuevoNbLNTRP='+nuevoNbLNTRP+'&marca='+marca+'&motor='+motor+'&nombrechofer='+nombrechofer+'&ProtocoloDescripcion='+ProtocoloDescripcion+'&numeroplacas='+numeroplacas+'&modelo='+modelo+'&serie='+serie+'&color='+color+'&ObservacionGnral='+ObservacionGnral+'&NumeroGuia='+NumeroGuia+'&_Id='+_Id+'&_Folio='+_Folio+'&EmailAsociado='+EmailAsociado+'&ImagenAsociado='+ImagenAsociado+'&FechaHora='+FechaHora+'&valormercancia2='+valormercancia2+'&valormercancia1='+valormercancia1+'&TipoEmpaque='+TipoEmpaque+'&Sumasolicitadaprimero='+Sumasolicitadaprimero+'&Sumasolicitadasegundo='+Sumasolicitadasegundo+'&deduciblescontenedor='+deduciblescontenedor+'&deducibles='+deducibles+'&coberturamercancia='+coberturamercancia+'&coberturacontenedor='+coberturacontenedor+'&TipoSeguro='+TipoSeguro+'&foliocotizacion='+foliocotizacion+'&Descripcion_seguridad='+Descripcion_seguridad, 'certificado','','1024','768','true');
+      VentanaCentrada('vistas/pdf/documentos/certificado_pdf.php?asociado='+asosiado+'&MayorAnios='+MayorAnios+'&TB_DEDUCIBLE_ROBO='+TB_DEDUCIBLE_ROBO+'&TB_DEDUCIBLE_OTROS_R='+TB_DEDUCIBLE_OTROS_R+'&TB_DEDUCIBLE_SVT='+TB_DEDUCIBLE_SVT+'&TB_MARITIMO_AEREO_COMBINADO='+TB_MARITIMO_AEREO_COMBINADO+'&TB_DeducibleROT='+TB_DeducibleROT+'&cliente='+cliente+'&mercancia='+mercancia+'&mediotransporte='+mediotransporte+'&dobleremolque='+dobleremolque+'&amparacontenedor='+amparacontenedor+'&tipocontenedor1='+tipocontenedor1+'&tipocontenedor2='+tipocontenedor2+'&tipodebien='+tipodebien+'&cv='+cv+'&cobertura='+cobertura+'&primaneta='+primaneta+'&iva='+iva+'&total='+total+'&valorembarque='+Valorembarque+'&rfc='+rfc+'&email='+email+'&direccion='+direccion+'&idcontenedor1='+idcontenedor1+'&idcontenedor2='+idcontenedor2+'&fechacobertura='+fechacobertura+'&horacobertura='+horacobertura+'&OrigenCobertura='+OrigenCobertura+'&paiscobertura='+paiscobertura+'&DestinoCobertura='+DestinoCobertura+'&nuevoTipoEmbarque='+nuevoTipoEmbarque+'&nuevoLNTRP='+nuevoLNTRP+'&nuevoTipoVehiculo='+nuevoTipoVehiculo+'&nuevoNbLNTRP='+nuevoNbLNTRP+'&ProtocoloDescripcion='+ProtocoloDescripcion+'&ObservacionGnral='+ObservacionGnral+'&NumeroGuia='+NumeroGuia+'&_Id='+_Id+'&_Folio='+_Folio+'&EmailAsociado='+EmailAsociado+'&ImagenAsociado='+ImagenAsociado+'&FechaHora='+FechaHora+'&valormercancia2='+valormercancia2+'&valormercancia1='+valormercancia1+'&TipoEmpaque='+TipoEmpaque+'&Sumasolicitadaprimero='+Sumasolicitadaprimero+'&Sumasolicitadasegundo='+Sumasolicitadasegundo+'&deduciblescontenedor='+deduciblescontenedor+'&deducibles='+deducibles+'&coberturamercancia='+coberturamercancia+'&coberturacontenedor='+coberturacontenedor+'&TipoSeguro='+TipoSeguro+'&foliocotizacion='+foliocotizacion+'&Descripcion_seguridad='+Descripcion_seguridad, 'certificado','','1024','768','true');
 }
 
 //Funcion para mandar a imprimir el recibo de cobro
