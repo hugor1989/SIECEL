@@ -37,7 +37,7 @@
 							$_SESSION["email"] = $data["Email"];
 							$_SESSION["perfil"] = $data["Perfil"];
 
-							header('location: APAR/');
+							header('location: PAR/');
 						}else{
 							$alert = 'Usuario o Contraseña incorrectos';
 							session_destroy();
@@ -54,7 +54,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Inicio de Sesion</title>
+	<title>PAR | Inicio de Sesion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
