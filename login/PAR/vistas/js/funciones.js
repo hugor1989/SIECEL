@@ -1,5 +1,56 @@
 
+//Función para validar un RFC
+// Devuelve el RFC sin espacios ni guiones si es correcto
+// Devuelve false si es inválido
+// (debe estar en mayúsculas, guiones y espacios intermedios opcionales)
+function rfcValido(rfc, aceptarGenerico = true) {
+  _rfc_pattern_pm = "^(([A-ZÑ&]{3})([0-9]{2})([0][13578]|[1][02])(([0][1-9]|[12][\\d])|[3][01])([A-Z0-9]{3}))|" +
+           "(([A-ZÑ&]{3})([0-9]{2})([0][13456789]|[1][012])(([0][1-9]|[12][\\d])|[3][0])([A-Z0-9]{3}))|" +
+           "(([A-ZÑ&]{3})([02468][048]|[13579][26])[0][2]([0][1-9]|[12][\\d])([A-Z0-9]{3}))|" +
+           "(([A-ZÑ&]{3})([0-9]{2})[0][2]([0][1-9]|[1][0-9]|[2][0-8])([A-Z0-9]{3}))$";
+_rfc_pattern_pf = "^(([A-ZÑ&]{4})([0-9]{2})([0][13578]|[1][02])(([0][1-9]|[12][\\d])|[3][01])([A-Z0-9]{3}))|" +
+                "(([A-ZÑ&]{4})([0-9]{2})([0][13456789]|[1][012])(([0][1-9]|[12][\\d])|[3][0])([A-Z0-9]{3}))|" +
+                "(([A-ZÑ&]{4})([02468][048]|[13579][26])[0][2]([0][1-9]|[12][\\d])([A-Z0-9]{3}))|" +
+                "(([A-ZÑ&]{4})([0-9]{2})[0][2]([0][1-9]|[1][0-9]|[2][0-8])([A-Z0-9]{3}))$";
+return rfc.match(_rfc_pattern_pm) || rfc.match(_rfc_pattern_pf);
+}
 
+
+//Handler para el evento cuando cambia el input
+// -Lleva la RFC a mayúsculas para validarlo
+// -Elimina los espacios que pueda tener antes o después
+function validarInputnuevo(input) {
+ var rfc         = input.trim().toUpperCase(),
+     resultado   = document.getElementById("resultado"),
+     valido;
+     
+ var rfcCorrecto = rfcValido(rfc);   // ⬅️ Acá se comprueba
+
+ if (rfcCorrecto) {
+ // document.getElementById("nuevoEmail").disabled = false;
+  document.getElementById("nuevoCalle").disabled = false;
+  document.getElementById("nuevoNumeroInterior").disabled = false;
+  document.getElementById("nuevoNumeroExterior").disabled = false;
+  document.getElementById("nuevoColonia").disabled = false;
+  document.getElementById("nuevoMunicipio").disabled = false;
+  document.getElementById("nuevoCP").disabled = false;
+  document.getElementById("nuevoEstado").disabled = false;
+  document.getElementById("nuevoPais").disabled = false;
+ } else {
+  //document.getElementById("nuevoEmail").disabled = true;
+  document.getElementById("nuevoCalle").disabled = true;
+  document.getElementById("nuevoNumeroInterior").disabled = true;
+  document.getElementById("nuevoNumeroExterior").disabled = true;
+  document.getElementById("nuevoColonia").disabled = true;
+  document.getElementById("nuevoMunicipio").disabled = true;
+  document.getElementById("nuevoCP").disabled = true;
+  document.getElementById("nuevoEstado").disabled = true;
+  document.getElementById("nuevoPais").disabled = true;
+ }
+     
+ /* resultado.innerText = "RFC: " + rfc
+                     + "\nFormato: " + valido; */
+}
 
 //Handler para el evento cuando cambia el input
 // -Lleva la RFC a mayúsculas para validarlo

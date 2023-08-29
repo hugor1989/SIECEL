@@ -69,6 +69,24 @@ class sql_registro extends dbconn {
 
 				$FolioCertificado = $UltimoFolio;
 			}
+
+
+			
+			if($PrimaNetaContenedorApar == null || $PrimaNetaContenedorApar == ""){
+
+				$PrimaNetaContenedorApar = 0;
+			}
+
+			if($Sumasolicitadaprimero == null || $Sumasolicitadaprimero == ""){
+
+				$Sumasolicitadaprimero = 0;
+			}
+
+			if($Sumasolicitadasegundo == null || $Sumasolicitadasegundo == ""){
+
+				$Sumasolicitadasegundo = 0;
+			}
+
  
 			$stmt = $db->prepare("insert into cotizacion (Fecha, Folio, Asociado, Cliente, Numero_guia, 
                                   Identificador_Contenedor1, Identificador_Contenedor2, Fecha_InicioCobertura, Hora_InicioCobertura,
@@ -298,13 +316,13 @@ class sql_registro extends dbconn {
 		{
 			$lastInsertId = 0;
 			$stat[0] = false;
-			$stat[1] = $ex->getMessage();
+			$stat[1] = $ex->getMessage().$stmt;
 			$stat[2] = 0;
 			$stat[3] = "";
 			return $stat;
 		}
 	}
-	public function new_certificado($Idcotizacion,$Fecha,$Folio,$Asosiado,$Cliente,$Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
+	public function new_certificado($Idcotizacion,$PrefijoFolio,$Fecha,$Folio,$Asosiado,$Cliente,$Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
 									$Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
 									$MunicipioOrigenCobertura, $PaisDestinoEmbarque, $EstadoDestinoEmbarque, $MunicipioDestinoEmbarque,
 									$Medio_Transporte, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista,
@@ -332,9 +350,13 @@ class sql_registro extends dbconn {
             $fechacobertura = date("Y-m-d", strtotime($originalFechaCobertura));
 
 			//Se obtiene el ultimo folio del usuario
+			$prefijoAbreviatura = "";
 			$UltimoFolio;
 			$FolioCertificado;
-			$PrefijoAseguradora = "CHUBB22";
+			$PrefijoAseguradora = "CHUBB23";
+
+			
+
 
 			$stmt = $db->prepare("SELECT MAX(Folio) as Folio FROM certificado WHERE Asociado = :Asociado ");
 			$stmt->bindParam("Asociado",$Asosiado);
@@ -349,8 +371,9 @@ class sql_registro extends dbconn {
 
 			}else{
 
-				$UltimoFolio = "1";
-				$FolioFinal =  $PrefijoAseguradora.$Folio.str_pad($UltimoFolio, 6, "0", STR_PAD_LEFT);	  
+				$UltimoFolio = $PrefijoFolio."0001";
+				//$PREFIJOOOO = $Folio.str_pad($UltimoFolio, 6, "0", STR_PAD_LEFT);
+				$FolioFinal =  $PrefijoAseguradora.$UltimoFolio;  
 			} 
 
 			if($FolioFinal != null && $FolioFinal != ''){
@@ -359,6 +382,20 @@ class sql_registro extends dbconn {
 			}else{
 
 				$FolioCertificado = $UltimoFolio;
+			}
+
+			if($Sumasolicitadaprimero == null || $Sumasolicitadaprimero == ""){
+
+				$Sumasolicitadaprimero = 0;
+			}
+
+			if($Sumasolicitadasegundo == null || $Sumasolicitadasegundo == ""){
+
+				$Sumasolicitadasegundo = 0;
+			}
+			if($PrimaNetaContenedorApar == null || $PrimaNetaContenedorApar == ""){
+
+				$PrimaNetaContenedorApar = 0;
 			}
 		
  
@@ -470,10 +507,10 @@ class sql_registro extends dbconn {
 			$lastInsertId = $db->lastInsertId();
 
 			//Si es correcto la insercion del certificado se actualiza la cotizacion en Estatus Autorizado
-			$stmt = $db->prepare("UPDATE cotizacion set Estatus = :Estatus where Id = :Id ");
-			$stmt->bindParam("Id",$Idcotizacion);
-			$stmt->bindParam("Estatus",$Estatus);
-			$stmt->execute();
+			$stmt1 = $db->prepare("UPDATE cotizacion set Estatus = :Estatus where Id = :Id ");
+			$stmt1->bindParam("Id",$Idcotizacion);
+			$stmt1->bindParam("Estatus",$Estatus);
+			$stmt1->execute();
 			//$stat[0] = true;
 			//$stat[1] = "Success edit customer";
 			//return $stat;
@@ -527,7 +564,7 @@ class sql_registro extends dbconn {
 		{
 			$lastInsertId = 0;
 			$stat[0] = false;
-			$stat[1] = $ex->getMessage();
+			$stat[1] = $ex->getMessage()."".$stmt;
 			$stat[2] = 0;
 			$stat[3] = "";
 			return $stat;

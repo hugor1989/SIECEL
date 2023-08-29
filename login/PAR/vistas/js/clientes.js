@@ -324,11 +324,7 @@ $(function () {
 							},
 							
 							columnDefs: [
-							{ width: 50, targets: 0 },
-							{
-								targets: 5,
-								className: 'zoom'
-							  }, //Nombre
+							{ width: 50, targets: 0 }
 							],
 							"buttons": ["csv", "excel","colvis"]
 							}).buttons().container().appendTo('#TB_Clientes_wrapper .col-md-6:eq(0)');
@@ -381,11 +377,12 @@ $(function () {
 
 	var imagen = this.files[0];
 	
+	console.log(imagen["type"]);
 	/*=============================================
   	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
   	=============================================*/
 
-  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png" && imagen["type"] != "image/jpg"){
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png" && imagen["type"] != "image/jpg" && imagen["type"] != "application/pdf"){
 
   		$(".fotoofac").val("");
 
