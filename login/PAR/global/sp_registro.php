@@ -30,6 +30,7 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
 
 	if($method == 'new_certificado'){
         $Idcotizacion = $_POST['Idcotizacion'];
+        $PrefijoFolio = $_POST['PrefijoFolio'];
 		$Fecha = $_POST['Fecha'];
         $Folio = $_POST['Folio'];
         $Asosiado = $_POST['Asosiado'];
@@ -104,7 +105,7 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_W
         $CoberturaContenedor = $_POST['CoberturaContenedor'];
         $GeneraAutomatico = $_POST['GeneraAutomatico'];
 		
-		$new = $dtbs->new_certificado($Idcotizacion,$Fecha,$Folio,$Asosiado,$Cliente, $Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
+		$new = $dtbs->new_certificado($Idcotizacion,$PrefijoFolio,$Fecha,$Folio,$Asosiado,$Cliente, $Numero_guia, $Identificador_Contenedor1, $Identificador_Contenedor2, 
                                       $Fecha_InicioCobertura,$Hora_InicioCobertura, $PaisOrigenEmbarque, $OrigenCobertura, $EstadoOrigenCobertura,
                                       $MunicipioOrigenCobertura, $PaisDestinoEmbarque, $EstadoDestinoEmbarque, $MunicipioDestinoEmbarque,
                                       $Medio_Transporte, $Embarque, $TipoLineaTransportista, $TipoVehiculo, $LineaTransportista,

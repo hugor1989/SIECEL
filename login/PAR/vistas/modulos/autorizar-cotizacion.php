@@ -927,7 +927,7 @@
                                   <th style="width: 80%; text-align: right;">PRIMA NETA MERCANCIA  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm" 
-                                          style="text-align:right" id="ETB_PNTAT" name= "ETB_PNTAT"  
+                                          style="text-align:right" id="ETB_PNTAT" name= "ETB_PNTAT"  disabled
                                              ></input>
                                   </th>
                                     
@@ -938,7 +938,7 @@
                                   <th style="width: 80%; text-align: right;">PRIMA NETA CONTENEDOR  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm" style="text-align:right"
-                                          id="ETB_PMCTNDT" name= "ETB_PMCTNDT" 
+                                          id="ETB_PMCTNDT" name= "ETB_PMCTNDT"  disabled
                                            ></input>
                                   </th>
                                     
@@ -949,7 +949,7 @@
                                   <th style="width: 80%; text-align: right;">PRIMA NETA TOTAL  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm" style="text-align:right"
-                                          id="ETB_PMAGTT" name= "ETB_PMAGTT" 
+                                          id="ETB_PMAGTT" name= "ETB_PMAGTT" disabled
                                              ></input>
                                   </th>
                                     
@@ -960,7 +960,7 @@
                                   <th style="width: 80%; text-align: right;">DERECHO CERTIFICADO  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm"
-                                          style="text-align:right" id="ETB_DCRTT" name= "ETB_DCRTT" 
+                                          style="text-align:right" id="ETB_DCRTT" name= "ETB_DCRTT"  disabled
                                            ></input>
                                   </th>
                                     
@@ -971,7 +971,7 @@
                                   <th style="width: 80%; text-align: right;">IVA  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm" style="text-align:right"
-                                          id="EIVA" name= "EIVA"
+                                          id="EIVA" name= "EIVA" disabled
                                            ></input>
                                   </th>
                                     
@@ -982,7 +982,7 @@
                                   <th style="width: 80%; text-align: right;">PRIMA TOTAL  :  </th>
                                     <th style="width: 20%; text-align: right;">
                                     <input type="text" class="form-control sm" 
-                                            style="text-align:right"  id="ETOTAL" name= "ETOTAL" 
+                                            style="text-align:right"  id="ETOTAL" name= "ETOTAL"  disabled
                                              ></input>
                                       </th>
                                 </tr>

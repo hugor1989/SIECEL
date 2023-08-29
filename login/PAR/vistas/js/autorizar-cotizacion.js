@@ -181,9 +181,9 @@ $(".ajax_view").on("click", ".btnEditarCotizacion", function(){
 			$("#Idcotizacion").val(respuesta["Id"]);
 
            
-            ObtenerDatosAsociado($("#EnuevoAsociado").val());
-            ObtenerDatosCliennte($("#EnuevoCliente").val());
-            ObtenerMercanciaAutorizar($("#EnuevoMercancia").val());
+            ObtenerDatosAsociado(respuesta["Asociado"]);
+            ObtenerDatosCliennte(respuesta["Cliente"]);
+            ObtenerMercanciaAutorizar(respuesta["Mercancia"]);
 
 		}
 
@@ -216,6 +216,8 @@ function ObtenerMercanciaAutorizar(idmercancia){
             $("#TB_DEDUCIBLE_SVT").val(respuesta["DEDUCIBLE_SVT"]);
             $("#TB_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
             $("#TB_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
+            $("#Epeligrosidad").val(respuesta["Peligrosidad"]);
+            
 			
 		}
 
@@ -225,7 +227,7 @@ function ObtenerMercanciaAutorizar(idmercancia){
 //Funcion que sirve para obtener el giro de la mercancia seleccionada
 function ObtenerDatosAsociado(idAsociado){
 	var idAsociado = idAsociado;
-	
+	console.log(idAsociado);
 	var datos = new FormData();
 	datos.append("idUsuario", idAsociado);
 
@@ -240,6 +242,34 @@ function ObtenerDatosAsociado(idAsociado){
 		dataType: "json",
 		success: function(respuesta){
 
+            var len = respuesta.length;
+			var IdAseguradora = 0;
+
+            for(var i=0; i<len; i++){
+
+				
+				$("#TB_PrefijoFolio").val(respuesta[i].Abreviatura);
+				$("#TB_ObjComision").val(respuesta[i].Comision);
+				$("#TB_ObjCuotaBasica").val(respuesta[i].Cuota_VT);
+				$("#TB_ObjCuotaRot").val(respuesta[i].Cuota_Rot);
+				$("#TB_ObjCuotaTR").val(respuesta[i].Cuota_TR);
+				$("#TB_ObjCuotaContenedor").val(respuesta[i].Cuota_Contenedor);
+				$("#TB_ObjPrimaminima").val(respuesta[i].Prima_minima);
+				$("#TB_ObjDerechoCertificado").val(respuesta[i].Derecho_Certificado);
+				$("#TB_EmailAsociado").val(respuesta[i].Email);
+				$("#TB_ImagenAsociado").val(respuesta[i].Foto);
+				$("#TB_Aseguradora").val(respuesta[i].IdAseguradora);
+
+
+				IdAseguradora = respuesta[i].IdAseguradora;
+			}
+/* 
+            console.log(respuesta);
+
+
+
+            console.log(respuesta.Abreviatura);
+
             //console.log("respuesta correcta de ogtener datos");
 			$("#TB_PrefijoFolio").val(respuesta["Abreviatura"]);
             $("#TB_ObjComision").val(respuesta["Comision"]);
@@ -251,7 +281,7 @@ function ObtenerDatosAsociado(idAsociado){
             $("#TB_ObjDerechoCertificado").val(respuesta["Derecho_Certificado"]);
             $("#TB_EmailAsociado").val(respuesta["Email"]);
             $("#TB_ImagenAsociado").val(respuesta["Foto"]);
-
+ */
 			
 		}
 
@@ -276,6 +306,7 @@ $("#btnautorizar").on('click',function(){
         if(result.value){
             
             var _Folio = $("#ETB_Folio").val();
+            var _PrefijoFolio = $("#TB_PrefijoFolio").val();
             var _Fecha = $("#DT_FechaHora").val();
             var folio;
 
@@ -371,6 +402,7 @@ $("#btnautorizar").on('click',function(){
             let ajax = {
                 method: "new_certificado",
                 Idcotizacion: _Idcotizacion,
+                PrefijoFolio : _PrefijoFolio,
                 Asosiado: _Asosiado,
                 Fecha: _Fecha,
                 Folio: _Folio,
@@ -689,6 +721,20 @@ function impresionCertificadoPDF(folio, id, foliocotizacion){
     var modelo = $("#ETB_Modelo").val();
     var serie = $("#ETB_Serie").val();
     var color = $("#ETB_Color").val(); */
+
+
+    if(tipocontenedor1 == "Selecionar Opcion"){
+
+        tipocontenedor1 = "EXCLUIDO"
+    }
+
+    
+    if(tipocontenedor2 == "Selecionar Opcion"){
+
+        tipocontenedor2 = "EXCLUIDO"
+    }
+
+
 
     var _Id = id;
     var _Folio = folio;

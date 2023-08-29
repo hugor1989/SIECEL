@@ -116,7 +116,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <table cellspacing="0"  style="width: 100%;padding:0mm;">
         <tr text-align: rigth;">
             <td style="width: 12%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">N° de Póliza:</td>
-            <td style="width: 14%; font-size: 14px; text-align: left; color:#212529"><strong>50-19637</strong></td>
+            <td style="width: 14%; font-size: 14px; text-align: left; color:#212529"><strong>HH4300134</strong></td>
             <td style="width: 13%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">CERTIFICADO:</td>
             <td style="width: 30%; font-size: 14px; text-align: left; color:#212529"><strong><?php echo $_Folio ?></strong></td>
             <td style="width: 15%; font-size: 14px; font-family: Arial, Helvetica, sans-serif; text-align: center; color:#000000; ">FECHA Y HORA:</td>
@@ -145,7 +145,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     <table cellspacing="0" style="width: 100%; padding:0mm;">    
         <tr>
             <td style="width: 15%; font-size: 10px; font-family: Arial, Helvetica, sans-serif;  text-align: left;  color:#000000;">DOMICILIO:</td>
-            <td style="width: 85%; font-size: 10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo $direccion;?></strong></td>
+            <td style="width: 85%; font-size: 10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color:#212529"><strong><?php echo strtoupper($direccion);?></strong></td>
         </tr>
     </table>
     
@@ -336,7 +336,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table cellspacing="0" style="width: 100%;">
             <tr text-align: rigth;>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">TIPO DE CONTENEDOR 1:</td>
-                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($tipocontenedor1) ?></strong></td>
+                <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;">
+                    <strong>
+                    <?php echo strtoupper($tipocontenedor1) ?>
+                    </strong>
+                </td>
                 <td style="width:20%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #000000; ">SUMA ASEGURADA</td>
                 <td style="width:0%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo number_format($Sumasolicitadaprimero,2); ?></strong></td>    
             </tr>
@@ -355,7 +359,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <table cellspacing="0" style="width: 100%;">
             <tr text-align: rigth;>
                 <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">COBERTURAS</td>
-                <td style="width:75%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong></td>
+                <td style="width:75%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($coberturacontenedor) ?></strong></td>
             </tr>
             <tr text-align: rigth;>
                 <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">DEDUCIBLE</td>
@@ -392,6 +396,16 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:80%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
             </tr>
         </table>
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+        <tr>
+            <td style="width:100%; background-color:#034694"><strong>Protocolos</strong> <br></td>
+        </tr>
+    </table>
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+        <tr>
+            <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong> <br></td>
+		</tr>
+    </table>
     <?php if ($ObservacionGnral != "") { ?>
      <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
         <tr>

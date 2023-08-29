@@ -1743,7 +1743,7 @@ $('#nuevoCBM').change(function() {
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
 
 			//alert($("#MTPT").val());
-			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val();
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val();
 			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida.";
 		}
 
@@ -2019,7 +2019,7 @@ $('#nuevoCBM').change(function() {
 		// de la mercancia que no corresponda a a esos giros
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
 
-			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val();
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val();
 			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida."
 		}
 
@@ -2480,7 +2480,8 @@ $('#nuevoCBM').change(function() {
 
 		if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
 
-			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val() + " SVT: " + $("#TB_DEDUCIBLE_SVT").val();
+			document.getElementById("TB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + 
+						" ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val() + " SVT: " + $("#TB_DEDUCIBLE_SVT").val();
 			//document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
 		}
 		
@@ -3165,11 +3166,11 @@ $('#datos_certificado').submit(function(e){
 	}
 	else{
 		Swal.fire({
-				title: "Estar Seguro de Generar la Cotizacion",
+				title: "Esta Seguro de Generar el documento?",
 				type: 'info',
 				showCancelButton: true,
 				confirmButtonClass: "btn-primary",
-				confirmButtonText: "Guardar",
+				confirmButtonText: "Generar",
 				closeOnConfirm: false,
 				showLoaderOnConfirm: true
 			}).then((result) =>{
@@ -3439,6 +3440,7 @@ function test(metodo, idcotizacion, comentariosrevision, status) {
 		_Asosiado = $("#nuevoAsociado").val(); //$( "# option:selected" ).text();
 	}
 					var _cliente = $("#nuevoCliente").val();
+					var _PrefijoFolio = $("#TB_Folio").val();
 					var _Mercancia = $("#nuevoMercancia").val();
 					var _Griro = $("#TB_Giro").val();//giro falta campo en la bd y grabar
 					var _DescripcionMercancia = $("#TB_DescripcionMercancia").val();
@@ -3606,6 +3608,7 @@ function test(metodo, idcotizacion, comentariosrevision, status) {
 							method: metodo,
 							Asosiado: _Asosiado,
 							Idcotizacion: idcotizacion,
+							PrefijoFolio : _PrefijoFolio,
 							Fecha: _Fecha,
 							Folio: _Folio,
 							Cliente: _cliente,

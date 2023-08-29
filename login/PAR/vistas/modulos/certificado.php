@@ -237,7 +237,7 @@
                           <div class="col-md-8">
                             <div class="form-group">
                             <label>Mercancia</label>
-                              <select class="form-control   input-lg" id="nuevoMercancia"  name="nuevoMercancia" style="width: 100%;" required>	
+                              <select class="form-control select2 input-lg" id="nuevoMercancia"  name="nuevoMercancia" style="width: 100%;" required>	
                                 <option value="na">Selecionar Mercancia</option>
                                     <?php
                                         $itemMercancia = null;
