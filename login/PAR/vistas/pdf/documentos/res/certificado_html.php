@@ -295,7 +295,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DEDUCIBLE_OTROS_R) ?></strong></td>
 
                 <?php }else{?>
-                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>EXCLUIDO</strong></td>
                 <?php } ?>
             </tr>
             <tr>
@@ -305,7 +305,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_DEDUCIBLE_SVT) ?></strong></td>
 
                 <?php }else{?>
-                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>EXCLUIDO</strong></td>
                 <?php } ?>
             </tr>
             <tr>
@@ -315,7 +315,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($TB_MARITIMO_AEREO_COMBINADO) ?></strong></td>
 
                 <?php }else{?>
-                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO APLICA</strong></td>
+                <td style="width:50%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>EXCLUIDO</strong></td>
                 <?php } ?>
             </tr>
         </table>              
@@ -366,44 +366,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
                 <td style="width:75%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($deduciblescontenedor) ?></strong></td>
             </tr>
         </table>
-        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
-            <tr>
-                <td style="width:100%; background-color:#034694"><strong>DESCRIPCION INCREMENTALES:</strong> <br></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%;">
-            <tr text-align: rigth;>
-                <td style="width:40%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">¿Se cubren incrementales?</td>
-                <td style="width:60%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>NO</strong></td>
-            </tr>
-            <tr text-align: rigth;>
-                <td style="width:40%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">Valor total de incrementales</td>
-                <td style="width:60%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong></strong></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
-            <tr>
-                <td style="width:100%; background-color:#034694"><strong>COBERTURAS Y DEDUCIBLES DE INCREMENTALES</strong> <br></td>
-            </tr>
-        </table>
-        <table cellspacing="0" style="width: 100%;">
-            <tr text-align: rigth;>
-                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">Coberturas</td>
-                <td style="width:80%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>Riesgos Ordinarios de Transito, Robo Total con violencia y/o asalto, Ratería, pillería y hurto a consecuencia de un riesgo ordinario de tránsito,  Maniobras de carga y descarga, </strong></td>
-            </tr>
-            <tr text-align: rigth;>
-                <td style="width:15%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left; color: #000000; ">Deducible</td>
-                <td style="width:80%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong>PARA TODAS LAS COBERTURAS OPERARA EN CASO DE SINIESTRO  <?php echo strtoupper($deducibles) ?></strong></td>
-            </tr>
-        </table>
+     
     <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
         <tr>
             <td style="width:100%; background-color:#034694"><strong>Protocolos</strong> <br></td>
         </tr>
     </table>
-    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+    <table cellspacing="0" style="width: 100%;">
         <tr>
-            <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong> <br></td>
+            <td style="width:100%; font-size:10px; font-family: Arial, Helvetica, sans-serif; text-align: left;"><strong><?php echo strtoupper($Descripcion_seguridad) ?></strong> <br></td>
 		</tr>
     </table>
     <?php if ($ObservacionGnral != "") { ?>
@@ -412,7 +383,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <td style="width:100%; background-color:#034694"><strong>Observaciones</strong> <br></td>
         </tr>
     </table>
-    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; ">
         <tr>
             <td style="width:85%; text-align: left; "><strong><?php echo strtoupper($ObservacionGnral) ?></strong> <br></td>
 		</tr>
@@ -423,7 +394,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             <td style="width:100%; background-color:#034694"><strong>Observaciones</strong> <br></td>
         </tr>
     </table>
-    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; color:#ffffff; ">
+    <table cellspacing="0" style="width: 100%; text-align: left;  font-size: 12px; font-family: Arial, Helvetica, sans-serif; ">
         <tr>
         <td style="width:85%; text-align: left; "><strong>SIN OBSERVACIONES</strong> <br></td>
 		</tr>
