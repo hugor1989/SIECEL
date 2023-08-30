@@ -92,7 +92,13 @@ class ControladorMercancia{
 								"valorb" => $_POST["nuevoIntervalo2"],
 								"valorc" => $_POST["nuevoIntervalo3"],
 								"valord" => $_POST["nuevoIntervalo4"],
-								"valore" => $_POST["nuevoIntervalo5"]
+								"valore" => $_POST["nuevoIntervalo5"],
+								"nuevoDEDUCIBLE_ROT" => $_POST["nuevoDEDUCIBLE_ROT"],
+								"DEDUCIBLE_ROBO" => $_POST["DEDUCIBLE_ROBO"],
+								"DEDUCIBLE_OTROS_R" => $_POST["DEDUCIBLE_OTROS_R"],
+								"DEDUCIBLE_SVT" => $_POST["DEDUCIBLE_SVT"],
+								"EMBARQUE_CARRETERA_LIBRE" => $_POST["EMBARQUE_CARRETERA_LIBRE"],
+								"MARITIMO_AEREO_COMBINADO" => $_POST["MARITIMO_AEREO_COMBINADO"],
 								);
 
 				$respuesta = ModeloMercancia::mdlIngresarMercancia($tabla, $datos);
@@ -260,6 +266,12 @@ class ControladorMercancia{
 									"valorc" => $_POST["editarIntervalo3"],
 									"valord" => $_POST["editarIntervalo4"],
 									"valore" => $_POST["editarIntervalo5"],
+									"ETB_DEDUCIBLE_ROT" => $_POST["ETB_DEDUCIBLE_ROT"],
+									"ETB_DEDUCIBLE_ROBO" => $_POST["ETB_DEDUCIBLE_ROBO"],
+									"ETB_DEDUCIBLE_OTROS_R" => $_POST["ETB_DEDUCIBLE_OTROS_R"],
+									"ETB_DEDUCIBLE_SVT" => $_POST["ETB_DEDUCIBLE_SVT"],
+									"ETb_EMBARQUE_CARRETERA_LIBRE" => $_POST["ETb_EMBARQUE_CARRETERA_LIBRE"],
+									"ETb_MARITIMO_AEREO_COMBINADO" => $_POST["ETb_MARITIMO_AEREO_COMBINADO"],
 							   "id" => $_POST["id"]);
 
 				$respuesta = ModeloMercancia::mdlEditarMercancia($tabla, $datos);

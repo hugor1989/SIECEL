@@ -148,8 +148,10 @@
 			$mail->Port = 465;
 	
 			$mail->setFrom('notificaciones@siecel-ppr.com');
-	
-	
+			
+			/* $mail->AddCustomHeader( "X-Confirm-Reading-To: notificaciones@siecel-ppr.com" );
+
+			$mail->AddCustomHeader( "Return-receipt-to: notificaciones@siecel-ppr.com" ) */;
 	
 			$to = $cadena_formateada;
 			$nome = 'PAR';
@@ -158,7 +160,7 @@
 	
 			//$reply= $data[email];
 		   
-	
+		
 			$mail->AddAddress('aler1989p@gmail.com', $nome);
 			$mail->AddAddress('saul.castro@parprofessionalrisk.com', $nome);		//Adds a "To" address
 		   // $mail->addReplyTo($reply);

@@ -82,6 +82,46 @@
             </br>
         <input type="button" class="next-form-m btn btn-info" value="Siguiente" />
         </fieldset>
+       <!-- <fieldset>
+        <h2> Step 2: Deducibles</h2>
+        <div class="form-row mt-4">
+            <div class="col-12 col-sm-6">
+                <div class="input-group mb-3">
+                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
+                        title="ROT" data-toggle="tooltip" type="text" 
+                        name="nuevoROT" id="nuevoROT" placeholder="ROT"/>
+                        
+                </div> 
+            </div>
+            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
+                <div class="input-group mb-3">
+                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
+                            title="TR" data-toggle="tooltip" type="text" 
+                            name="nuevoRobo" id="nuevoRobo" placeholder="TR"/>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fa fa-percent"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-3 mt-4 mt-sm-0">
+                <div class="input-group mb-3">
+                    <input class="multisteps-form__input form-control" rel="txtTooltipCuotaContenedor" 
+                            title="VARIACION TERMINCA" data-toggle="tooltip" type="text" 
+                            name="nuevoVT" id="nuevoVT" placeholder="VARIACION TERMINCA"/>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fa fa-percent"></span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <br>
+            <input type="button" name="previous" class="previous-form-m btn btn-default" value="Atras" />
+            <input type="button" name="next" class="next-form-me btn btn-info" value="Siguiente" />
+        </fieldset> -->
         <fieldset>
             <h2>Step 3: Protocolos</h2>
             <!-- Grupo de imput -->
@@ -104,7 +144,7 @@
                     </select>
                 </div>
                 <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                <label>de 1'000,001 a 1'500,000</label>
+                <label>de 1'000,001 a 2'000,000</label>
                     <select class="form-control input-lg" id="nuevoIntervalo2" name="nuevoIntervalo2" 
                             rel="txtTooltipCuotaContenedor" 
                             title="de 1'000,001 a 1'500,000" data-toggle="tooltip" required>	
@@ -121,7 +161,7 @@
                     </select>
                 </div>
                 <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                <label>de 1'500,001 a 3'000,000</label>
+                <label>de 2'000,001 a 3'000,000</label>
                     <select class="form-control input-lg" id="nuevoIntervalo3" name="nuevoIntervalo3" 
                             rel="txtTooltipCuotaContenedor" 
                             title="de 1'500,001 a 3'000,000" data-toggle="tooltip" required>	
@@ -141,7 +181,7 @@
              <!-- fin de grupo input-->
              <div class="form-row mt-4">
                 <div class="col-12 col-sm-6">
-                <label>de 3'000,001 a 5'100,000</label>
+                <label>de 3'000,001 a 5'000,000</label>
                 <select class="form-control input-lg" id="nuevoIntervalo4" name="nuevoIntervalo4" 
                             rel="txtTooltipCuotaContenedor" 
                             title="de 3'000,001 a 5'100,000" data-toggle="tooltip" required>	
@@ -158,7 +198,7 @@
                     </select>
                 </div>
                 <div class="col-6 col-sm-3 mt-4 mt-sm-0">
-                    <label>de 3'000,001 a 5'100,000</label>
+                    <label>de 5'000,001 a 21'000,000</label>
                     <select class="form-control input-lg" id="nuevoIntervalo5" name="nuevoIntervalo5" 
                             rel="txtTooltipCuotaContenedor" 
                             title="de 3'000,001 a 5'100,000" data-toggle="tooltip" required>	
@@ -177,9 +217,71 @@
             </div> 
             <!-- fin de grupo input-->
             </br>
-            <input type="button" name="previous" class="previous-form-m btn btn-default" value="Previous" />
-            <button type="submit" class="btn btn-primary" name="submit">Guardar Mercancia</button>
+            <input type="button" name="previous" class="previous-form btn btn-default" value="Atras" />
+            <input type="button" name="next" class="next-form-m btn btn-info" value="Siguiente" />
         </fieldset>
+        <fieldset>
+              <h2>Step 3: Deducibles</h2>
+                        <!-- Grupo de imput -->
+                        <div class="form-row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                    <textarea class="multisteps-form__input form-control" rel="txtTooltipClaveComision" 
+                                    title="Limite Asegurable" data-toggle="tooltip" type="text" 
+                                    name="nuevoDEDUCIBLE_ROT" id="nuevoDEDUCIBLE_ROT" placeholder="DEDUCIBLE ROT"  rows="5" cols="5"  required ></textarea>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <textarea class="multisteps-form__input form-control" rel="txtTooltipClaveComision" 
+                                        title="Comision" data-toggle="tooltip" type="text" 
+                                        name="DEDUCIBLE_ROBO" id="DEDUCIBLE_ROBO" placeholder="DEDUCIBLE ROBO"  rows="5" cols="5"  required ></textarea>
+                                       
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-row mt-4">
+                            <div class="col-12 col-sm-6">
+                                <textarea class="multisteps-form__input form-control" rel="txtTooltipAbreviatura" 
+                                    maxlength="4"
+                                    onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" 
+                                    title="Abreviatura de 4 Caracteres" data-toggle="tooltip" type="text" 
+                                    name="DEDUCIBLE_OTROS_R"  id="DEDUCIBLE_OTROS_R" placeholder="DEDUCIBLE OTROS R" rows="5" cols="5"  required ></textarea>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                        <textarea class="multisteps-form__input form-control" rel="txtTooltipCuotaRot" 
+                                        title="Cuota Rot" data-toggle="tooltip" type="text" 
+                                        name="DEDUCIBLE_SVT" id="DEDUCIBLE_SVT" placeholder="DEDUCIBLE SVT" rows="5" cols="5"  required ></textarea>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin de grupo input-->
+                        <div class="form-row mt-4">
+                            
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                    <textarea class="multisteps-form__input form-control" rel="txtTooltipClaveBancaria" 
+                                        title="Cuota TR" data-toggle="tooltip"  type="numeric" 
+                                            name="EMBARQUE_CARRETERA_LIBRE"  id="EMBARQUE_CARRETERA_LIBRE" placeholder="EMBARQUE CARRETERA LIBRE" rows="5" cols="5"  required ></textarea>
+                                            
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                <textarea class="form-control" rel="txtTooltipCuotaBasica" 
+                                        title="Cuota TR + VT" data-toggle="tooltip" type="text" 
+                                        name="MARITIMO_AEREO_COMBINADO" id="MARITIMO_AEREO_COMBINADO" placeholder="MARITIMO AEREO COMBINADO" rows="5" cols="5"  required ></textarea>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIN INPUT -->
+                        <input type="button" name="previous" class="previous-form-m btn btn-default" value="Previous" />
+                        <button type="submit" class="btn btn-primary" name="submit">Guardar Mercancia</button>
+            </fieldset>
             <?php
 
                 $nuevoDescripcion = new ControladorMercancia();
