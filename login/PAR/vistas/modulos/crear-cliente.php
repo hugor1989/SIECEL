@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group floating" style='padding:10px'>
                             <input type="text" class="form-control floating" onkeyup="mayus(this);" 
-                                  oninput="validarInputnuevo(this.value)"  name="nuevoNombre" id="nuevoNombre">
+                                   name="nuevoNombre" id="nuevoNombre">
                             <label for="usr5">Razon Social</label>
                         </div>
                         <div class="form-group floating" style='padding:10px'>

@@ -18,6 +18,10 @@ $(".TablaMercancia").on("click", ".btnEditarMercancia", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
+
+			var rot = respuesta["DEDUCIBLE_ROT"];
+			var robo = respuesta["DEDUCIBLE_ROBO"];
+			var svt = respuesta["DEDUCIBLE_SVT"];
 			
 			$("#editarDescripcion").val(respuesta["Descripcion"]);
 		    $("#editarGiro> [value=" + respuesta["Giro"] + "]").attr("selected", "true");
@@ -29,6 +33,13 @@ $(".TablaMercancia").on("click", ".btnEditarMercancia", function(){
 			$("#editarIntervalo3").val(respuesta["Valor_C"]);
 			$("#editarIntervalo4").val(respuesta["Valor_D"]);
 			$("#editarIntervalo5").val(respuesta["Valor_E"]);
+
+			$("#ETB_DEDUCIBLE_ROT").val(rot);
+			$("#ETB_DEDUCIBLE_ROBO").val(robo);
+			$("#ETB_DEDUCIBLE_OTROS_R").val(respuesta["DEDUCIBLE_OTROS_R"]);
+			$("#ETB_DEDUCIBLE_SVT").val(svt);
+			$("#ETb_EMBARQUE_CARRETERA_LIBRE").val(respuesta["EMBARQUE_CARRETERA_LIBRE"]);
+			$("#ETb_MARITIMO_AEREO_COMBINADO").val(respuesta["MARITIMO_AEREO_COMBINADO"]);
 			$("#id").val(respuesta["Id"]);
 
 		}
