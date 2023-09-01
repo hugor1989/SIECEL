@@ -44,6 +44,11 @@ $(".tableclientes").on("click", ".btnEditarCliente", function(){
 			$('#editarCuotas').val(respuesta["TipoCuota"]); // Select the option with a value of '1'
 			$('#editarCuotas').trigger('change'); // Notify any JS components that the value changed
 			
+
+			console.log(respuesta["Asociado"]);
+			$('#editarAsociadoCliente').val(respuesta["Asociado"]); // Select the option with a value of '1'
+			$('#editarAsociadoCliente').trigger('change'); // Notify any JS components that the value changed
+
 			$("#id").val(respuesta["Id"]);
 
 			$("#rutalactualofac").val(respuesta["FotoOfac"]);

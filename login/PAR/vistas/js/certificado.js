@@ -1065,10 +1065,15 @@ $('#nuevoMercancia').change(function() {
 $('#nuevoAsociado').change(function() {
 
 	ObtenerPrefijoAsociado($(this).val());
-	ObtenerClientes($(this).val());
+	
 	ObtenerAseguradora();
 
 	var perfil = $("#PerilUsuarioLogin").val();
+
+	if(perfil == 3){
+
+		ObtenerClientes($(this).val());
+	}
 });
 
   //Funcion para Obtener el Prefijo del Asociado

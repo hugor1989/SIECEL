@@ -333,6 +333,7 @@ class ControladorPersona{
 								"tr" => $_POST["nuevoCuota_TR"],
 								"vt" => $_POST["nuevoCuotaBasica"],
 								"tipocuota" => $_POST["editarCuotas"],
+								"asociado" => $_POST["editarAsociadoCliente"],
 							   "id" => $_POST["id"] 
 							   );
 				}else{

@@ -184,13 +184,13 @@
                                         ';
 
                                         if($perfil != 1 || $perfil != 2){
-                                            $cliente = ControladorPersona::ctrMostrarAsociado($itemCliente, $valorCliente);
-                                         // $cliente = ControladorPersona::ctrMostrarClientesListado();
+                                           // $cliente = ControladorPersona::ctrMostrarAsociado($itemCliente, $valorCliente);
+                                          $cliente = ControladorPersona::ctrMostrarClientesListado();
                                         }
-                                        /* else{
+                                         else{
 
                                           $cliente = ControladorPersona::ctrMostrarAsociado($itemCliente, $valorCliente);
-                                        } */
+                                        }
                                         
 
                                         foreach ($cliente as $key => $value){

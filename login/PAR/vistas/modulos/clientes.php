@@ -46,7 +46,7 @@
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">N. Interior</th>
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">N. Exterior</th>
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">Colonia</th>
-                          <th style="font-weight: bold; font-size:13px; font-family:Arial"> Municipio</th>
+                          <th style="font-weight: bold; font-size:13px; font-family:Arial">Municipio</th>
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">Estado</th>
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">CodigoPostal</th>
                           <th style="font-weight: bold; font-size:13px; font-family:Arial">Localidad</th>
@@ -335,7 +335,7 @@ MODAL EDITAR CLIENTE
                       <?php } ?>
                       <!-- FIN INPUT -->
                       <div class="row">
-                        <div class="col-12 col-md-6 mt-4">
+                        <div class="col-md-6">
                             <div class="file-drop-area">
                                 <span class="choose-file-button"><strong>SELECCIONAR IMAGEN DE REGISTRO DE CONSULTA OFAC</strong></span>
                                 </br>
@@ -346,6 +346,28 @@ MODAL EDITAR CLIENTE
                             </div>
                                   <img  class="img-thumbnail previsualizar" width="150px">
                         </div>
+                        <?php if($_SESSION["perfil"] == 1){ ?>
+                          <div class="col-6">
+                         
+                                <?php
+                                   echo '
+                                          <label>Asociado</label>
+                                          <select class="form-control select2 input-lg" id="editarAsociadoCliente" name="editarAsociadoCliente" required>	
+                                            <option value="">Selecionar Asociado</option>
+                                              ';
+                                              $asociado = ControladorUsuarios::ctrMostrarUsuarios($item1, $valor1);
+
+                                              foreach ($asociado as $key => $value){
+
+                                                  echo '<option value='.$value["Id"].'>'.$value["Nombre"].'</option>';
+                                              }
+                                          echo ' </select>
+                                              ';   
+                                      ?>
+                             
+                              
+                          </div>
+                        <?php } ?>
                       </div>
                   </div>
                 </div>  

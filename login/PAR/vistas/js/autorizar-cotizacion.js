@@ -869,3 +869,1153 @@ $("#EPNETA").blur(function() {
 	
 	// tu codigo ajax va dentro de esta function...
   });
+
+
+  //Funcion que sirve para cuando se selecciona otra cobertura
+  $('#EnuevoCBM').change(function() {
+
+	var elementNameExists = document.getElementsByName("ETB_CMCIA");
+	const input = document.querySelector('ETB_CMCIA')
+	/* console.log(input);
+
+	console.log(elementNameExists); */
+	if(elementNameExists == true){
+
+		document.getElementById("ETB_CMCIA").value = "";
+		document.getElementById("ETB_PNTA").value = "";
+		document.getElementById("ETB_PMCTND").value = "";
+		document.getElementById("ETB_PMAGT").value = "";
+		document.getElementById("ETB_DCRT").value = "";
+		document.getElementById("ETB_IVA").value = "";
+		document.getElementById("ETB_IVA").value = "";
+	}
+ 
+
+	//Se limpian los campos de la cuota del usuario
+	document.getElementById("EPNETA").value = "";
+	document.getElementById("ETB_PNTAT").value = "";
+	document.getElementById("ETB_PMCTNDT").value = "";
+	document.getElementById("ETB_PMAGTT").value = "";
+	document.getElementById("ETB_DCRTT").value = "";
+	document.getElementById("EIVA").value = "";
+	document.getElementById("ETOTAL").value = "";
+
+
+    var DerechoCertificado = $("#TB_ObjDerechoCertificado").val();
+    //Se obtiene la prima minima configurado en el usuarios
+    var PrimaMinima = $("#TB_ObjPrimaminima").val();
+
+	var ValorEmbarqueTotal = $("#ETB_ValorEmbarque").val(); //Valor que ingresa el usuario
+	 // Se obtiene el dato de si se ampara el contenedor
+
+	 
+	var AmparaContenedor=document.getElementById("EnuevoContenedor").value;
+	
+
+	//var SoloContenedor = $("#customSwitch1").is(":checked");
+
+	var GranPNC = 0;
+	var GranPNCNT = 0;
+	var GranIVA = 0;
+	var GranTotal = 0;
+
+	/* if($("#TB_ActivoAseguradora").val() == 1 && $("#TB_MercanciaAutomatico").val() == 1){
+
+		$("#submit").html('Emitir Certificado');
+		
+	} */
+
+	//Aqui se mete la de que si solo se esta amaparando el contenero sin nada de mercancia
+	//si no se esta amparando solo contendor se pasar a lo demas
+	
+    if($(this).val() == "ROT Y ROBO" && $("#EEMAYOR").val() == "NO"){
+
+		
+		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
+		// de la mercancia que no corresponda a a esos giros
+		if($("#ETB_Giro").val() != "PERECEDEROS" && $("#ETB_Giro").val() != "CARRO TANQUE"){
+
+			//alert($("#MTPT").val());
+			document.getElementById("ETB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida.";
+		}
+
+		//Terrestre
+		if($("#EMTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#EMTPT").val() == "MMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#EMTPT").val() == "AEREO"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#EMTPT").val() == "COMAM"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
+	
+		//REVISAR ESTO SI VA A SEGUIR IGUAL
+		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total.";
+	
+		if($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() != "No" &&  $("#ETB_SumaSolicitada2").val() == ""){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				$("#ETB_SumaSolicitada2").addClass("is-invalid");
+				 return;
+			 });
+		}else if ($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() == "No" ){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#TB_SumaSolicitada1").addClass("is-invalid");
+				 return;
+			 });
+		
+		}else{
+			$("#ETB_SumaSolicitada1").removeClass("is-invalid");
+			$("#ETB_SumaSolicitada2").removeClass("is-invalid");
+	
+			if(AmparaContenedor == "No"){
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+	
+				//Se declara la varia para obtener la cuota rot
+				var CuotaROTGeneral = 0;
+	
+				/*
+				  Se primero se valida que a nivel cliente no tenga ua cuota, si se tiene
+				  se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
+				  al siguiente nuevel
+				*/
+				/* if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
+	
+					CuotaROTGeneral = $("#Cuota_CL_ROT").val();
+				} */
+				/*
+				  En casp de que el cliente no tenga cuoa se busca a nivel mercancia
+				*/
+				/* else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
+					
+					CuotaROTGeneral = $("#TB_ROT").val();
+	
+				} */
+				/*
+				  En caso de que 
+				*/
+				if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
+	
+					CuotaROTGeneral = $("#TB_ObjCuotaRot").val();
+				}else{
+	
+					CuotaROTGeneral = 0;
+				}
+	
+	
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				valor1 = 0;  
+				valor2 = 0;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = 0;
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  CuotaROTGeneral/100 + (CuotaContenedor/100 * suma);
+					//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+	
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = CuotaROTGeneral;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC = ValorEmbarqueTotal *  CuotaROTGeneral/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+	
+				if(primanetaagente<PrimaMinima){
+	
+					//var numb= 212421434.533423131231;
+					//var rounded = Math.round((PrimaMinima + Number.EPSILON) * 100) / 100;
+					//console.log(rounded);
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+	
+					//var rounded = Math.round((primanetaagente + Number.EPSILON) * 100) / 100;
+					//console.log(rounded);
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				
+				//var roundeded = Math.round((DerechoCertificado + Number.EPSILON) * 100) / 100;
+				//console.log(roundeded);
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  =  parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+	
+			}else if (AmparaContenedor == "Si"){
+
+				//alert($("#Cuota_CL_ROT").val());
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				if(document.getElementById("ETB_SumaSolicitada1").value == ''){
+					valor1 = 0
+				}else{
+					valor1 =  document.getElementById("ETB_SumaSolicitada1").value
+				}
+				if(document.getElementById("ETB_SumaSolicitada2").value == ''){
+					valor2 = 0
+				}else{
+					valor2 =  document.getElementById("ETB_SumaSolicitada2").value
+				}
+	
+				/*
+				   primero se valida que a nivel cliente no tenga ua cuota, si se tiene
+				  se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
+				  al siguiente nuevel
+				*/
+
+				//alert($("#Cuota_CL_ROT").val());
+				/* if($("#Cuota_CL_ROT").val() != "" && $("#Cuota_CL_ROT").val() != null){
+	
+					CuotaROTGeneral = $("#Cuota_CL_ROT").val();
+				} */
+				/*
+				  En casp de que el cliente no tenga cuoa se busca a nivel mercancia
+				*/
+				/* else if ($("#TB_ROT").val() != "" && $("#TB_ROT").val() != null){
+					
+					
+	
+				} */
+				/*
+				  En caso de que 
+				*/
+				 if ($("#TB_ObjCuotaRot").val() != "" && $("#TB_ObjCuotaRot").val() != null){
+	
+					CuotaROTGeneral = $("#TB_ObjCuotaRot").val();
+				}else{
+	
+					CuotaROTGeneral = 0;
+				}
+				//alert(valor1);
+				//alert(valor2);
+				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+	
+				
+	
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  CuotaROTGeneral/100 + (CuotaContenedor/100 * suma);
+				//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+				//Se obtiene el iva del resultado de la suma anterior
+				//iva = (monto * tasa)/100;
+				//console.log(CuotaROTGeneral);
+				//En caso de que si sea continuacion de viaje se obtiene el valor de CuotaRot y se pone 
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = CuotaROTGeneral;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC =  ValorEmbarqueTotal *  CuotaROTGeneral/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+				
+				//prima neta contenedeor
+				GranPNCNT = (CuotaContenedor/100 * suma);
+				document.getElementById("ETB_PMCTND").value = GranPNCNT.toFixed(2);
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+			}
+	
+		}
+	}
+	else if($(this).val() == "ROT Y ROBO" && $("#EEMAYOR").val() == "SI"){
+
+		
+		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
+		// de la mercancia que no corresponda a a esos giros
+		if($("#ETB_Giro").val() != "PERECEDEROS" && $("#ETB_Giro").val() != "CARRO TANQUE"){
+
+			document.getElementById("ETB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% Sobre el valor total del embarque para toda y cada perdida."
+		}
+
+		//Terrestre
+		if($("#EMTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#EMTPT").val() == "MMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#EMTPT").val() == "AEREO"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#EMTPT").val() == "COMAM"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + "MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
+		/////
+		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total.";
+
+		if($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() != "No" &&  $("#ETB_SumaSolicitada2").val() == ""){
+
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				$("#ETB_SumaSolicitada2").addClass("is-invalid");
+				 return;
+			 });
+		}else if ($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() == "No" ){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				 return;
+			 });
+		
+		}else{
+
+			$("#ETB_SumaSolicitada1").removeClass("is-invalid");
+			$("#ETB_SumaSolicitada2").removeClass("is-invalid");
+
+
+			if(AmparaContenedor == "No"){
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				valor1 = 0;  
+				valor2 = 0;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = 0;
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  0.28/100 + (CuotaContenedor/100 * suma);
+					//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+	
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = 0.28;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC = ValorEmbarqueTotal *  0.28/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+	
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+	
+			}else if (AmparaContenedor == "Si"){
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				if(document.getElementById("ETB_SumaSolicitada1").value == ''){
+					valor1 = 0
+				}else{
+					valor1 =  document.getElementById("ETB_SumaSolicitada1").value
+				}
+				if(document.getElementById("ETB_SumaSolicitada2").value == ''){
+					valor2 = 0
+				}else{
+					valor2 =  document.getElementById("ETB_SumaSolicitada2").value
+				}
+	
+				//alert(valor1);
+				//alert(valor2);
+				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+	
+				
+	
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  0.28/100 + (CuotaContenedor/100 * suma);
+				//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+				//Se obtiene el iva del resultado de la suma anterior
+				//iva = (monto * tasa)/100;
+	
+				//En caso de que si sea continuacion de viaje se obtiene el valor de CuotaRot y se pone 
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = 0.28;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC =  ValorEmbarqueTotal *  0.28/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+				
+				//prima neta contenedeor
+				GranPNCNT = (CuotaContenedor/100 * suma);
+				document.getElementById("ETB_PMCTND").value = GranPNCNT.toFixed(2);
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+			}
+		}
+	}else if($(this).val() == "TODO RIESGO"){
+
+		
+		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
+		// de la mercancia que no corresponda a a esos giros
+		if($("#ETB_Giro").val() != "PERECEDEROS" && $("#ETB_Giro").val() != "CARRO TANQUE"){
+
+			document.getElementById("ETB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + " ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+		}
+		
+		//Terrestre
+		if($("#EMTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#EMTPT").val() == "MMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#EMTPT").val() == "AEREO"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#EMTPT").val() == "COMAM"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
+		//Se asigna el riesgo cubierto segun el tipo de cobertura seleccionado
+		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total - Robo parcial  -  Mojadura  -  Manchas  -  Oxidación  - Contaminación  -  Rotura  -  Derrame  -  Bodega a Bodega  - Maniobras de Carga y Descarga  -  Huelgas y Alborotos Populares.";
+	
+		if($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() != "No" &&  $("#ETB_SumaSolicitada2").val() == ""){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				$("#ETB_SumaSolicitada2").addClass("is-invalid");
+				 return;
+			 });
+		}else if ($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() == "No" ){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				 return;
+			 });
+		
+		}else{
+	
+			$("#ETB_SumaSolicitada1").removeClass("is-invalid");
+			$("#ETB_SumaSolicitada2").removeClass("is-invalid");
+	
+			
+			if(AmparaContenedor == "No"){
+		
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa; 
+				//Se declara la varia para obtener la cuota rot
+				var CuotaTRGeneral = 0;
+	
+				/*
+					Se primero se valida que a nivel cliente no tenga ua cuota, si se tiene
+					se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
+					al siguiente nuevel
+				*/
+				/* if($("#Cuota_CL_TR").val() != "" && $("#Cuota_CL_TR").val() != null){
+	
+					CuotaTRGeneral = $("#Cuota_CL_TR").val();
+				} */
+				/*
+					En casp de que el cliente no tenga cuoa se busca a nivel mercancia
+				*/
+				/* else if ($("#TB_Robo").val() != "" && $("#TB_Robo").val() != null){
+					
+					CuotaTRGeneral = $("#TB_Robo").val();
+	
+				} */
+				/*
+					En caso de que 
+				*/
+				 if ($("#TB_ObjCuotaTR").val() != "" && $("#TB_ObjCuotaTR").val() != null){
+	
+					CuotaTRGeneral = $("#TB_ObjCuotaTR").val();
+					}else{
+	
+					CuotaTRGeneral = 0;
+				} 
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				valor1 = 0;  
+				valor2 = 0;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = 0;
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  CuotaTRGeneral/100 + (CuotaContenedor/100 * suma);
+					//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+		
+				 //en el campo de cuota mercancia  esto servira para calcular lo demas.
+				 document.getElementById("ETB_CMCIA").value = CuotaTRGeneral;
+				 //Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				 GranPNC = ValorEmbarqueTotal *  CuotaTRGeneral/100;
+				 document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+		
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+	
+			}else if (AmparaContenedor == "Si"){
+				//alert("si ampara contenedor");
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				var CuotaTRGeneral = 0;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				if(document.getElementById("ETB_SumaSolicitada1").value == ''){
+					valor1 = 0
+				}else{
+					valor1 =  document.getElementById("ETB_SumaSolicitada1").value
+				}
+				if(document.getElementById("ETB_SumaSolicitada2").value == ''){
+					valor2 = 0
+				}else{
+					valor2 =  document.getElementById("ETB_SumaSolicitada2").value
+				}
+	
+				//alert(valor1);
+				//alert(valor2);
+				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+
+				if ($("#TB_ObjCuotaTR").val() != "" && $("#TB_ObjCuotaTR").val() != null){
+	
+					CuotaTRGeneral = $("#TB_ObjCuotaTR").val();
+					}else{
+	
+					CuotaTRGeneral = 0;
+				}
+
+				//alert(CuotaContenedor);
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+	
+				//alert(suma);
+				
+	
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal * CuotaTRGeneral/100 + (CuotaContenedor/100 * suma);
+				//alert(primanetaagente);
+				//alert(PrimaMinima);
+				//alert(CuotaTRGeneral);
+				//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+				//Se obtiene el iva del resultado de la suma anterior
+				//iva = (monto * tasa)/100;
+	
+				//En caso de que si sea continuacion de viaje se obtiene el valor de CuotaRot y se pone 
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = CuotaTRGeneral;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC = ValorEmbarqueTotal *  CuotaTRGeneral/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+				
+				//prima neta contenedeor
+				GranPNCNT = (CuotaContenedor/100 * suma);
+				document.getElementById("ETB_PMCTND").value = GranPNCNT.toFixed(2);
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+			}
+		}
+	
+	}
+	else if ($(this).val() == "TODO RIESGO Y VT"){
+	
+		
+		//Se asigna el riesgo cubierto segun el tipo de cobertura seleccionado
+		document.getElementById("TB_CoberturaMercancia").value  = "Riesgos Ordinarios de Transito - Robo Total - Robo parcial  -  Mojadura  -  Manchas  -  Oxidación  - Contaminación  -  Rotura  -  Derrame  -  Bodega a Bodega  - Maniobras de Carga y Descarga  -  Huelgas y Alborotos Populares - Cláusula de Productos Refrigerados.";
+	
+		//Se valida el tipo de giro que sea diferente a perecedero y carrotanque para poner en los deducibles que corresponda 
+		// de la mercancia que no corresponda a a esos giros
+		/* if($("#TB_Giro").val() != "PERECEDEROS" && $("#TB_Giro").val() != "CARRO TANQUE"){
+			document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+		} */
+
+		if($("#ETB_Giro").val() != "PERECEDEROS" && $("#ETB_Giro").val() != "CARRO TANQUE"){
+
+			document.getElementById("ETB_Deducible").value  = "R.O.T: " + $("#TB_DeducibleROT").val() + 
+						" ROBO: " + $("#TB_DEDUCIBLE_ROBO").val() + " OTROS: " + $("#TB_DEDUCIBLE_OTROS_R").val() + " SVT: " + $("#TB_DEDUCIBLE_SVT").val();
+			//document.getElementById("TB_Deducible").value  = "R.O.T 3% \n Robo 10% \n Otro 5% \n Sobre el valor total del embarque para toda y cada perdida."
+		}
+		
+		//Terrestre
+		if($("#EMTPT").val() == "TE"){
+
+		
+		}//Maritimo
+		else if ($("#EMTPT").val() == "MMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//AEREO
+		else if ($("#EMTPT").val() == "AEREO"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO
+		else if ($("#EMTPT").val() == "COMAM"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION AEREO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMAT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}//COMBINACION MARITIMO - TERRESTRE
+		else if ($("#EMTPT").val() == "COMMT"){
+
+			document.getElementById("ETB_Deducible").value  =  $("#ETB_Deducible").val() + " MARITIMO: " + $("#TB_MARITIMO_AEREO_COMBINADO").val()
+
+		}
+	
+		if($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() != "No" &&  $("#ETB_SumaSolicitada2").val() == ""){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				$("#ETB_SumaSolicitada2").addClass("is-invalid");
+				 return;
+			 });
+		}else if ($("#EnuevoTipoContenedor1").val() != "No" &&  $("#ETB_SumaSolicitada1").val() == "" && $("#EnuevoTipoContenedor2").val() == "No" ){
+	
+			Swal.fire({
+				title: 'Favor de Ingresar Suma Asegurada del Contenedor',
+				width: 600,
+				padding: '3em',
+				background: '#fff',
+				backdrop: `
+				  rgba(0,0,123,0.4)
+				  left top
+				  no-repeat
+				`
+			  }).then(()=>{
+				$("#ETB_SumaSolicitada1").addClass("is-invalid");
+				 return;
+			 });
+		
+		}else{
+	
+			$("#ETB_SumaSolicitada1").removeClass("is-invalid");
+			$("#ETB_SumaSolicitada2").removeClass("is-invalid");
+	
+			if(AmparaContenedor == "No"){
+		
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;
+				//Se declara la varia para obtener la cuota rot
+					var CuotaVTGeneral = 0;
+		
+					/*
+						Se primero se valida que a nivel cliente no tenga ua cuota, si se tiene
+						se obtiene el valor para hacer los calculo, en caso de que no tenga se pasa 
+						al siguiente nuevel
+					*/
+					/* if($("#Cuota_CL_VT").val() != "" && $("#Cuota_CL_VT").val() != null){
+		
+						CuotaVTGeneral = $("#Cuota_CL_VT").val();
+					} */
+					/*
+						En casp de que el cliente no tenga cuoa se busca a nivel mercancia
+					*/
+					/* else if ($("#TB_VT").val() != "" && $("#TB_VT").val() != null){
+						
+						CuotaVTGeneral = $("#TB_VT").val();
+		
+					} */
+					/*
+						En caso de que 
+					*/
+					 if ($("#TB_ObjCuotaBasica").val() != "" && $("#TB_ObjCuotaBasica").val() != null){
+		
+						CuotaVTGeneral = $("#TB_ObjCuotaBasica").val();
+					}else{
+		
+						CuotaVTGeneral = 0;
+					}
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				valor1 = 0;  
+				valor2 = 0;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = 0;
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  CuotaVTGeneral/100 + (CuotaContenedor/100 * suma);
+					//Se obtiene el total de la suma de prima agente + derechi de certicado
+	
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+				
+		
+				 //en el campo de cuota mercancia  esto servira para calcular lo demas.
+				 document.getElementById("ETB_CMCIA").value = CuotaVTGeneral;
+				 //Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				 GranPNC = ValorEmbarqueTotal *  CuotaVTGeneral/100;
+				 document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+		
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = parseFloat(PrimaMinima).toFixed(2);
+				}else{
+					document.getElementById("ETB_PMAGT").value = parseFloat(primanetaagente).toFixed(2);
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = parseFloat(DerechoCertificado).toFixed(2);
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+	
+			}else if (AmparaContenedor == "Si"){
+				//Se declaran las variables
+				var valor1,valor2,suma, CuotaContenedor, primanetaagente, iva, tasa;  
+				//se poner el de iva que se usara para el calculo del iva
+				tasa = 16;
+				//Se obtiene el valor de contenedor 1 y contendedor 2
+				if(document.getElementById("ETB_SumaSolicitada1").value == ''){
+					valor1 = 0
+				}else{
+					valor1 =  document.getElementById("ETB_SumaSolicitada1").value
+				}
+				if(document.getElementById("ETB_SumaSolicitada2").value == ''){
+					valor2 = 0
+				}else{
+					valor2 =  document.getElementById("ETB_SumaSolicitada2").value
+				}
+	
+				//alert(valor1);
+				//alert(valor2);
+				//valor2 = document.getElementById("TB_SumaSolicitada2").value;
+				//Se obtiene  el porcenaje de la cuota de contenedor  
+				CuotaContenedor = $("#TB_ObjCuotaContenedor").val();
+
+				if ($("#TB_ObjCuotaBasica").val() != "" && $("#TB_ObjCuotaBasica").val() != null){
+		
+					CuotaVTGeneral = $("#TB_ObjCuotaBasica").val();
+				}else{
+	
+					CuotaVTGeneral = 0;
+				}
+
+				//Se realizar la suma del valor contenedor 1 y 2
+				suma=parseFloat(valor1)+parseFloat(valor2);
+	
+				
+	
+				//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+				primanetaagente = ValorEmbarqueTotal *  CuotaVTGeneral/100 + (CuotaContenedor/100 * suma);
+				//Se obtiene el total de la suma de prima agente + derechi de certicado
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+					monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+				}else{
+					monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+				}
+				//Se obtiene el iva del resultado de la suma anterior
+				//iva = (monto * tasa)/100;
+	
+				//En caso de que si sea continuacion de viaje se obtiene el valor de CuotaRot y se pone 
+				//en el campo de cuota mercancia  esto servira para calcular lo demas.
+				document.getElementById("ETB_CMCIA").value = CuotaVTGeneral;
+				//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+				GranPNC = ValorEmbarqueTotal *  CuotaVTGeneral/100;
+				document.getElementById("ETB_PNTA").value = GranPNC.toFixed(2);
+				
+				//prima neta contenedeor
+				GranPNCNT = (CuotaContenedor/100 * suma);
+				document.getElementById("ETB_PMCTND").value = GranPNCNT.toFixed(2);
+				//prima neta agente
+				if(primanetaagente<PrimaMinima){
+					//prima neta agente
+				 document.getElementById("ETB_PMAGT").value = PrimaMinima;
+				}else{
+					document.getElementById("ETB_PMAGT").value = primanetaagente;
+				}
+				//document.getElementById("TB_PMAGT").value = primanetaagente;
+				//Se ingresa el valor de derecho de certificado
+				document.getElementById("ETB_DCRT").value  = DerechoCertificado;
+				//iva
+				GranIVA = (monto * tasa)/100;
+				document.getElementById("ETB_IVA").value = GranIVA.toFixed(2);
+				//prima total a pagar con iva
+				GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+				document.getElementById("ETB_IVATOTAL").value = GranTotal.toFixed(2);
+			}
+		}	
+	}
+	
+});
+
+//Funcion que sirve en el control de Cuota del usuario que registra manualmente y se calcula
+$( "#EPNETA" ).blur(function() {
+
+	var primantaapar = $("#ETB_IVATOTAL").val();
+	var contenedor1,contenedor2,totalcontenedor, CuotaContenedorA, primanetaagente, iva, tasa;  
+
+	var PNTA =  $(this).val();
+	var ValorEmbarquetotal = $("#ETB_ValorEmbarque").val(); //Valor que ingresa el usuario
+	//se poner el de iva que se usara para el calculo del iva
+	var PrimaMinima = $("#TB_ObjPrimaminima").val();
+	var DerechoCertificado = $("#TB_ObjDerechoCertificado").val();
+	tasa = 16;
+	//Se obtiene el valor de contenedor 1 y contendedor 2
+	if(document.getElementById("ETB_SumaSolicitada1").value == ''){
+		contenedor1 = 0
+	}else{
+		contenedor1 =  document.getElementById("ETB_SumaSolicitada1").value
+	}
+	if(document.getElementById("ETB_SumaSolicitada2").value == ''){
+		contenedor2 = 0
+	}else{
+		contenedor2 =  document.getElementById("ETB_SumaSolicitada2").value
+	}
+
+	//alert(valor1);
+	//alert(valor2);
+	//valor2 = document.getElementById("TB_SumaSolicitada2").value;
+	//Se obtiene  el porcenaje de la cuota de contenedor  
+	CuotaContenedorA = $("#TB_ObjCuotaContenedor").val();
+	//Se realizar la suma del valor contenedor 1 y 2
+	totalcontenedor=parseFloat(contenedor1)+parseFloat(contenedor2);
+
+	
+
+	//Se calucula la prima neta agente = varlor embaque * porcentaje de cuota rot + el porcentaje de cuotacontendor * el resulñtaod de la suma d valor 1 y 2
+	primanetaagente = ValorEmbarquetotal *  PNTA/100 + (CuotaContenedorA/100 * totalcontenedor);
+	//Se obtiene el total de la suma de prima agente + derechi de certicado
+	if(primanetaagente<PrimaMinima){
+		//prima neta agente
+	//	document.getElementById("TB_PMAGT").value = PrimaMinima;
+		monto= parseFloat(PrimaMinima) + parseFloat(DerechoCertificado);
+	}else{
+		monto= parseFloat(primanetaagente) + parseFloat(DerechoCertificado);
+	}
+	//Se obtiene el iva del resultado de la suma anterior
+	//iva = (monto * tasa)/100;
+
+	//En caso de que si sea continuacion de viaje se obtiene el valor de CuotaRot y se pone 
+	//en el campo de cuota mercancia  esto servira para calcular lo demas.
+//	document.getElementById("TB_CMCIA").value = $("#TB_ObjCuotaBasica").val();
+	//Si no es mayor la primaneta se calcula el valor de embarque por el valor de cuota rot / 100
+	GranPNC = ValorEmbarquetotal *  PNTA/100;
+	document.getElementById("ETB_PNTAT").value = GranPNC.toFixed(2);
+	
+	//prima neta contenedeor
+	GranPNCNT = (CuotaContenedorA/100 * totalcontenedor);
+	document.getElementById("ETB_PMCTNDT").value = GranPNCNT.toFixed(2);
+	//prima neta agente
+	if(primanetaagente<PrimaMinima){
+		//prima neta agente
+	 document.getElementById("ETB_PMAGTT").value = parseFloat(PrimaMinima).toFixed(2);
+	}else{
+		document.getElementById("ETB_PMAGTT").value = parseFloat(primanetaagente).toFixed(2) ;
+	}
+	//document.getElementById("TB_PMAGT").value = primanetaagente;
+	//Se ingresa el valor de derecho de certificado
+	document.getElementById("ETB_DCRTT").value  = parseFloat(DerechoCertificado).toFixed(2);
+	//iva
+	GranIVA = (monto * tasa)/100;
+	document.getElementById("EIVA").value = GranIVA.toFixed(2);
+	//prima total a pagar con iva
+	GranTotal = parseFloat(monto)+ parseFloat((monto * tasa)/100);
+	document.getElementById("ETOTAL").value = GranTotal.toFixed(2);
+	
+	 if(GranTotal < primantaapar){
+
+		Swal.fire({
+			title: 'La prima neta es menor a la prima APAR.',
+			width: 600,
+			padding: '3em',
+			background: '#fff',
+			backdrop: `
+			  rgba(0,0,123,0.4)
+			  left top
+			  no-repeat
+			`
+		  }).then(()=>{
+			document.getElementById("ETB_DCRTT").value = "";
+			document.getElementById("ETB_PMAGTT").value = "";
+			document.getElementById("ETB_PMAGTT").value = "";
+			document.getElementById("ETB_PMCTNDT").value = "";
+			document.getElementById("ETB_PNTAT").value = "";
+			document.getElementById("EIVA").value = "";
+			document.getElementById("ETOTAL").value = "";
+			return;
+		});	
+
+	}else{
+		//document.getElementById("IVA").value = iva;
+		//document.getElementById("TOTAL").value = TotalPrimaNeta.toFixed(2);
+	} 
+
+	
+	// tu codigo ajax va dentro de esta function...
+
+});

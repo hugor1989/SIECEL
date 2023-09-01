@@ -446,7 +446,7 @@ class ModeloPersona{
 																 Calle= :Calle, Numero_Interior = :Numero_Interior, Numero_Exterior = :Numero_Exterior,
 																 Colonia = :Colonia, Municipio = :Municipio, CodigoPostal = :CodigoPostal,
 																 Estado = :Estado, Pais = :Pais, Localidad=:Localidad, MercanciaAutorizada=:MercanciaAutorizada,
-																 Cuota_ROT = :Cuota_ROT, Cuota_TR =:Cuota_TR, Cuota_TRVT=:Cuota_TRVT, TipoCuota=:TipoCuota
+																 Cuota_ROT = :Cuota_ROT, Cuota_TR =:Cuota_TR, Cuota_TRVT=:Cuota_TRVT, TipoCuota=:TipoCuota,  Asociado=:Asociado
 																 WHERE Id = :Id");
 
 			$stmt -> bindParam(":Nombre", $datos["nombre"]);
@@ -466,6 +466,7 @@ class ModeloPersona{
 			$stmt -> bindParam(":Cuota_TR", $datos["tr"]);
 			$stmt -> bindParam(":Cuota_TRVT", $datos["vt"]);
 			$stmt -> bindParam(":TipoCuota", $datos["tipocuota"]);
+			$stmt -> bindParam(":Asociado", $datos["asociado"]);
 			$stmt -> bindParam(":Id", $datos["id"]);
 
 		}
