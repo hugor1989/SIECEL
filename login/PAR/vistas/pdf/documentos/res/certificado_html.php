@@ -418,38 +418,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             </td>
         </tr>
     </table>
-    <br><br><br>
-	<table cellspacing="0" style="width: 100%; ">
-		<tr>
-            <td style="width:100%; text-align: righ;><strong>Es condición indispensable para garantizar cobertura que se cumpla con las siguientes medidas de prevención con el objeto de evitar o minimizar las posibles pérdidas o daños a la carga. </strong></td>
-		</tr>
-        <tr>
-            <td style="width:100%; text-align: righ;><strong>El asegurado, quienes lo representen o a quienes haya contratado, aceptan estar de acuerdo en el momento en que falte a cualquiera de ellas queda sin protección o cobertura por parte de la compañía de seguros. </strong></td>
-		</tr>
-        <tr>
-            <td style="width:100%; text-align: righ;><strong>En caso de siniestro, si la medida de prevención no tiene relación directa con el siniestro, dicha medida de prevención no será limitante de cobertura o se tomará como exclusión.</strong></td>
-		</tr>
-	</table>
-    <table cellspacing="0" style="width: 100%; ">
-		<tr>
-            <td style="width:100%; font-style:arial; font-size:12px; text-align: justify; ">
-			Es condición indispensable para la presente cobertura que se deberá cumplir con las siguientes medidas de prevención con el objeto de evitar o minimizar las posibles pérdidas en su carga y está de acuerdo en que queda sin protección en el momento en que el asegurado o a quien quiera que éste contrate falte a cualquiera de ellas:
-			<br>
-			<ul class="list-inline">
-				<li class="list-inline-item">Para el transporte en buque, el Asegurado garantiza la transportación bajo cubierta a menos que la mercancía sea transportada dentro de contenedor cerrado en buque porta contenedores.</li>
-				<li class="list-inline-item">Para el transporte terrestre, así como para las conexiones marítimas, el asegurado garantiza el uso de caminos de cuota cuando estén disponibles.</li>
-				<li class="list-inline-item">Utilizar vehículos con caja metálica cerrada. Únicamente se permitirá el uso de vehículos sin caja metálica cerrada cuando la naturaleza de los bienes haga imposible el uso de dichas cajas, sin embargo, deberá contarse con lonas en excelente estado protegiendo la mercancía.</li>
-			    <li class="list-inline-item">Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y las casetas de peaje donde cuenten con vigilancia física o electrónica de dicho lugar y cuente con lugar especificado para aparcar en las carreteras. La única excepción para lo anterior es una falla mecánica súbita e imprevista del medio de transporte. No obstante, lo anterior, en ninguna circunstancia los vehículos podrán abandonarse por más de ocho horas naturales, salvo que el motivo de abandono sea la reparación de la falla mecánica y que no aplica en caso de accidente grave que ponga en peligro la integridad del chofer.</li>
-				<li class="list-inline-item">Los conductores deberán utilizar equipos de comunicación y/o teléfonos celulares con saldo suficiente y batería cargada con la obligación de reportar cualquier situación fuera de la operación normal o recibir instrucciones en caso de monitoreo.</li>
-				<li class="list-inline-item">Revisión exhaustiva del interior de los medios de conducción, para detectar residuos o aromas de la carga. Esta medida podrá ser validada con la presentación del certificado de limpieza y/o y check list de inspección y que opera para las coberturas de Contacto con Otras Cargas y Contaminación y Manchas a consecuencia de un riesgo cubierto.</li>
-				<li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS, o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre, así como custodia por personal de una empresa especializada en seguridad que cuente con los permisos correspondientes de la autoridad competente, desde su origen hasta su descarga final.</li>
-				<li class="list-inline-item">Para que surta efecto la cobertura a consecuencia de fallas en sistema de refrigeración, se deberán utilizar cajas refrigeradas con una antigüedad máxima de 15 años.</li>
-				<li class="list-inline-item">Para permanencias intermedias como parte del curso ordinario de tránsito, deberá realizarse en predios debidamente cerrados con barda perimetral o malla ciclónica que cuenten con control de entradas y salidas y con personal de vigilancia las 24 horas del día.</li>
-				<li class="list-inline-item">Para mercancías que sobrepasen dimensiones y capacidad, deberán cumplir con lo establecido en el “Reglamento sobre el peso, dimensiones y capacidad de los vehículos de autotransporte que transitan en los caminos y puentes de jurisdicción federal”. En caso de sobrepasar dimensiones deberá cumplir con apego a la NOM-040-SCT-2-2012, Para el transporte de objetos indivisibles de gran peso y/o volumen, peso y dimensiones de las combinaciones vehiculares y de las grúas industriales y su tránsito por caminos y puentes de jurisdicción federal.</li>
-			</ul>
-			</td>
-        </tr>    	
-    </table>
+    <br><br><br><br><br><br><br><br><br><br>
     <table cellspacing="0" style="width: 100%;">
         <tr style="font-style:arial; font-size:12px; text-align: justify;">
             <td style="width:100%; text-align: righ;  color:#000000; ">
@@ -457,6 +426,48 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			</td>
 		</tr>
     </table>
+    <br><br>
+	<table cellspacing="0" style="width: 100%; ">
+        <tr>
+            <td style="width:100%;  font-size:10px; text-align: justify;"><strong>Es condición indispensable para garantizar cobertura que se cumpla con las siguientes medidas de prevención con el objeto de evitar o minimizar las posibles pérdidas o daños a la carga. </strong><br></td>
+		</tr>
+	</table>
+    <br>
+    <table cellspacing="0" style="width: 100%; ">
+        <tr>
+            <td style="width:100%;  font-size:10px; text-align: justify;"><strong>El asegurado, quienes lo representen o a quienes haya contratado, aceptan estar de acuerdo en el momento en que falte a cualquiera de ellas queda sin protección o cobertura por parte de la compañía de seguros</strong><br></td>
+		</tr>
+        
+	</table>
+    <br>
+    <table cellspacing="0" style="width: 100%; ">
+        <tr>
+            <td style="width:100%;  font-size:10px; text-align: justify;"><strong>En caso de siniestro, si la medida de prevención no tiene relación directa con el siniestro, dicha medida de prevención no será limitante de cobertura o se tomará como exclusión.</strong></td>
+		</tr>
+        
+	</table>
+    <br>
+    <table cellspacing="0" style="width: 100%; ">
+		<tr>
+            <td style="width:100%;  font-size:10px; text-align: justify;">
+                <ul class="list-inline">
+                    <li class="list-inline-item">Para el transporte en buque, el Asegurado garantiza la transportación bajo cubierta a menos que la mercancía sea transportada dentro de contenedor cerrado en buque porta contenedores.</li>
+                    <li class="list-inline-item">Para el transporte terrestre, así como para las conexiones marítimas, el asegurado garantiza el uso de caminos de cuota cuando estén disponibles.</li>
+                    <li class="list-inline-item">Utilizar vehículos con caja metálica cerrada. Únicamente se permitirá el uso de vehículos sin caja metálica cerrada cuando la naturaleza de los bienes haga imposible el uso de dichas cajas, sin embargo, deberá contarse con lonas en excelente estado protegiendo la mercancía.</li>
+                    <li class="list-inline-item">Los únicos lugares permitidos para hacer una parada son los predios de las gasolineras y las casetas de peaje donde cuenten con vigilancia física o electrónica de dicho lugar y cuente con lugar especificado para aparcar en las carreteras. La única excepción para lo anterior es una falla mecánica súbita e imprevista del medio de transporte. No obstante, lo anterior, en ninguna circunstancia los vehículos podrán abandonarse por más de ocho horas naturales, salvo que el motivo de abandono sea la reparación de la falla mecánica y que no aplica en caso de accidente grave que ponga en peligro la integridad del chofer.</li>
+                    <li class="list-inline-item">Los conductores deberán utilizar equipos de comunicación y/o teléfonos celulares con saldo suficiente y batería cargada con la obligación de reportar cualquier situación fuera de la operación normal o recibir instrucciones en caso de monitoreo.</li>
+                    <li class="list-inline-item">Revisión exhaustiva del interior de los medios de conducción, para detectar residuos o aromas de la carga. Esta medida podrá ser validada con la presentación del certificado de limpieza y/o y check list de inspección y que opera para las coberturas de Contacto con Otras Cargas y Contaminación y Manchas a consecuencia de un riesgo cubierto.</li>
+                    <li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre.</li>
+                    <li class="list-inline-item">Para las mercancías que así se señale en el PROTOCOLO, será indispensable que los embarques terrestres dentro de la República Mexicana deberán utilizar sistemas de rastreo satelital GPS, o similares, el cual deberá estar en condiciones óptimas de operación y monitoreo durante todo el transporte terrestre, así como custodia por personal de una empresa especializada en seguridad que cuente con los permisos correspondientes de la autoridad competente, desde su origen hasta su descarga final.</li>
+                    <li class="list-inline-item">Para que surta efecto la cobertura a consecuencia de fallas en sistema de refrigeración, se deberán utilizar cajas refrigeradas con una antigüedad máxima de 15 años.</li>
+                    <li class="list-inline-item">Para permanencias intermedias como parte del curso ordinario de tránsito, deberá realizarse en predios debidamente cerrados con barda perimetral o malla ciclónica que cuenten con control de entradas y salidas y con personal de vigilancia las 24 horas del día.</li>
+                    <li class="list-inline-item">Para embarcaciones menores y de placer, se deberá utilizar caminos de cuota siempre que la ruta lo permita, monitoreo activo mediante GPS, amarre y trincado al medio de transporte.</li>
+                    <li class="list-inline-item">Para mercancías que sobrepasen dimensiones y capacidad, deberán cumplir con lo establecido en el “Reglamento sobre el peso, dimensiones y capacidad de los vehículos de autotransporte que transitan en los caminos y puentes de jurisdicción federal”. En caso de sobrepasar dimensiones deberá cumplir con apego a la NOM-040-SCT-2-2012, Para el transporte de objetos indivisibles de gran peso y/o volumen, peso y dimensiones de las combinaciones vehiculares y de las grúas industriales y su tránsito por caminos y puentes de jurisdicción federal.</li>
+                </ul>
+			</td>
+        </tr>    	
+    </table>
+   
     <br><br>
     <table cellspacing="0" style="width: 100%; text-align: center;  font-size: 14px; font-family: Arial, Helvetica, sans-serif; ">
         <tr>
