@@ -54,12 +54,14 @@ $(".tableclientes").on("click", ".btnEditarCliente", function(){
 			$("#rutalactualofac").val(respuesta["FotoOfac"]);
 			$("#fechaofac").val(respuesta["FechaOfac"]);
 
+
+		//	let TipoArchivo = respuesta["FotoOfac"].split(".").pop(); //returs xsl
+			//getFileExtension(file2); //returs doc
+
+
 			if(respuesta["FotoOfac"] != ""){
 
 				$(".previsualizar").attr('src', respuesta["FotoOfac"]);
-
-				//$(".previsualizar").attr("src", "data:image/*base64," +  respuesta[i].ImagenBase64);
-				//$(".previsualizar").attr("src", respuesta[i].Foto);
 
 			}else{
 
@@ -324,9 +326,6 @@ $(function () {
 								"responsive": true,
 								"autoWidth": false,
 								"pageLength": 5,
-							fixedColumns:   {
-								leftColumns: 2,
-							},
 							
 							columnDefs: [
 							{ width: 50, targets: 0 }

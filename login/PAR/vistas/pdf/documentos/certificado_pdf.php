@@ -162,7 +162,7 @@
 		   
 		
 			$mail->AddAddress('aler1989p@gmail.com', $nome);
-			//$mail->AddAddress('saul.castro@parprofessionalrisk.com', $nome);		//Adds a "To" address
+			$mail->AddAddress('saul.castro@parprofessionalrisk.com', $nome);		//Adds a "To" address
 		   // $mail->addReplyTo($reply);
 			$mail->WordWrap = 50;
 			$mail->IsHTML = true;
