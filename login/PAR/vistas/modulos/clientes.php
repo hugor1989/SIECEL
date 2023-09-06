@@ -76,7 +76,13 @@
 
                             }
 
+                         
+
                             foreach ($cliente as $key => $value){
+
+
+                              $info = new SplFileInfo($value["FotoOfac"]);
+                              $extension = $info->getExtension();
                               
                             echo ' <tr>
                                     <td style="font-size:11px; font-family:Arial">'.$value["Nombre"].'</td>
@@ -122,11 +128,34 @@
                                 }else{
                                   echo '<td style=" font-size:11px; font-family:Arial">'.$value["Estatus"].'</td>';
                                 }
+                          
+                                if($extension == "png" || $extension == "jpg" || $extension == "jpeg"){
+
+                                 
+                                  echo '<td>
+                                          <img src="'.$value["FotoOfac"].'" class="img-thumbnail" width="150px">
+                                        </td>';
+
+                                }else if ($extension == "pdf"){
+
+                                  echo '<td><a class="btn-sm" role="button" href="'.$value["FotoOfac"].'"
+                                            target="_blank" title="Read PDF">
+                                        <i class="fas fa-file-pdf" aria-hidden="true"">
+                                          Ver PDF
+                                                  </i>
+                                            </a>
+                                        </td>';
+
+                                }else{
+
+                                        echo '<td>
+                                          
+                                        </td>';
+
+                                }
+                              
                                   
-                          echo '<td>
-                                  <img src="'.$value["FotoOfac"].'" class="img-thumbnail" width="150px">
-                                </td>
-                                <td style=" font-size:11px; font-family:Arial">'.$value["FechaOfac"].'</td>
+                          echo '<td style=" font-size:11px; font-family:Arial">'.$value["FechaOfac"].'</td>
                                 <td>
                                   <button class="btn btn-outline-warning btn-block btn-sm btnEditarCliente" idCliente="'.$value["Id"].'" data-toggle="modal" data-target="#modalEditarCliente"><i class="fa fa-edit"></i></button>
                                 </td>
@@ -344,7 +373,8 @@ MODAL EDITAR CLIENTE
                                 <input type="hidden" id="fechaofac" name="fechaofac">
                                       
                             </div>
-                                  <img  class="img-thumbnail previsualizar" width="150px">
+                                  <img id="MostrarImagen" name="MostrarImagen"  class="img-thumbnail previsualizar" width="150px">
+                                 
                         </div>
                         <?php if($_SESSION["perfil"] == 1){ ?>
                           <div class="col-6">
